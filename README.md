@@ -2,7 +2,7 @@
 
 [доска кабан](https://github.com/users/AlgaClicker/projects/1/views/1)
 
-[Экспорт эндпоинтов Postman ](https://github.com/AlgaClicker/crm_back/tree/devloop/support/) 
+[Экспорт эндпоинтов Postman ](https://github.com/AlgaClicker/crm-alga/tree/main/support) 
 
 ## Структура БэкЭнда
 ```
@@ -40,7 +40,7 @@ apt install git
 ```
 скопировать репозиторий и перейти в папку с проектом:
 ```
-git clone git@github.com:AlgaClicker/crm_back.git
+git clone git@github.com:AlgaClicker/crm-alga.git
 cd crm_back
 ```
 
