@@ -1,0 +1,68 @@
+.l-directory-materials{
+    height: 100%;
+    header{
+        padding: 2.5rem;
+        padding-bottom: 1rem;
+        h4{
+            margin: 0;
+            padding-bottom: 0;
+        }
+        .c-panel{
+            align-items: center;
+            display: flex;
+            margin-top: 0.5rem;
+            .c-label-elements-count{
+                display: flex;
+                align-items: center;
+                font-size: 0.9rem;
+                svg{
+                    stroke: #ADB0B9;
+                    fill: #ADB0B9;
+                    margin-right: 0.4rem;
+                }
+                color: #7d828c;
+            }
+            .c-button-add{
+                margin-left: auto;
+            }
+        }
+    }
+    main{
+        
+    }
+}
+
+.l-directory-default{
+    height: 100%;
+    padding: 2.5rem;
+    hr{
+        color: #d7d5d5;
+    }
+    main{
+        padding: 1rem;
+        .c-panel{
+            display: flex;
+            margin-top: 20px;
+            .c-button-add{
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+.l-directory{
+    height: 100%;
+    background-color: #F8F9FC;
+    padding: 2rem;
+    &_content{
+        height: 100%;
+        padding: 2rem;
+        .c-table-container{
+            display: flex;
+            padding: 2rem;
+            flex-direction: column;
+            height: 100%;        
+        }
+    }
+    
+}

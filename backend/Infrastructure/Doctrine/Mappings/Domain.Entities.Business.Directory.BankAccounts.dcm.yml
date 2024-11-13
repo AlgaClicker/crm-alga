@@ -1,0 +1,85 @@
+#Справочник кор-счетов банков
+Domain\Entities\Business\Directory\BankAccounts:
+  type: entity
+  table: bank_accounts
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    account:
+      type: text
+      nullable: false
+      options:
+        unsigned: false
+      column: account
+    regulationAccountType:
+      type: text
+      nullable: true
+      column: regulation_account_type
+    ck:
+      type: text
+      nullable: true
+      column: ck
+    accountCBRBIC:
+      type: integer
+      nullable: true
+      column: account_cbrbic
+    dateIn:
+      type: date
+      nullable: true
+      options:
+        unsigned: false
+      column: date_in
+    accRstrDate:
+      type: date
+      nullable: true
+      options:
+        unsigned: false
+      column: acc_rs_date
+    accRstr:
+      type: string
+      nullable: true
+      options:
+        unsigned: false
+      column: acc_rstr
+    accountStatus:
+      type: string
+      nullable: true
+      options:
+        unsigned: false
+      column: account_status
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+  manyToOne:
+    bank:
+      targetEntity: Domain\Entities\Business\Directory\Bank
+      inversedBy: bankAccounts
+

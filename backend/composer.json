@@ -1,0 +1,75 @@
+{
+    "name": "alga/crm",
+    "version": "0.0.1-dev",
+    "description": "CRM System from Alga-Corp.",
+    "keywords": ["alga", "crm", "api","backend"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": "^8.0",
+        "darkaonline/l5-swagger": "^8.6",
+        "gedmo/doctrine-extensions": "^3.13",
+        "graham-campbell/throttle": "^10.2",
+        "hflabs/dadata": "^22.3",
+        "illuminate/redis": "^9.52",
+        "jms/serializer": "^3.30",
+        "kilylabs/client-bank-exchange-php": "^3.0",
+        "kreait/firebase-php": "^7.10",
+        "kreait/laravel-firebase": "^5.8",
+        "laravel-doctrine/acl": "^1.7.1",
+        "laravel-doctrine/extensions": "^1.6",
+        "laravel-doctrine/migrations": "^3.1",
+        "laravel-doctrine/orm": "^1.8",
+        "laravel-doctrine/scout": "^0.4.0",
+        "laravel/lumen-framework": "^9.1.6",
+        "laravel/scout": "^9.8.1",
+        "league/flysystem": "^3.28",
+        "movemoveapp/laravel-dadata": "^1.0.10",
+        "predis/predis": "^2.2.2",
+        "pusher/pusher-php-server": "^7.2.4",
+        "ramsey/uuid-doctrine": "^2.1",
+        "symfony/expression-language": "^6.4.8",
+        "tymon/jwt-auth": "^2.1.1"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.23.1",
+        "mockery/mockery": "^1.6.12",
+        "phpunit/phpunit": "^9.6.19",
+        "ramsey/uuid": "4.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+
+            "Core\\": "Application/Core/",
+            "Domain\\": "Domain/",
+            "Infrastructure\\Repositories\\": "Infrastructure/Repositories/",
+            "Infrastructure\\Util\\": "Infrastructure/Util/",
+            "Database\\Factories\\": "Application/Lumen/database/factories/",
+            "Database\\Seeders\\": "Application/Lumen/database/seeders/"
+        },
+        "files": [
+            "Infrastructure/Util/helper.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('Application/Lumen/.env') || copy('.env', 'Application/Lumen/.env');\""
+        ],
+        "post-autoload-dump": [
+
+        ]
+    },
+
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -1,0 +1,99 @@
+Domain\Entities\Services\Chat:
+  type: entity
+  table: chat
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    room:
+      type: uuid
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+      column: room
+    message:
+      type: text
+      nullable: false
+      column: message
+    active:
+      type: boolean
+      nullable: true
+      column: active
+      options:
+        default: true
+    private:
+      type: boolean
+      nullable: true
+      column: private
+      options:
+        default: false
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    readed:
+      type: boolean
+      nullable: true
+      column: readed
+      options:
+        default: false
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+    readedAt:
+      type: datetime
+      nullable: true
+      column: readed_at
+  oneToMany:
+    chat_messages:
+      targetEntity: Domain\Entities\Services\ChatMessages
+      mappedBy: chat
+  manyToMany:
+    files:
+      targetEntity: Domain\Entities\Services\Files
+      mappedBy: chats
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinColumn:
+        name: company_id
+        referencedColumnName: id
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id
+    accountTo:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: account_to
+        referencedColumnName: id
+    requisition:
+      targetEntity: Domain\Entities\Business\Master\Requisition
+      joinColumn:
+        name: requisition_id
+        referencedColumnName: id

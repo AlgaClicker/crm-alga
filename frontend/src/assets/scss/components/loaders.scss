@@ -1,0 +1,20 @@
+.c-spinner_wrapper{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    svg{
+        fill: #c8cdd6 !important;
+    }
+}
+
+.spinner_aj0A{ 
+    fill: #ffffff;
+    transform-origin:center
+    ;animation:spinner_KYSC .75s infinite linear } @keyframes spinner_KYSC { 
+    100%{ 
+        transform:rotate(360deg)
+    }
+}

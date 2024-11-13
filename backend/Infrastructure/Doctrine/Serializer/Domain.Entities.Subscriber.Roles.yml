@@ -1,0 +1,19 @@
+Domain\Entities\Subscriber\Roles:
+    properties:
+      id:
+        exclude: true
+      createdAt:
+        exclude: true
+      account:
+        exclude: true
+      access:
+        exclude: true
+      autorId:
+        exclude: true
+      company:
+        exclude: true
+      active:
+        exclude: true
+      fixed:
+        exclude: true
+

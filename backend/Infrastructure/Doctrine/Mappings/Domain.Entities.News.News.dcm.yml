@@ -1,0 +1,74 @@
+Domain\Entities\News\News:
+  type: entity
+  table: news
+  id:
+    id:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+      id: true
+      generator:
+        strategy: IDENTITY
+  fields:
+    title:
+      type: string
+      nullable: false
+      options:
+        unsigned: false
+      column: title
+    imageUrl:
+      type: text
+      nullable: true
+      options:
+        unsigned: false
+      column: image_url
+    announcement:
+      type: text
+      nullable: false
+      options:
+        unsigned: false
+      column: announcement
+    body:
+      type: text
+      nullable: false
+      options:
+        unsigned: false
+      column: body
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    autorId:
+      type: string
+      nullable: true
+      column: autor_id
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+  oneToMany:
+    comments:
+      targetEntity: Domain\Entities\News\Comments
+      mappedBy: news
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinColumn:
+        name: company_id
+        referencedColumnName: id
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id

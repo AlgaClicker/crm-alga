@@ -1,0 +1,18 @@
+.link-wrapper{
+    display: flex;
+    border-bottom: 1px solid #e8eaec;
+    &__link{
+        a{
+            padding-top: 5px;
+            display: block;
+            color: #5B5B5B;
+            text-decoration: none !important;
+            height: 100%;
+        }
+        margin-right: 1rem;
+    }
+    &__link--active{
+        color: #0D6EFD !important;
+        border-bottom: 2px solid #3E84F6;
+    }
+}

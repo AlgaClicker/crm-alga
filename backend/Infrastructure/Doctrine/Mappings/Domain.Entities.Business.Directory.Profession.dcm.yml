@@ -1,0 +1,73 @@
+#Справочник должностей
+Domain\Entities\Business\Directory\Profession:
+  type: entity
+  table: profession
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    name:
+      type: string
+      nullable: false
+      options:
+        unsigned: false
+      column: name
+    fullname:
+      type: text
+      nullable: true
+      options:
+        unsigned: false
+      column: full_name
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    active:
+      type: boolean
+      nullable: true
+      column: active
+      options:
+        default: true
+    fixed:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+      column: fixed
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+  oneToMany:
+    workpeoples:
+      targetEntity: Domain\Entities\Business\Company\Workpeople
+      mappedBy: profession
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinColumn:
+        name: company_id
+        referencedColumnName: id
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id

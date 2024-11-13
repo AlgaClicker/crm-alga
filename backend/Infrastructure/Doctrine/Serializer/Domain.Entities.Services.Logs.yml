@@ -1,0 +1,18 @@
+Domain\Entities\Services\Logs:
+  properties:
+    id:
+      exclude: true
+    autorId:
+      exclude: true
+    data:
+      exclude: true
+
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+    getAutorId:
+      name: autor_id
+      serialized_name: autor
+      type: string

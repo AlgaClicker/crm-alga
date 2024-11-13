@@ -1,0 +1,11 @@
+@import "layouts/crm";
+@import "layouts/admin";
+
+.l-empty{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #F4F9FD;
+}

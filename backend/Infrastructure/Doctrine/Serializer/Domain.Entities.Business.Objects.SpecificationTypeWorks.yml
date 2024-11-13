@@ -1,0 +1,35 @@
+Domain\Entities\Business\Objects\SpecificationTypeWorks:
+  properties:
+    id:
+      exclude: true
+    index:
+      exclude: true
+    delete:
+      exclude: true
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    draft:
+      exclude: true
+    specification:
+      exclude: true
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+    requisition:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+    getAutorId:
+      name: autor_id
+      serialized_name: autorId
+      exp: object.getAutorId().serialize()
+    getSpecification:
+      name: specification_id
+      serialized_name: specificationId
+      exp: object.getSpecification().getId().serialize()

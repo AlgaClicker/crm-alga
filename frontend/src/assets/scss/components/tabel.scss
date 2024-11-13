@@ -1,0 +1,198 @@
+.c-tabel-modal{
+    max-width: 80% !important;
+    max-height: 90vh;
+    margin: auto !important;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    header{
+        display: flex;
+        width: 100%;
+        padding: 1.5rem !important;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #DDDDDD;
+        .header-title{
+            align-items: center;
+            display: flex;
+            h5{
+                margin: 0;
+                padding: 0;
+            }
+        }
+        button{
+            margin-left: auto;
+            background-color: #ffffff;
+            border-radius: 3px;
+            border: 2px solid #f5f7f8;
+            width: 30px;
+            svg{
+                stroke: #525356;
+            }
+        }
+    }
+    .c-body{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        &__statistics{
+            padding: 1.5rem;
+            padding-top: 0.7rem;
+            display: flex;
+            .statistics-label{
+                label{
+                    color: #78808A;
+                    font-size: 1.1rem;
+                }
+                &__total{
+                    font-size: 1.6rem;
+                }
+            }
+        }
+        &__day-of-weak{
+            border-top: 1px solid #F1F3F5;
+            box-shadow: 0 5px 2px -2px rgba(216, 220, 223, 1);
+            display: flex;
+            z-index: 1000;
+        }
+        &__th{
+            border-right: 1px solid #EFF1F3;
+            color: #838F9D;
+            font-family: 'ubuntu-medium';
+            flex: 1;
+            font-size: 0.9rem;
+            padding: 0.4rem;
+            padding-left: 0.7rem;
+        }
+        &__cell-wrapper{
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            flex-wrap: wrap;
+            height: 60vh;
+            overflow-y: auto;
+            .c-tabel-cell{
+                border: 1px solid #F1F3F5;
+                border-bottom: none;
+                height: 110px;
+                cursor: pointer;
+                &__label{
+                    padding: 0.6rem;
+                }
+                &__date{
+                    color: #222122;
+                }
+                &__date--is-current-date{
+                    align-items: center;
+                    background-color: #3667D5;
+                    border-radius: 50%;
+                    margin-top: 2px;
+                    margin-left: 0.1rem;
+                    margin-bottom: 5px;
+                    display: flex;
+                    width: 30px;
+                    height: 30px;
+                    justify-content: center;
+                    color: #ffffff;
+                }
+            }
+            .c-tabel-cell--is-current-month{
+                background-color: #F5F7F9;
+            }
+            .c-tabel-cell:hover{
+                transition: 0.6s all;
+                .c-tabel-cell__date{
+                    color: #3667D5;
+                }
+                &__date--is-current-date{
+                    color: #000000;
+                }
+            }
+            .c-tabel-cell--full{
+                pointer-events: none;
+            }
+        }
+        &__cell-wrapper::-webkit-scrollbar{
+            width: 0;
+        }
+    }
+    footer{
+        display: flex;
+        padding: 1.5rem !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        border-top: 1px solid #F1F3F5;
+        svg{
+            fill: #000000;
+        }
+        .fio{
+            align-items: center;
+            margin-right: auto;
+            color: #000000;
+            font-size: 1rem;
+        }
+    }   
+}
+
+.c-tabel-mark{
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    padding: 5px;
+    max-height: 72px;
+    font-size: 1rem;
+    font-size: 0.85rem;
+    text-wrap: wrap;
+    text-overflow: ellipsis; 
+    position: relative;
+    pointer-events: all;
+    overflow: hidden;
+    z-index: 3000 !important;
+    .text{
+        margin-right: 5px;
+        width: 92% !important;
+    }
+    svg{
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        right: 4px;
+    }
+    svg:hover{
+        transition: 0.5s all;
+        fill: #496cec;
+    }
+}
+
+.c-tabel-mark:hover{
+    transition: 0.4s all;
+    max-height: 100%;
+}
+
+@media (max-width: 792px){
+    .c-tabel-modal{
+        max-width: 100% !important;
+    }
+}
+
+@media (min-width: 1000px){
+    .c-tabel-modal{
+        max-width: 87% !important;
+    }
+}
+
+@media (min-width: 1620px){
+    .c-tabel-modal{
+        max-width: 77% !important;
+        .c-tabel-cell{
+            height: 120px !important;
+        }
+    }
+}
+
+@media (min-width: 2020px){
+    .c-tabel-modal{
+        min-height: 81vh;
+        max-width: 70% !important;
+    }
+}

@@ -1,0 +1,145 @@
+#Договора с контарагентами
+Domain\Entities\Business\Document\Contracts:
+  type: entity
+  table: contracts
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  actAs:
+    Searchable:
+      fields: [number,description]
+  indexes:
+    number_contracts_index:
+      columns: [ number ]
+    description_contracts_index:
+      columns: [ description ]
+    id_contracts_index:
+      columns: [ id ]
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    index:
+      type: integer
+      size: 64
+      nullable: true
+      column: index
+    number:
+      type: string
+      nullable: false
+      size: 100
+      options:
+        unsigned: false
+      column: number
+    numberSys:
+      type: string
+      nullable: true
+      size: 100
+      options:
+        unsigned: false
+      column: number_sys
+
+    description:
+      type: text
+      nullable: true
+      options:
+        unsigned: false
+      column: description
+    startAt:
+      type: datetime
+      nullable: false
+      column: start_at
+    endAt:
+      type: datetime
+      nullable: true
+      column: end_at
+    type:
+      type: string
+      nullable: false
+      column: type
+    tax:
+      type: integer
+      size: 3
+      nullable: true
+      column: tax
+    taxAmount:
+      type: float
+      nullable: true
+      column: tax_amount
+    amount:
+      type: float
+      nullable: true
+      column: amount
+    credit:
+      type: float
+      nullable: true
+      column: credit
+    creditDays:
+      type: integer
+      size: 5
+      nullable: true
+      column: credit_days
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    fixed:
+      type: boolean
+      nullable: true
+      column: fixed
+      options:
+        default: false
+    active:
+      type: boolean
+      nullable: true
+      column: active
+      options:
+        default: true
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+  oneToMany:
+    invoices:
+      targetEntity: Domain\Entities\Business\Document\Requisition\Invoice
+      mappedBy: contract
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      inversedBy: contract
+    partner:
+      targetEntity: Domain\Entities\Business\Directory\Partner
+      inversedBy: contracts
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id
+  manyToMany:
+    files:
+      targetEntity: Domain\Entities\Services\Files
+      mappedBy: contracts
+    specifications:
+      targetEntity: Domain\Entities\Business\Objects\Specification
+      inversedBy: contracts

@@ -1,0 +1,71 @@
+Domain\Entities\Business\Provision\Requisition:
+  type: entity
+  table: provision_requisition
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    number:
+      type: string
+      size: 30
+      nullable: false
+      column: number
+    index:
+      type: integer
+      size: 30
+      nullable: false
+      column: index
+    status:
+      type: string
+      size: 10
+      nullable: true
+      column: status
+    endAt:
+      type: datetime
+      nullable: false
+      column: end_at
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    fixed:
+      type: boolean
+      nullable: true
+      column: fixed
+      options:
+        default: false
+    description:
+      type: text
+      nullable: true
+      options:
+        unsigned: false
+      column: description
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+
+
+

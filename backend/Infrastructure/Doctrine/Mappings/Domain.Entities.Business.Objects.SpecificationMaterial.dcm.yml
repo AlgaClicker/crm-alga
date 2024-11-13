@@ -1,0 +1,117 @@
+Domain\Entities\Business\Objects\SpecificationMaterial:
+  type: entity
+  table: specification_material
+  actAs:
+    Searchable:
+      fields: [ fullname ]
+
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    index:
+      type: integer
+      nullable: true
+      column: index
+    position:
+      type: text
+      nullable: true
+      column: position
+    rationale:
+      type: string
+      nullable: true
+      column: rationale
+    fullname:
+      type: string
+      nullable: true
+      column: fullname
+    description:
+      type: string
+      nullable: true
+      column: description
+    type:
+      type: string
+      nullable: true
+      column: type
+    code:
+      type: string
+      nullable: true
+      column: code
+    vendor:
+      type: string
+      nullable: true
+      column: vendor
+    quantity:
+      type: float
+      nullable: true
+      column: quantity
+    massUnit:
+      type: float
+      nullable: true
+      column: mass_unit
+    isGroup:
+      type: boolean
+      nullable: true
+      column: is_group
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    draft:
+      type: boolean
+      nullable: true
+      column: draft
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+  manyToOne:
+    parent:
+      targetEntity: Domain\Entities\Business\Objects\SpecificationMaterial
+      orderBy: { 'index': 'ASC' }
+      onDelete: CASCADE
+      joinColumn:
+        name: parent
+        referencedColumnName: id
+    unit:
+      targetEntity: Domain\Entities\Utils\Units
+      inversedBy: specificationMaterial
+    material:
+      targetEntity: Domain\Entities\Business\Directory\Material
+      inversedBy: specificationMaterial
+  manyToMany:
+    specification:
+      targetEntity: Domain\Entities\Business\Objects\Specification
+      inversedBy: specificationMaterials
+
+

@@ -1,0 +1,27 @@
+Domain\Entities\Business\Objects\Specification\Material\Calculation:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    autorId:
+      exclude: true
+    autor:
+      exclude: false
+    accounts:
+      exclude: true
+    active:
+      exclude: true
+    specification:
+      exclude: true
+    company:
+      exclude: true
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string

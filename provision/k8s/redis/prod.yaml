@@ -1,0 +1,77 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: redis-data-redis-prod-master-0
+  labels:
+    type: local
+    app: redis
+    component: master
+    heritage: Tiller
+    release: redis-prod
+    role: master
+  namespace: prod
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteMany
+  hostPath:
+    path: "/mnt/prod/redis-master/data"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: redis-data-redis-prod-master-0
+  labels:
+    type: local
+    app: redis
+    component: master
+    heritage: Tiller
+    release: redis-prod
+    role: master
+  namespace: prod
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: redis-data-redis-prod-slave-0
+  labels:
+    type: local
+    app: redis
+    component: slave
+    heritage: Tiller
+    release: redis-prod
+    role: slave
+  namespace: prod
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteMany
+  hostPath:
+    path: "/mnt/prod/redis-slave/data"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: redis-data-redis-prod-slave-0
+  labels:
+    type: local
+    app: redis
+    component: slave
+    heritage: Tiller
+    release: redis-prod
+    role: slave
+  namespace: prod
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi

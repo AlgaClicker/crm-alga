@@ -1,0 +1,14 @@
+Domain\Entities\Subscriber\AccountOptions:
+    properties:
+      id:
+        exclude: true
+      account:
+        exclude: true
+      createdAt:
+        type: DateTimeInterface<'Y-m-d'>
+        exclude: true
+      updatedAt:
+        type: DateTimeInterface<'Y-m-d H:i'>
+        exclude: true
+      active: 
+        exclude: true

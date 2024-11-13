@@ -1,0 +1,114 @@
+Domain\Entities\Business\Directory\Recipient:
+  type: entity
+  table: recipient
+  actAs:
+    Searchable:
+      fields: [name]
+  indexes:
+    name_recipient_index:
+      columns: [ name ]
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    name:
+      type: string
+      nullable: false
+      options:
+        unsigned: false
+      column: name
+    fullname:
+      type: text
+      nullable: true
+      options:
+        unsigned: false
+      column: fullname
+    inn:
+      type: integer
+      nullable: true
+      options:
+        unsigned: false
+      column: inn
+    kpp:
+      type: integer
+      nullable: true
+      options:
+        unsigned: false
+      column: kpp
+    ogrn:
+      type: integer
+      nullable: true
+      options:
+        unsigned: false
+      column: ogrn
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    parent:
+      type: integer
+      nullable: true
+      options:
+        default: 0
+      column: parent
+    level:
+      type: integer
+      nullable: true
+      options:
+        default: 0
+      column: level
+    isGroup:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+      column: isGroup
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      inversedBy: recipient
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id
+  manyToMany:
+    bank:
+      targetEntity: Domain\Entities\Business\Directory\Bank
+      mappedBy: recipient

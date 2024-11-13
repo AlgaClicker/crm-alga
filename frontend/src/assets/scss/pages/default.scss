@@ -1,0 +1,141 @@
+.l-default{
+    height: 98%;
+    padding: 2rem;
+    padding-top: 1rem;
+    overflow-y: auto;
+    main{
+        .c-panel{
+            align-items: center;
+            display: flex;
+            margin-bottom: 1rem;
+            button{
+                margin-left: auto;
+            }
+        }   
+    }
+}
+
+@media (max-width: 750px){
+    .l-default{
+        padding-left: 0.2rem !important;
+        padding-right: 0.2rem !important;
+    }
+}
+
+@media (min-width: 1500px){
+    .l-default{
+        padding-left: 4rem !important;
+        padding-right: 4rem !important;
+    }
+}
+
+.default-wrapper{
+    height: 95%;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    &__header{
+        align-items: center;
+        display: flex;
+        padding-right: 2rem;
+        .left-container{
+            align-items: center;
+            display: flex;
+            margin-left: auto;
+        }
+    }   
+
+    &__header--non-padding{
+        padding-right: 0 !important;
+    }
+
+    .scroll-wrapper{
+        flex: 1 auto;
+        overflow-y: auto;
+        padding-bottom: 2rem;
+        .c-default-table-container{
+            background-color: #ffffff;
+            border: 1px solid #f5f5f5;
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+            -webkit-box-shadow: 0px 0px 3px 2px #F1F2F4;
+            -moz-box-shadow: 0px 0px 3px 2px  #F1F2F4;
+            padding: 2rem;
+            margin-right: 2rem;
+            padding-top: 1rem;
+            &__header{
+                background-color: #ffffff;  
+                padding-bottom: 1.3rem;
+                padding-top: 0.7rem;
+                display: flex;
+                align-items: center;
+                position: -webkit-sticky; // this is for all Safari (Desktop & iOS), not for Chrome
+                position: sticky;
+                top: 0;
+                z-index: 1; // any positive value, layer order is global
+                background: #fff; // any bg-color to overlap
+                .left-container{
+                    margin-left: auto;
+                }
+            }
+        }
+        .c-default-table-container--none-background{
+            background: none;
+            box-shadow: none !important;
+            border: none !important;
+        }
+    }
+}
+
+.scroll-wrapper::-webkit-scrollbar{
+    background-color: #F4F7F9;
+    width: 8px !important;
+}
+
+.scroll-wrapper::-webkit-scrollbar-thumb{
+    background-color: #c5c2c2;
+    border-radius: 4px;
+}
+
+.scroll-wrapper::-webkit-scrollbar-button:vertical:start:decrement {
+   display: none;
+}
+
+.scroll-wrapper::-webkit-scrollbar-button:vertical:end:increment {
+   display: none;
+}
+
+@media (max-width:  750px){
+    .default-wrapper{
+        padding: 0.7rem !important;
+        margin: auto !important;
+        .scroll-wrapper{
+            flex: 1 auto;
+            overflow-y: auto;
+            .c-default-table-container{
+                margin-right: 0.3rem;
+                padding: 0.5rem;
+                &__header{
+                    flex-wrap: wrap;
+                    .mx-datepicker{
+                        max-width: 68% !important;
+                        margin-left: auto;
+          
+                    }
+                    .c-default-input-search{
+                        margin-top: 10px;
+                        width: 100%;
+                        margin-left: 0 !important;
+                    }
+                }
+            }
+        }
+        &__header{
+            display: block;
+            margin-bottom: 11px;
+            right: 0;
+        }
+    }
+}

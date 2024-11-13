@@ -1,0 +1,23 @@
+.l-payments{
+    height: 100%;
+    padding: 2rem;
+    padding-top: 1rem;
+    overflow-y: auto;
+    main{
+        .c-panel{
+            align-items: center;
+            display: flex;
+            margin-bottom: 1rem;
+            .left-wrapper{
+                align-items: center;
+                display: flex;
+                margin-left: auto;
+            }
+        }
+    }
+    .c-payments-card{
+        @include card;
+        padding: 1.5rem;
+    }
+
+}

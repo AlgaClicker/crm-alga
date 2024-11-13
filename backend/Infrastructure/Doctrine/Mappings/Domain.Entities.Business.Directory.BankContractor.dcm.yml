@@ -1,0 +1,28 @@
+#Справочник Счетов контрагентов
+Domain\Entities\Business\Directory\BankContractor:
+  type: entity
+  table: contractor_bank
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    account:
+      type: bigint
+      nullable: false
+      options:
+        unsigned: false
+      column: account
+  manyToMany:
+    bank:
+      targetEntity: Domain\Entities\Business\Directory\Bank
+      mappedBy: bankContractor
+
+

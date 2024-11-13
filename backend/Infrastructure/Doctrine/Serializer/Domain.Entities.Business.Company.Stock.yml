@@ -1,0 +1,29 @@
+Domain\Entities\Business\Company\Stock:
+  properties:
+    createdAt:
+      exclude: true
+    account:
+      exclude: true
+    access:
+      exclude: true
+    active:
+      exclude: false
+    company:
+      exclude: true
+    delete:
+      exclude: true
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+    id:
+      exclude: true
+    specification:
+      exclude: true
+    requisitionInvoice:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string

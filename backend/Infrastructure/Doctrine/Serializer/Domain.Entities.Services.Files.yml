@@ -1,0 +1,41 @@
+Domain\Entities\Services\Files:
+  properties:
+    autorId:
+      exclude: true
+    id:
+      exclude: true
+    patch:
+      exclude: true
+    active:
+      exclude: true
+    storage:
+      exclude: true
+    company:
+      exclude: true
+    specification:
+      exclude: true
+    objects:
+      exclude: true
+    projects:
+      exclude: true
+    notification:
+      exclude: true
+    workflow:
+      exclude: true
+    tasks:
+      exclude: true
+    createdAt:
+      exclude: true
+    chats:
+      exclude: true
+    contracts:
+      exclude: true
+    autor:
+      exclude: true
+    requisitionInvoiceMaterialReceived:
+      exclude: true
+
+    requisitionInvoiceMaterial:
+      exclude: true
+    requisitionInvoice:
+      exclude: true

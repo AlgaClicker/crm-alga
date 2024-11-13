@@ -1,0 +1,55 @@
+Domain\Entities\Utils\Currency:
+  type: entity
+  table: currency
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    name:
+      type: string
+      nullable: false
+      unique: true
+      column: name
+    code:
+      type: string
+      nullable: false
+      unique: true
+      column: code
+    title:
+      type: string
+      nullable: false
+      column: title
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+  oneToMany:
+    price:
+      targetEntity: Domain\Entities\Business\Directory\Price
+      mappedBy: currency

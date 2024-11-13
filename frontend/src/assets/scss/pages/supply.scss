@@ -1,0 +1,26 @@
+.l-supply{
+    padding: 2rem;
+    padding-top: 1rem;
+}
+
+.c-supply-requisition-material{
+    @include card;
+    padding: 2rem;
+    max-height: 93%;
+    &__header{
+        align-items: center;
+        display: flex;
+        width: 100%;
+        button{
+            margin-left: auto;
+        }
+    }
+    &__footer{
+        align-items: center;
+        display: flex;
+        width: 100%;
+        button{
+            margin-left: auto;
+        }
+    }
+}

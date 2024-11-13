@@ -1,0 +1,44 @@
+Domain\Entities\Services\Logs:
+  type: entity
+  repositoryClass: Infrastructure\Repositories\Services\LogsRepository
+  table: logs
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    method:
+      type: string
+      nullable: true
+      column: method
+    entity:
+      type: object
+      nullable: true
+      column: entity
+    entityId:
+      type: string
+      nullable: true
+      column: entity_id
+    entityUuid:
+      type: uuid
+      nullable: true
+      column: entity_uuid
+    data:
+      type: object
+      nullable: true
+      column: data
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid

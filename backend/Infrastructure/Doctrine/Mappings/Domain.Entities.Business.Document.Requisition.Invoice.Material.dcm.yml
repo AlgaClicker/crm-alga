@@ -1,0 +1,99 @@
+Domain\Entities\Business\Document\Requisition\Invoice\Material:
+  type: entity
+  table: requisition_invoice_material
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: true
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    index:
+      type: integer
+      nullable: true
+      column: index
+    quantity:
+      type: float
+      nullable: false
+      column: quantity
+    price:
+      type: float
+      nullable: false
+      column: price
+    description:
+      type: text
+      nullable: true
+      column: description
+    createdAt:
+      type: datetime
+      nullable: true
+      column: created_at
+    amount:
+      type: float
+      nullable: false
+      column: amount
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+    archiveAt:
+      type: datetime
+      nullable: true
+      column: archive_at
+    status:
+      type: string
+      size: 10
+      nullable: true
+      column: status
+    received:
+      type: float
+      nullable: true
+      column: received
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinColumn:
+        name: company
+        referencedColumnName: id
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id
+    requisitionInvoice:
+      targetEntity: Domain\Entities\Business\Document\Requisition\Invoice
+      inversedBy: materials
+    directoryMaterial:
+      targetEntity: Domain\Entities\Business\Directory\Material
+      inversedBy: requisitionInvoiceMaterial
+    specificationMaterial:
+      targetEntity: Domain\Entities\Business\Objects\SpecificationMaterial
+      joinColumn:
+        name: specification_material
+        referencedColumnName: id
+    requisitionMaterial:
+      targetEntity: Domain\Entities\Business\Master\RequisitionMaterials
+      joinColumn:
+        name: requisition_material
+        referencedColumnName: id
+  manyToMany:
+    files:
+      targetEntity: Domain\Entities\Services\Files
+      mappedBy: requisitionInvoiceMaterial
+
+

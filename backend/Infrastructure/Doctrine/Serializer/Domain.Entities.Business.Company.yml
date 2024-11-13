@@ -1,0 +1,13 @@
+Domain\Entities\Business\Company:
+  properties:
+    createdAt:
+      exclude: true
+    account: 
+      exclude: true
+    access:
+      exclude: true
+    autorId: 
+      exclude: true
+    active: 
+      exclude: true
+

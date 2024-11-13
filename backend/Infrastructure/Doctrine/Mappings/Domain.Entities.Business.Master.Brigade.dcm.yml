@@ -1,0 +1,74 @@
+Domain\Entities\Business\Master\Brigade:
+  type: entity
+  table: brigade
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    name:
+      type: string
+      nullable: true
+      column: name
+    fullname:
+      type: string
+      nullable: true
+      column: fullname
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      inversedBy: brigades
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor_id
+        referencedColumnName: id
+    master:
+      targetEntity: Domain\Entities\Subscriber\Account
+      cascade: ["persist", "merge"]
+      inversedBy: brigades
+  oneToMany:
+    brigade_pay:
+      targetEntity: Domain\Entities\Business\Payments\BrigadePay
+      mappedBy: brigade
+    workpeoples:
+      targetEntity: Domain\Entities\Business\Company\Workpeople
+      orderBy: { 'surname': 'ASC', 'name': 'ASC','createdAt': 'DESC'}
+      mappedBy: brigade
+    brigadeSpecification:
+      targetEntity: Domain\Entities\Business\Document\BrigadeSpecification
+      mappedBy: brigade
+

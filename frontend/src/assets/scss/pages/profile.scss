@@ -1,0 +1,50 @@
+.wrapper-profile{
+    padding: 2rem;
+    .avatar-container{
+        display: flex;
+        &__wrapper-image{
+            position: relative;
+        }
+        &__image{
+            background-color: #E6E6E6;
+            border-radius: 6px;
+            width: 150px;
+            height: 150px;
+        }
+        &__upload{
+            align-items: center;
+            background-color: #ffffff;
+            bottom: 0px;
+            border-radius: 4px;
+            display: flex;
+            cursor: pointer;
+            justify-content: center;
+            position: absolute;
+            margin-left: 54px;
+            height: 30px;
+            width: 30px;
+            input{
+                display: none;
+                background: unset;
+                border-color: inherit;
+                border-radius: 0;
+                border-width: 0;
+                font-size: unset;
+                line-height: inherit;
+                padding: 0;
+                cursor: pointer;
+            }
+        }
+        &__name{
+            margin-left: 1rem;
+            p{
+                margin: 0;
+                font-weight: 600;
+                font-size: 1.1rem;
+            }
+            small{
+                color: #A8A8A8;
+            }
+        }
+    }
+}

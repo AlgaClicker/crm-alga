@@ -1,0 +1,609 @@
+/*------------------ directory ------------------*/
+
+.c-modal-default{
+    margin: auto !important;
+    border: none;
+    box-shadow: none;
+    padding: 1rem;
+    max-width: 44%;
+    header{
+        display: flex;
+        width: 100%;
+        padding-bottom: 0 !important;
+        svg{
+            cursor: pointer !important;
+            margin-left: auto;
+        }
+        svg:hover{
+            transition: 0.5s all;
+            fill: #414043;
+        }
+        button{
+            margin-left: auto;
+            background-color: #ffffff;
+            border-radius: 3px;
+            border: 2px solid #f5f7f8;
+            display: flex;
+            align-items: center;
+            padding: 6px !important;
+            svg{
+                stroke: #525653;
+            }
+        }
+        button:hover {
+            transition: 0.5s all;
+            svg{
+                stroke: #3d95fb;
+            }
+        }
+    }
+
+    .c-body{
+        padding: 1rem !important;
+        padding-top: 0;
+    }
+
+    footer{
+
+    }
+}
+
+.c-modal-partner{
+    max-width: 54% !important;
+    margin: auto !important;
+    
+    .c-body-partner{
+        padding: 1.5rem;
+        padding-top: 0;
+        label{
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+        }
+        hr{
+            color: #d6d6d6 !important;
+            background-color: #d6d6d6 !important;
+        }
+        &_bank-panel{
+            margin: 0.3rem;
+            margin-top: 2rem;
+            border: 1px solid rgb(232, 232, 232);
+            border-radius: 4px;
+        }
+        &_add-account-wrapper{
+            align-items: center;
+            display: flex;
+            padding-bottom: 1rem;
+            button{
+                margin-left: auto;
+            }
+        }
+    }
+
+    footer{
+        display: flex;
+        align-items: center;
+    }
+}
+
+.c-modal-add-brigade{
+    max-width: 50% !important;
+    margin: auto !important;
+    .c-body-add-brigade{
+        padding: 1.5rem;
+        padding-top: 0;
+        label{
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+        }
+        &_spec-panel{
+            padding: 0.8rem;
+            padding-top: 0rem;
+            label{
+                color: #ACAFC5;
+                font-size: 0.85rem;
+            }
+        }
+        &_select-spec{
+            display: flex;
+        }
+
+    }
+}
+
+.c-modal-partner-info{
+    max-width: 50% !important;
+    margin: auto !important;
+}
+
+.с-modal-bank-info{
+    max-width: 50% !important;
+    margin: auto !important;
+    padding: 1rem;
+    header{
+        display: flex;
+        width: 100%;
+        svg{
+            cursor: pointer !important;
+            margin-left: auto;
+        }
+        svg:hover{
+            transition: 0.5s all;
+            fill: #414043;
+        }
+        button{
+            margin-left: auto;
+            background-color: #ffffff;
+            border-radius: 3px;
+            border: 2px solid #f5f7f8;
+            width: 30px;
+
+            svg{
+                stroke: #525356;
+            }
+        }
+    }
+    &_body{
+        padding: 1rem;
+        padding-top: 0rem;
+    }
+    &_bank-account{
+        
+    }
+}
+
+.c-modal-employees{
+    max-width: 50% !important;
+    margin: auto !important;
+    padding: 1rem;
+    .c-body-employees{
+        .c-account{
+            display: flex;
+            align-items: center;
+            &_text{
+                margin-left: 7px;
+                small{
+                    font-size: 0.85rem;
+                    margin: 0;
+                    padding: 0;  
+                    color: #6E7583;
+                }
+            }
+            svg{
+                margin-left: auto;
+                fill: #a7aeba;
+                cursor: pointer;
+            }
+            svg:hover{
+                transition: 0.4s all;
+                fill: #739de7;
+            }
+        }
+    }
+}
+
+.c-modal-directory-delete{
+    max-width: 25% !important;
+    margin: auto !important;
+}
+
+.c-modal-new-payments{
+    max-width: 65% !important;
+    margin: auto !important;
+    &_body{
+        padding: 1.3rem;
+        padding-top: 0;
+    }
+} 
+
+// ----------------------------- specifications ------------------------------------
+
+.c-specifications-master-modal-info{
+
+    &__body{
+
+    }
+}
+
+.c-modal-specification-set-material{
+    max-width: 70% !important;
+    margin: auto !important;
+    min-height: 60vh;
+    padding: 1rem;
+    header{
+        padding-left: 0 !important;
+        .header-set-material{
+            display: flex;
+            align-items: center;
+            &__line{
+                min-height: 30px;
+                width: 2px;
+                background-color: #9E9E9E;
+            }
+            &__title{
+                margin-left: 0.6rem;
+                color: #818181;
+            }
+        }
+    }
+
+    .l-default{
+        padding-top: 1rem;
+        padding-left: 0 !important;
+        padding-bottom: 0 !important;
+        padding-right: 0 !important;
+        .c-panel{
+            padding-bottom: 0.5rem;
+            padding-left: 0.6rem;
+        }
+        .c-tabel-material{
+            .c-table-materials-body{
+                height: 100%;
+                .c-nested-table-body{
+                    .c-nested-table-body{
+                        height: 68vh !important;
+                    }
+                }
+            }
+            footer{
+                padding-left: 0 !important;
+                padding-top: 1rem !important;
+                padding-bottom: 0.3rem !important;
+                padding-right: 0rem !important;
+            }
+        }
+    }
+}
+
+.c-specifications-modal-add{
+    margin: auto;
+    max-width: 64% !important;
+    padding: 1.5rem;
+    .c-specification-modal-info-body{
+        padding: 1rem;
+        &__files-wrapper{
+            display: flex;
+            gap: 1rem 1rem;
+            flex-wrap: wrap;
+        }
+    }
+
+}
+
+.sepcification-modal-add-izm{
+    margin: auto;
+    max-width: 40% !important;
+    padding: 1.5rem;
+    .c-body-specification{
+        padding: 1.5rem;
+        padding-top: 0;
+    }
+}
+
+.base-delete-modal{
+    margin: auto;
+    max-width: 16% !important;
+    &__body{
+        padding: 1.5rem;
+        padding-top: 2rem;
+        padding-bottom: 1.8rem;
+        h5{
+            margin: auto;
+            text-align: center;
+        }
+    }
+    footer{
+        border-top: 2px solid #F3F4F5;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        .button-cancel{
+            border: 2px solid #E0E0E4;
+            border-radius: 9px;
+            color: #28282F;
+            background-color: #ffffff;
+            padding: 0.4rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        .button-delete{
+            padding: 0.4rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            border: 2px solid #D92D20;
+            background-color: #D92D20;
+            color: #FDF0EF;
+            border-radius: 9px;
+            margin-left: 1rem;
+        }
+    }
+}
+
+.c-modal-master-add-employess{
+    margin: auto;
+    max-width: 40% !important;
+    padding: 1.5rem;
+}
+
+.с-modal-kadry-brigad-payments{
+    margin: auto;
+    max-width: 54% !important;
+    padding: 1.5rem;
+    &_body{
+        padding: 1.5rem;
+        padding-top: 0;
+    }
+}
+
+.c-modal-object{
+    margin: auto;
+    max-width: 65% !important;
+    padding: 1.5rem;
+    .c-modal-object-body{
+        padding-top: 0;
+        padding: 1.5rem;
+    }
+}
+
+/* ------------------------- Partners -------------------------- */
+.c-modal-partner-info{
+    max-width: 70% !important;
+    padding: 1.5rem;
+    .c-body-partner{
+        padding-top: 0;
+        padding: 1.5rem;
+    }
+}
+
+.c-directory-partners-modal-add-bank-account{
+    max-width: 40% !important;
+    padding: 1.5rem;
+    .c-body-partner{
+        padding-top: 0;
+        padding: 1.5rem;
+    }
+}
+
+/* ------------  ---------------- */
+
+.c-finance-payments-modal-add-spec{
+    max-width: 40% !important;
+    padding: 1.5rem;
+    .c-body-payments-add-spec{
+        padding-top: 0;
+        padding: 1.5rem;
+    }
+}
+
+.c-tabel-edit-mark-modal{
+    max-width: 46% !important;
+    button{
+        height: 40px; 
+    }
+}
+
+// ------------------------------------------- applicatios ----------------------------------------------------
+
+.c-modal-requisition{
+    max-width: 100% !important;
+    .c-body{
+        .material-wrapper-header{
+            align-items: center;
+            display: flex;
+            .select-spec{
+                margin-right: 1rem;
+            }
+            .c-tools-button{
+                height: 30px;
+                width: 30px;
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+// ----------------------------------------------- confirmation ------------------------------------------------------------
+
+.c-confirmation-modal{
+    margin: auto;
+    max-width: 25% !important;
+    padding: 1.5rem;
+    .c-body{
+        &__text{
+            margin: auto;
+        }
+        &__wrapper{
+            width: 100%;
+            margin: auto;
+            display: flex;
+            button{
+                align-items: center;
+                display: flex;
+                border: none;
+                border-radius: 5px;
+                background-color: #ffffff;
+                margin-top: 1rem;
+                margin-right: 4px;
+                padding: 0.4rem;
+                svg{
+                    stroke: #ffffff;
+                    margin-right: 4px;
+                }
+            }
+            .button--danger{
+                background-color: #C71A1A;
+                color: #ffffff;
+            }
+            .button--primary{
+                background-color: #379BF6;
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+// ----------------------------------------- supply ----------------------------------------------------------------------
+
+.c-modal-supply-requisition-add-invoice{
+    margin: auto;
+    max-width: 80% !important;
+    padding: 1.5rem;
+    .c-body{
+        
+    }
+}
+
+@media (max-width: 1100px){
+    .c-modal-default{
+        max-width: 60% !important;
+    }
+    .c-modal-supply-requisition-add-invoice{
+        max-width: 90% !important;
+    }
+}
+
+@media (min-width: 2050px){
+    .sepcification-modal-add-izm{
+        max-width: 32% !important;
+    }
+    .sepcification-modal-add-izm{
+        max-width: 30% !important;
+    }
+    .c-modal-partner{
+        max-width: 37% !important;
+    }
+    .c-modal-object{
+        max-width: 30% !important;
+    }
+    .c-specifications-master-modal-info{
+        max-width: 30% !important;
+    }
+}
+
+@media (min-width: 1750px){
+    .c-modal-partner{
+        max-width: 40% !important;
+    }
+    .c-modal-object{
+        max-width: 35% !important;
+    }
+
+    .c-specifications-master-modal-info{
+        max-width: 55% !important;
+    }
+}
+
+
+@media (max-width: 1400px){
+    .c-modal-supply-requisition-add-invoice{
+        max-width: 90% !important;
+    }
+    .c-specifications-modal-add{
+        max-width: 90% !important;
+    }
+}
+
+@media (max-width: 800px){
+    .sepcification-modal-add-izm{
+        max-width: 90% !important;
+    }
+    .c-modal-specification-set-material{
+        max-width: 92% !important;
+        margin: auto !important;
+        padding: 0.8rem;
+    }
+    .c-modal-default{
+        max-width: 90% !important;
+    }
+    .c-modal-directory{
+        max-width: 90% !important;
+    }
+    .c-modal-partner{
+        max-width: 90% !important;
+    }
+    .c-modal-add-brigade{
+        max-width: 96% !important;
+        z-index: 2000 !important;
+        padding: 0.5rem !important;
+    }
+    .c-modal-new-payments{
+        max-width: 90% !important;
+    }
+    .c-modal-partner-info{
+        max-width: 90% !important;
+    }
+    .c-modal-master-add-employess{
+        max-width: 90% !important;  
+    }
+    .c-finance-payments-modal-add-spec{
+        max-width: 90% !important;
+    }
+    .c-modal-supply-requisition-add-invoice{
+        max-width: 90% !important;
+    }
+    .c-specifications-master-modal-info{
+        max-width: 90% !important;
+    }
+}
+
+// правельыне прейпоинты
+
+@media (min-width: 576px) { 
+    .c-modal-requisition{
+        max-width: 100% !important;
+    }
+    .base-delete-modal{
+        max-width: 60% !important;
+    }
+}
+
+// Устройства Medium (планшеты, 768 пикселей и выше)
+@media (min-width: 768px) { 
+    .c-modal-requisition{
+        max-width: 100% !important;
+    }
+    .directory-contracts{
+        max-width: 100% !important;
+    }
+    .base-delete-modal{
+        max-width: 40% !important;
+    }
+}
+
+// Устройства Large (настольные компьютеры, 992 пикселей и выше)
+@media (min-width: 992px) { 
+    .c-modal-requisition{
+        max-width: 90% !important;
+    }
+    .directory-contracts{
+        max-width: 65% !important;
+    }
+    .base-delete-modal{
+        max-width: 40% !important;
+    }
+}
+
+// Устройства X-Large (большие настольные компьютеры, 1200 пикселей и выше)
+@media (min-width: 1200px) {
+    .c-modal-requisition{
+        max-width: 80% !important;
+    }
+    .directory-contracts{
+        max-width: 65% !important;
+    }
+    .base-delete-modal{
+        max-width: 24% !important;
+    }
+}
+
+// Устройства XX-Large (большие настольные компьютеры, 1400 пикселей и выше)
+@media (min-width: 1400px) { 
+    .c-modal-requisition{
+        max-width: 80% !important;
+    }
+    .directory-contracts{
+        max-width: 65% !important;
+    }
+    .base-delete-modal{
+        max-width: 22% !important;
+    }
+}

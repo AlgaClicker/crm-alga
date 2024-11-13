@@ -1,0 +1,126 @@
+.bank-account-panel{
+    @include card-1;
+    height: 100%;
+    &__header{
+        border-bottom: 1px solid #E4ECFD;
+        padding-right: 0.5rem;
+        display: flex;
+        align-items: center;
+        button{
+            margin-left: auto;
+        }
+    }
+    &__title{
+        padding: 1rem;
+        color: #727885;
+    }
+    &__wrapper{
+        padding: 1rem;
+        max-height: 100%;
+        .c-bank-account-card{
+            border-bottom: 1px solid #e9e8e9;
+            padding-bottom: 0.3rem;
+            margin-bottom: 1rem;
+            .name-wrapper{
+                width: 100%;
+                display: flex;
+                &__name{
+                    font-size: 0.9rem;
+                }
+                &__delete{
+                    cursor: pointer;
+                    fill: #e3e3e3;
+                    margin-left: auto;
+                }
+                &__delete:hover{
+                    transition: 0.8s all;
+                    fill: #d7d6d6;
+                }
+            }
+            .account{
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+/*-------------------------------------responsibles users profile------------------------------------*/
+.c-responsibles-card{
+    @include card-1;
+    height: 100%;
+    &__header{
+        border-bottom: 1px solid #E4ECFD;
+    } 
+    &__title{
+        padding: 1rem;
+        color: #727885;
+    }
+    &__wrapper{
+        padding: 1rem;
+    }
+}
+
+/*-----------------------------c-info-card-----------------------------*/
+
+.c-info-card{
+    @include card-1;
+    &__header{
+        border-bottom: 1px solid #E4ECFD;
+    } 
+    &__title{
+        padding: 1rem;
+        color: #727885;
+    }
+    &__wrapper{
+        padding: 1rem;
+    }
+}
+
+.c-specifications-card{
+    @include card-1;
+    &__header{
+        align-items: center;
+        border-bottom: 1px solid #E4ECFD;
+        display: flex;
+        button{
+            margin-left: auto;
+            margin-right: 1rem;
+            position: relative;
+        }
+    } 
+    &__title{
+        padding: 1rem;
+        color: #727885;
+    }
+    &__wrapper{
+        padding: 1rem;
+    }
+}
+
+.c-requisition-info-card{
+    @include card-1;
+    padding: 1.8rem;
+    header{
+        display: flex;
+        .title{
+            font-size: 1rem;
+        }
+    }
+
+    &__label{
+        color: #53637E;
+        font-size: 0.75rem;
+    }
+    &__text{
+        color: #131416;
+        margin-top: 0.6rem;
+        font-size: 0.75rem;
+        user-select: text;
+    }
+    &__spec{
+        color: dodgerblue;
+        display: block;
+        font-size: 0.9rem;
+    }
+}
+

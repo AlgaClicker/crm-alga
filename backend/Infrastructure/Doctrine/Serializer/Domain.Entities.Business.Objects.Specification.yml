@@ -1,0 +1,64 @@
+Domain\Entities\Business\Objects\Specification:
+  properties:
+    id:
+      exclude: true
+    object:
+      exclude: true
+    delete:
+      exclude: true
+    autorId:
+      exclude: true
+    autor:
+      exclude: false
+    children:
+      exclude: true
+    parent:
+      exclude: true
+    active:
+      exclude: true
+    draft:
+      exclude: true
+    company:
+      exclude: true
+    brigades:
+      exclude: true
+    fixed:
+      exclude: false
+    requisitions:
+      exclude: true
+    stock:
+      exclude: true
+    brigadeSpecification:
+      exclude: true
+    price:
+      exclude: true
+    requisitionInvoice:
+      exclude: true
+    specificationMaterials:
+      serialized_name: materials
+      exclude: true
+    specificationTypeworks:
+      serialized_name: typeworks
+    specificationResources:
+      serialized_name: resources
+    updatedAt:
+      exclude: true
+    contracts:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+    getManager:
+      name: manager
+      serialized_name: manager
+    getObject:
+      name: object_id
+      serialized_name: objectId
+      exp: object.getObject() ? object.getObject().getId().serialize()
+    getObjectName:
+      name: object_name
+      serialized_name: objectName
+      exp: object.getObject() ? object.getObject().getName()
+

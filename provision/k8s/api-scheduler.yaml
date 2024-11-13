@@ -1,0 +1,27 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: api-scheduler
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: prod-scheduler
+            image: lachlanevenson/k8s-kubectl
+            command:
+            - /bin/sh
+            - -c
+            args:
+            - kubectl get pod -l app=dron-box -n prod -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | xargs -i kubectl exec {} -n prod -c api php artisan schedule:run
+          - name: stage-scheduler
+            image: lachlanevenson/k8s-kubectl
+            command:
+            - /bin/sh
+            - -c
+            args:
+            - kubectl get pod -l app=dron-box -n stage -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | xargs -i kubectl exec {} -n stage -c api php artisan schedule:run
+
+          restartPolicy: OnFailure

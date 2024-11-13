@@ -1,0 +1,53 @@
+Domain\Entities\Business\Company\Company:
+  properties:
+    createdAt:
+      exclude: true
+    accounts:
+      exclude: true
+    delete:
+      exclude: true
+    brigades:
+      exclude: true
+    workpeople:
+      exclude: true
+    partner:
+      exclude: true
+    access:
+      exclude: true
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    objects:
+      exclude: true
+    stocks:
+      exclude: true
+    partners:
+      exclude: true
+    recipient:
+      exclude: true
+    bankAccounts:
+      exclude: true
+    materials:
+      exclude: true
+    workflow:
+      exclude: true
+    tasks:
+      exclude: true
+    id:
+      exclude: true
+    roles:
+      exclude: true
+    contract:
+      exclude: true
+    material:
+      exclude: true
+    brigadeSpecification:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+
+

@@ -1,0 +1,26 @@
+Domain\Entities\Business\Payments\BrigadePay:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    draft:
+      exclude: true
+    type:
+      exclude: false
+    company:
+      exclude: true
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string

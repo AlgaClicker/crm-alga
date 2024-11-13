@@ -1,0 +1,34 @@
+Domain\Entities\Business\Company\BankAccounts:
+  type: entity
+  table: compnay_bank_accounts
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    account:
+      type: string
+      size: 30
+      nullable: false
+      column: account
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      inversedBy: bankAccounts
+    bank:
+      targetEntity: Domain\Entities\Business\Directory\Bank
+      joinTable:
+        name: compnay_bank_account
+        joinColumns:
+          bank_account_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          bank_id:
+            referencedColumnName: id

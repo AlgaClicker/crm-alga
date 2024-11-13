@@ -1,0 +1,54 @@
+#Справочник кор-счетов банков
+Domain\Entities\Business\Directory\PartnerBankAccounts:
+  type: entity
+  table: partner_bank_accounts
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    account:
+      type: string
+      size: 30
+      nullable: false
+      column: account
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+  manyToOne:
+    partner:
+      targetEntity: Domain\Entities\Business\Directory\Partner
+      inversedBy: bankAccounts
+    bank:
+      targetEntity: Domain\Entities\Business\Directory\Bank
+      joinColumn:
+        name: bank_id
+        referencedColumnName: id

@@ -1,0 +1,86 @@
+Domain\Entities\Business\Master\RequisitionMaterials:
+  type: entity
+  table: master_requisition_materials
+  indexes:
+    id_material_requisitions_index:
+      columns: [ id ]
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    index:
+      type: integer
+      nullable: true
+      column: index
+    name:
+      type: string
+      nullable: true
+      size: 255
+      options:
+        unsigned: false
+      column: name
+    quantity:
+      type: float
+      nullable: false
+      column: quantity
+    description:
+      type: text
+      nullable: true
+      options:
+        unsigned: false
+      column: description
+    status:
+      type: string
+      nullable: true
+      size: 20
+      options:
+        unsigned: false
+      column: status
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+  manyToOne:
+    requisition:
+      targetEntity: Domain\Entities\Business\Master\Requisition
+      inversedBy: materials
+    directoryMaterial:
+      targetEntity: Domain\Entities\Business\Directory\Material
+      inversedBy: requisitionMasterMaterial
+    specificationMaterial:
+      targetEntity: Domain\Entities\Business\Objects\SpecificationMaterial
+      joinColumn:
+        name: specification_material
+        referencedColumnName: id
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id
+    unit:
+      targetEntity: Domain\Entities\Utils\Units
+      joinColumn:
+        name: unit
+        referencedColumnName: id

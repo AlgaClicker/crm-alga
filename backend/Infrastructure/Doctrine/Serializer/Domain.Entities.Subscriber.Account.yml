@@ -1,0 +1,61 @@
+Domain\Entities\Subscriber\Account:
+    properties:
+      password:
+        exclude: true
+      isAdmin:
+        exclude: true
+      brigades:
+        exclude: true
+      accountTokens:
+        exclude: true
+      token:
+        exclude: true
+        groups: [admin]
+      accountoptions:
+        exclude: true
+        groups: [admin]
+      roles:
+        skip_when_empty: true
+      stock:
+        skip_when_empty: true
+      createdAt:
+        -type: DateTimeInterface<'Y-m-d'>
+        -serialized_name: RenameFiled
+        exclude: false
+      updatedAt:
+        type: DateTimeInterface<'Y-m-d H:i'>
+        exclude: true
+      active:
+        exclude: true
+      permissions:
+        exclude: false
+      projects:
+        exclude: true
+      objects:
+        exclude: true
+      delete:
+        exclude: true
+      autorId:
+        exclude: true
+      specification:
+        exclude: true
+      workflows:
+        exclude: true
+      tasks:
+        exclude: true
+      company:
+        exclude: true
+      id:
+        exclude: true
+      rememberTokenName:
+        exclude: true
+    virtual_properties:
+      getId:
+        name: uuid
+        serialized_name: id
+        type: string
+      getActive:
+        name: active
+        serialized_name: active
+        type: boolean
+

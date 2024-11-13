@@ -1,0 +1,100 @@
+#Справочник должностей
+Domain\Entities\Business\Payments\Invoice:
+  type: entity
+  table: payments_invoice
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    number:
+      type: string
+      size: 15
+      nullable: true
+      autoincrement: true
+      column: number
+    date:
+      type: datetime
+      nullable: false
+      column: date_pay
+    amount :
+      type: float
+      nullable: true
+      column: amount
+    description:
+      type: text
+      nullable: false
+      column: description
+    type:
+      type: text
+      size: 10
+      nullable: false
+      column: type
+    tax:
+      type: integer
+      size: 3
+      nullable: true
+      column: tax
+    taxAmount:
+      type: float
+      nullable: true
+      column: tax_amount
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+    draft:
+      type: boolean
+      nullable: true
+      options:
+        default: true
+      column: draft
+    fixed:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+      column: fixed
+  manyToOne:
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor_id
+        referencedColumnName: id
+    partner:
+      targetEntity: Domain\Entities\Business\Directory\Partner
+    partnerBankAccount:
+      targetEntity: Domain\Entities\Business\Directory\PartnerBankAccounts
+    specification:
+      targetEntity: Domain\Entities\Business\Objects\Specification
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinColumn:
+        name: company_id
+        referencedColumnName: id
+    companyBankAccount:
+      targetEntity: Domain\Entities\Business\Company\BankAccounts
+      joinColumn:
+        name: bank_account_company_id
+        referencedColumnName: id

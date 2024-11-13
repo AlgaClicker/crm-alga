@@ -1,0 +1,16 @@
+Domain\Entities\Business\Document\BrigadeSpecification:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    company:
+      exclude: true
+    brigade:
+      exclude: true
+
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string

@@ -1,0 +1,7 @@
+Domain\Entities\Business\Company\BankAccounts:
+  properties:
+    id:
+      exclude: true
+    company:
+      exclude: true
+

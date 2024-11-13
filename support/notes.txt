@@ -1,0 +1,2 @@
+Справочника БИК
+http://www.cbr.ru/PSystem/payment_system/?UniDbQuery.Posted=True&UniDbQuery.To=03.07.2024#BikFormData

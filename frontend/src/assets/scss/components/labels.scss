@@ -1,0 +1,126 @@
+.c-label-icon{
+    align-items: center;
+    display: flex;
+    svg{
+        fill: #959ba5;
+    }
+    button{
+        svg{
+            fill: #ffffff !important;
+        }
+    }
+    label{
+        margin-left: 9px;
+        color: #32343D;
+        font-size: 16px;
+        font-family: 'ubuntu-medium';
+    }
+    button{
+        margin-left: auto;
+    }
+}
+
+.c-label-back{
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    svg{
+        fill: #98A0AD;
+    }
+    span{
+        margin-left: 8px;
+        color: #98A0AD;
+    }
+}
+.c-label-back:hover{
+    transition: 0.6s all;
+    svg{
+        fill: #767e8a;
+    }
+    span{
+        color: #767e8a;
+    }
+}
+
+.c-label-filter{
+    display: block;
+    font-size: 0.95rem !important;
+    color: #959799;
+}
+
+.label-sm{
+    color: #727886;
+    font-size: 0.95rem;
+}
+
+.c-contract-label{
+    align-items: center;
+    color: #3B82F6;
+    cursor: pointer;
+    display: flex;
+    svg{
+        margin-left: 4px;
+        fill: #d6d1c7;
+    }
+}
+
+.c-link-label{
+    align-items: center;
+    color: #3B82F6;
+    cursor: pointer;
+    display: flex;
+    svg{
+        margin-right: 4px;
+        display: inline;
+        stroke: #3B82F6;
+        fill: #ffffff;
+    }
+}
+
+.c-link-label:hover{
+    transition: 0.5s all;
+    color: #1b6aea;
+    svg{
+        stroke: #2b79f7;
+    }
+}
+
+.c-header-label{
+    margin-left: 9px;
+    color: #32343D;
+    font-size: 20px;
+    font-family: 'ubuntu-medium';
+    svg{
+        stroke: #32343D;
+    }
+}
+
+.c-label-empty{
+    color: #b1b1b1;
+    font-size: 0.9rem;
+}
+
+.c-label-info{
+    align-items: center;
+    display: flex;
+    color: #3B82F6;
+    cursor: pointer;
+    text-decoration: none !important;
+    border: none;
+    svg{
+        fill: #3B82F6;
+        margin-right: 4px;
+    }
+}
+
+.c-label-delete{
+    align-items: center;
+    display: flex;
+    color: #f04141;
+    cursor: pointer;
+    text-decoration: none !important;
+    svg{
+        fill: #f04141;
+        margin-right: 4px;
+    }
+}

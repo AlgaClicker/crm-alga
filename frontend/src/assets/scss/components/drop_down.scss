@@ -1,0 +1,166 @@
+.c-button-profile{
+    display: block;
+    &__wrapper{
+        display: flex;
+        align-items: center;
+        padding: 1px;
+        padding-left: 6px;
+        padding-right: 16px;
+        border-radius: 5px;
+    }
+    &__user-avatar{
+        pointer-events: none;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        font-size: 1.2rem;
+        height: 32px;
+        width: 32px;
+    }
+    &__user-info{
+        pointer-events: none;
+        .c-username{
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 500;
+            margin-bottom: -7px;
+        }
+        small{
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 400;
+            color: #6E7583;
+        }
+    }
+
+    &__chevron{
+        display: none !important;
+        fill: #696d76;
+        margin-left: 10px;
+        pointer-events: none;
+    }
+
+    &__chevron--active{
+        display: block !important;
+    }
+
+    &__drop-down{
+        display: none;
+        position: absolute;
+        z-index: 1000;
+        width: 220px;
+        overflow-y: auto;
+        max-height: 295px;
+        right: 15px;
+        padding: 8px;
+        margin-top: 10px;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .header{
+            border-radius: 6px;
+            color: #676767;
+            padding: 4px;
+            padding-bottom: 0px;
+            margin: auto;
+            margin: 0.3rem;
+            hr{
+                padding: 0;
+                margin: 0;
+            }
+        }
+        li{
+            align-items: center;
+            background: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            font-size: 0.9rem;
+            padding: 5px;
+            margin-top: 11px;
+            a{
+                color: #18191B;
+                text-decoration: none;
+            }
+            svg{
+                fill: #4a4b50;
+                margin-right: 5px;
+            }
+        }
+        li:hover{
+            background-color: #EBF1FF;
+            svg{
+                fill: #0057FF;
+            }
+        }
+        .option-logout{
+            padding: 5px;
+            margin-bottom: 12px;
+        }
+        .option-logout:hover{
+            background-color: #FFE5E5;
+            color: #FF1414;
+            svg{
+                fill: #FF1414;
+            }
+        }
+    }
+
+    &__drop-down--active{
+        display: block;
+    }
+}
+
+.c-button-profile:hover{
+    cursor: pointer;
+    background-color: #F4F9FD;
+    border-radius: 4px;
+    &__user-avatar{
+        background-color: #ffffff !important;
+    }
+}
+
+// --------- c-notifications-dialog ----------
+
+.c-notifications-dialog{    
+    &__header{
+        align-items: center;
+        display: flex;
+        padding: 0 1em;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        .icon{
+            margin-left: auto;
+            cursor: pointer;
+            color: #3391FF;
+        }
+
+    }
+    &__messages{
+        height: 600px !important; 
+        padding: 0 1em;
+        overflow-y: auto;
+    }
+    &__messages::-webkit-scrollbar{
+        width: 6px;
+    }
+    &__messages::-webkit-scrollbar-track{
+        background: #F6F7FB; 
+    }
+    &__messages::-webkit-scrollbar-thumb{
+        background: #CCD7DB; 
+    }
+}
+
+@media (min-width: 1000px){
+    .c-notifications-dialog{
+        height: calc(100% - 5.5em) !important;
+        width: 24em !important;
+    }
+}
+@media (max-width: 750px){
+    .c-notifications-dialog{
+        height: calc(100% - 4.5em) !important;
+        width: 24em !important;
+    }
+}

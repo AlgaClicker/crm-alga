@@ -1,0 +1,101 @@
+.requisitions-wrapper{
+    height: 95%;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    &__header-wrapper{
+        align-items: center;
+        display: flex;
+        padding-right: 2rem;
+        button{
+            margin-left: auto;
+        }
+        .left-container{
+            align-items: center;
+            display: flex;
+            margin-left: auto;
+        }
+    }  
+    .c-links{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        a{
+            text-decoration: none;
+            display: flex;
+            margin-right: 1rem;
+            color: #75757D;
+            svg{
+                fill: #111111;
+                margin-right: 4px;
+                cursor: pointer;
+            }
+        }
+        a:hover{
+            
+        }
+    }
+    .c-links--active{
+        color: #3391FF !important;
+        a: {
+            color: #3391FF !important;
+        }
+        
+    }   
+    .scroll-wrapper{
+        flex: 1 auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 2rem;
+        .c-default-table-container{
+            background-color: #ffffff;
+            border: 1px solid #f5f5f5;
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+            -webkit-box-shadow: 0px 0px 3px 2px #F1F2F4;
+            -moz-box-shadow: 0px 0px 3px 2px  #F1F2F4;
+            padding: 2rem;
+            margin-right: 2rem;
+            padding-top: 1rem;
+            &__header{
+                background-color: #ffffff;  
+                padding-bottom: 1.3rem;
+                padding-top: 0.7rem;
+                display: flex;
+                align-items: center;
+                position: -webkit-sticky; // this is for all Safari (Desktop & iOS), not for Chrome
+                position: sticky;
+                top: 0;
+                z-index: 1; // any positive value, layer order is global
+                background: #fff; // any bg-color to overlap
+                .left-container{
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+}
+
+.c-status-requisition{
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    padding: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    width: 140px;
+}
+
+.c-requisition-card{
+    @include card;
+    padding: 1.5rem
+}   
+
+.c-requisition-material{
+    @include card;
+    margin-top: 1rem;
+    padding: 1.5rem;
+}

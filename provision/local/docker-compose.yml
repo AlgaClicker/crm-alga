@@ -1,0 +1,154 @@
+version: "3.2"
+
+networks:
+  network:
+    driver: bridge
+  xdebug:
+    driver: bridge
+    internal: true
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.220.0/28
+
+volumes:
+  pg-data:
+  pg-data-test:
+  redis-data:
+  storageFiles:
+  logs:
+
+services:
+  memcached:
+    container_name: memcached
+    hostname: memcached
+    image: memcached
+    restart: always
+    networks:
+      - network
+
+  api:
+    container_name: api
+    env_file: ./../../${ENV_FILE}
+    build:
+      context: ../..
+      dockerfile: ./provision/docker-images/api/Dockerfile
+    restart: always
+    environment:
+      - TZ=${APP_TIMEZONE}
+    volumes:
+      - ./../../backend:/var/www/html:rw
+      - storageFiles:/var/www/html/Application/Lumen/storage:rw
+      - logs:/var/log:rw
+    links:
+      - memcached
+      - postgres
+      - postgres-test
+      - redis
+    networks:
+      - network
+      - xdebug
+    expose:
+      - "9000"
+    ports:
+      - "0.0.0.0:9000:9000"
+    environment:
+      COMPOSER_MEMORY_LIMIT: -1
+      XDEBUG_CONFIG: client_host=${XDEBUG_REMOTE_HOST} client_port=${XDEBUG_STORM_PORT} remote_enable=1
+      PHP_IDE_CONFIG: serverName=${cc}
+    depends_on:
+      - memcached
+      - redis
+      - postgres
+  frontend:
+    container_name: frontend
+    env_file: ./../../${ENV_FILE}
+    build:
+      context: ../..
+      dockerfile: ./provision/docker-images/front/Dockerfile
+    volumes:
+      - ./../../frontend:/var/www/front:cached      
+    ports:
+      - "0.0.0.0:8080:8080"
+
+  websockets:
+    container_name: websockets
+    build:
+      context: ../docker-images/websockets
+      dockerfile: Dockerfile
+    env_file: ./../../${ENV_FILE}
+    restart: always
+    ports:
+      - "6001:6001"
+    networks:
+      - network
+    volumes:
+      - logs:/var/log:rw
+    links:
+      - api
+      - redis
+    depends_on:
+      - redis
+      - api
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: always
+    command: redis-server
+    volumes:
+      - redis-data:/data:cached
+    networks:
+      - network
+    ports:
+      - "0.0.0.0:6379:6379"
+  nginx:
+    container_name: nginx
+    build:
+      context: ../..
+      dockerfile: ./provision/docker-images/nginx/Dockerfile
+    restart: always
+    command: nginx -g "daemon off;"
+    links:
+      - api
+    networks:
+      - network
+    ports:
+      - "0.0.0.0:8888:80"
+    depends_on:
+      - api
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    env_file: ./../../${ENV_FILE}
+    environment:
+      PGDATABASE: ${DB_DATABASE}
+      PGUSER: ${DB_USERNAME}
+      PGPASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pg-data:/var/lib/postgresql/data:cached
+    networks:
+      - network
+    ports:
+      - "0.0.0.0:15432:5432"
+
+  postgres-test:
+    image: postgres:15
+    container_name: postgres-test
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_DATABASE: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./provision/docker-images/postgres/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+      - pg-data-test:/var/lib/postgresql/data:cached
+    networks:
+      - network
+    ports:
+      - "0.0.0.0:25432:5432"
+
+
+ 

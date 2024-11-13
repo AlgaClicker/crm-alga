@@ -1,0 +1,39 @@
+Domain\Entities\Business\Master\RequisitionMaterials:
+    properties:
+      id:
+        exclude: true
+      delete:
+        exclude: true
+      company:
+        exclude: true
+      fixed:
+        exclude: true
+      autor:
+        exclude: true
+      deletedAt:
+        exclude: true
+      updatedAt:
+        exclude: true
+      requisition:
+        exclude: true
+      directoryMaterial:
+        exclude: false
+      specificationMaterial:
+        exclude: true
+    virtual_properties:
+      getAutor:
+        name: master
+        serialized_name: master
+        exp: object.getAutor()
+      getId:
+        name: uuid
+        serialized_name: id
+        type: string
+      getDirectoryMaterial:
+        name: material
+        serialized_name: material
+        exp: object.getDirectoryMaterial() ? object.getDirectoryMaterial().getId().serialize()
+      getSpecificationMaterial:
+        name: specificationMaterial
+        serialized_name: specification_material
+        exp: object.getSpecificationMaterial() ? object.getSpecificationMaterial()

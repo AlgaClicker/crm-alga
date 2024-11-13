@@ -1,0 +1,16 @@
+backend/vendor
+backend/Temp
+/.idea
+/.TODO
+backend/*.env
+.phpunit.result.cache
+/*.zip
+.vscode
+websocket
+cert
+prod.env
+*.env
+.*.env
+.local.env
+.prod.env
+backend/Infrastructure/Doctrine/Proxies

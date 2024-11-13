@@ -1,0 +1,133 @@
+Domain\Entities\Subscriber\Account:
+  type: entity
+  table: account
+  indexes:
+    username_compnay_index:
+      columns: [ username,company_id ]
+    email_index:
+      columns: [ email ]
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    surname:
+      type: string
+      nullable: true
+      column: surname
+    name:
+      type: string
+      nullable: true
+      column: name
+    username:
+      type: string
+      nullable: false
+      unique: true
+      options:
+        unsigned: false
+      column: username
+    patronymic:
+      type: string
+      nullable: true
+      unique: false
+      column: patronymic
+    phoneNumber:
+      type: integer
+      size: 11
+      nullable: true
+      unique: false
+      column: phone_number
+    password:
+      type: text
+      nullable: false
+      column: password
+    rememberToken:
+      type: string
+      nullable: true
+      column: remember_token
+    token:
+      type: text
+      nullable: true
+      options:
+        unsigned: false
+      column: token
+    email:
+      type: string
+      nullable: false
+      unique: true
+      options:
+        unsigned: false
+      column: email
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    lastLogin:
+      type: datetime
+      nullable: true
+      column: last_login
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    autorId:
+      type: object
+      nullable: true
+      column: autor_id
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    isAdmin:
+      type: boolean
+      nullable: true
+      column: is_admin
+      options:
+        default: false
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      inversedBy: accounts
+    roles:
+      targetEntity: Domain\Entities\Subscriber\Roles
+      cascade: ["persist", "merge"]
+      inversedBy: account
+
+  manyToMany:
+    objects:
+      targetEntity: Domain\Entities\Business\Objects\Objects
+      inversedBy: accounts
+    workflows:
+      targetEntity: Domain\Entities\Business\Document\Workflow
+      inversedBy: responsibles
+    tasks:
+      targetEntity: Domain\Entities\Business\Document\Tasks
+      inversedBy: responsible
+  oneToMany:
+    accountoptions:
+      targetEntity: Domain\Entities\Subscriber\AccountOptions
+      mappedBy: account
+    accountTokens:
+      targetEntity: Domain\Entities\Subscriber\AccountTokens
+      mappedBy: account
+    brigades:
+      targetEntity: Domain\Entities\Business\Master\Brigade
+      cascade: ["persist", "merge"]
+      mappedBy: master
+  oneToOne:
+    workpeople:
+      targetEntity: Domain\Entities\Business\Company\Workpeople
+      mappedBy: account

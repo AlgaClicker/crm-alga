@@ -1,0 +1,36 @@
+Domain\Entities\Business\Master\Timesheet:
+  xml_root_name: timesheet
+  properties:
+    createdAt:
+      exclude: true
+    account:
+      exclude: true
+    workpeople:
+      exclude: true
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    company:
+      exclude: true
+    description:
+      exclude: false
+    delete:
+      exclude: true
+    updatedAt:
+      exclude: true
+    specification:
+      exclude: false
+      inline: false
+      serialized_name: specification_id
+    date:
+      type: DateTimeInterface<'Y-m-d'>
+    id:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+
+

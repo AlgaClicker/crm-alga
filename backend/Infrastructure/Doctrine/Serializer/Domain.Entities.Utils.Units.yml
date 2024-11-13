@@ -1,0 +1,18 @@
+Domain\Entities\Utils\Units:
+  properties:
+    id:
+      exclude: true
+    material:
+      exclude: true
+    createdAt:
+      exclude: true
+    delete:
+      exclude: true
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    specificationMaterial:
+      exclude: true
+    specificationTypeworks:
+      exclude: true

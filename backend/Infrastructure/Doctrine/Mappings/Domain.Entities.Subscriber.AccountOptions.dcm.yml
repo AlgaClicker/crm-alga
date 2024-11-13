@@ -1,0 +1,39 @@
+Domain\Entities\Subscriber\AccountOptions:
+  type: entity
+  table: accountoptions
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    key:
+      type: string
+      nullable: false
+      column: key
+    val:
+      type: text
+      nullable: false
+      column: val
+    createdAt:
+      type: datetime
+      nullable: true
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    active:
+      type: boolean
+      nullable: true
+      column: active
+  manyToOne:
+    account:
+      targetEntity: Domain\Entities\Subscriber\Account
+      inversedBy: accountoptions

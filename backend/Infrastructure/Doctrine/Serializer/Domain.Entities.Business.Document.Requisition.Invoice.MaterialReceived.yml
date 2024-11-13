@@ -1,0 +1,28 @@
+Domain\Entities\Business\Document\Requisition\Invoice\MaterialReceived:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    company:
+      exclude: true
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+    autor:
+      exclude: true
+    requisitionInvoiceMaterial:
+      exclude: true
+
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+    getRequisitionInvoiceMaterial:
+      name: requisitionInvoiceMaterial
+      serialized_name: requisition_invoice_material
+      exp: object.getRequisitionInvoiceMaterial() ? object.getRequisitionInvoiceMaterial().getId().serialize()
+
+

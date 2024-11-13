@@ -1,0 +1,87 @@
+.l-admin-main{
+    height: 100vh;
+    width: 100%;
+    background-color: #F8F9FC;
+    display: flex;
+    nav{
+        align-items: center;
+        border-right: 1px solid #E9EEF4;
+        background-color: #ffffff;
+        padding-top: 1.5rem;
+        flex-direction: column;
+        display: flex;
+        width: 70px;
+        min-height: 100%;
+        .c-logo{
+            
+        }
+        .c-link{
+            display: flex;
+            flex-direction: column;
+            padding-top: 4.2rem;
+            &_item{
+                margin-bottom: 0.8rem;
+                svg{
+                    cursor: pointer;
+                    fill: #92A1B6;
+                }
+            }
+            &_item:hover{
+                svg{
+                    transition: 0.7s all;
+                    fill: #5C81FC;
+                }
+            }
+            &_item--active{
+                svg{
+                    cursor: pointer;
+                    fill: #5C81FC;
+                }
+            }
+        }
+        .c-footer{
+            align-items: center;
+            margin-top: auto;
+            padding-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            &_bell{
+                margin-bottom: 0.8rem;
+                cursor: pointer;
+                svg{ 
+                    cursor: pointer;
+                    fill: #C5CFD5;
+                }
+                svg:hover{
+                    transition: 1s all;
+                    fill: #5C81FC
+                }
+            }
+        }
+    }
+    main{
+       height: 100%;
+       width: 100%;
+       .c-main{
+            height: 100%;
+            header{
+                background-color: #ffffff;
+                border-bottom: 1px solid #E9EEF4;
+                padding: 0.8rem;
+                padding-left: 1.3rem;
+                height: 100px;
+                width: 100%;
+                h4{
+                    margin: 0;
+                }
+                button{
+                    float: right;
+                }
+            }
+            main{
+                height: 100%;
+                padding: 2rem;
+            }
+       }
+    }
+}

@@ -1,0 +1,27 @@
+Domain\Entities\Business\Directory\Bank:
+  properties:
+    id:
+      exclude: true
+    createdAt:
+      exclude: true
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    delete:
+      exclude: true
+    company:
+      exclude: true
+    partners:
+      exclude: true
+    bankAccounts:
+      exclude: false
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string

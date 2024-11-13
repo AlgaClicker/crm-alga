@@ -1,0 +1,88 @@
+#Справочник банки
+Domain\Entities\Business\Directory\Bank:
+  type: entity
+  table: banki
+  actAs:
+    Searchable:
+      fields: [name,bik]
+      batchUpdates: true
+  indexes:
+    name_banki_index:
+      columns: [ name ]
+    bik_banki_index:
+      columns: [ bik ]
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    name:
+      type: string
+      nullable: false
+      options:
+        unsigned: false
+      column: name
+    fullname:
+      type: text
+      nullable: true
+      column: fullname
+    address:
+      type: text
+      nullable: true
+      column: address
+    bik:
+      type: integer
+      nullable: true
+      column: bik
+    paymentAccount:
+      type: integer
+      nullable: true
+      options:
+        unsigned: false
+      column: payment_account
+    corset:
+      type: integer
+      nullable: true
+      options:
+        unsigned: false
+      column: corset
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+  manyToMany:
+    recipient:
+      targetEntity: Domain\Entities\Business\Directory\Recipient
+      inversedBy: bank
+    bankContractor:
+      targetEntity: Domain\Entities\Business\Directory\BankContractor
+      inversedBy: bank
+  oneToMany:
+    bankAccounts:
+      targetEntity: Domain\Entities\Business\Directory\BankAccounts
+      mappedBy: bank

@@ -1,0 +1,174 @@
+Domain\Entities\Business\Objects\Specification:
+  type: entity
+  table: specification
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    name:
+      type: string
+      nullable: false
+      options:
+        unsigned: false
+      column: name
+    locnum:
+      type: string
+      column: LocNum
+      nullable: true
+    number:
+      type: string
+      nullable: true
+      column: number
+    constr:
+      type: string
+      column: Constr
+      nullable: true
+    description:
+      type: string
+      column: description
+    type:
+      type: string
+      nullable: true
+      column: type
+    idx:
+      type: integer
+      nullable: true
+      column: idx
+    autorId:
+      type: uuid
+      nullable: false
+      column: autor_uuid
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    draft:
+      type: boolean
+      nullable: true
+      options:
+        default: true
+      column: draft
+    fixed:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+      column: fixed
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+    archiveAt:
+      type: datetime
+      nullable: true
+      column: archive_at
+  manyToOne:
+    object:
+      targetEntity: Domain\Entities\Business\Objects\Objects
+      inversedBy: specification
+    parent:
+      targetEntity: Domain\Entities\Business\Objects\Specification
+      cascade: ["persist", "merge"]
+      inversedBy: children
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor_id
+        referencedColumnName: id
+    manager:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: manager_id
+        referencedColumnName: id
+    partner:
+      targetEntity: Domain\Entities\Business\Directory\Partner
+      joinColumn:
+        name: partner_id
+        referencedColumnName: id
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinTable:
+        name: company_id
+        joinColumns:
+          specification_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          company_id:
+            referencedColumnName: id
+  oneToMany:
+    children:
+      targetEntity: Domain\Entities\Business\Objects\Specification
+      orderBy: { 'idx': 'ASC' }
+      cascade: ["persist", "merge"]
+      mappedBy: parent
+    specificationTypeworks:
+      targetEntity: Domain\Entities\Business\Objects\SpecificationTypeWorks
+      mappedBy: specification
+      onDelete: CASCADE
+    specificationResources:
+      targetEntity: Domain\Entities\Business\Objects\SpecificationResources
+      mappedBy: specification
+      onDelete: CASCADE
+    requisitions:
+      targetEntity: Domain\Entities\Business\Master\Requisition
+      mappedBy: specification
+    requisitionInvoice:
+      targetEntity: Domain\Entities\Business\Document\Requisition\Invoice
+      mappedBy: specification
+    brigadeSpecification:
+      targetEntity: Domain\Entities\Business\Document\BrigadeSpecification
+      mappedBy: specification
+  manyToMany:
+    specificationMaterials:
+      targetEntity: Domain\Entities\Business\Objects\SpecificationMaterial
+      mappedBy: specification
+      onDelete: CASCADE
+      orderBy: { 'index': 'ASC', 'position': 'ASC' }
+    files:
+      targetEntity: Domain\Entities\Services\Files
+      inversedBy: specification
+      onDelete: CASCADE
+    responsibles:
+      targetEntity: Domain\Entities\Subscriber\Account
+      onDelete: CASCADE
+      joinTable:
+        name: specification_responsible
+        joinColumns:
+          specification_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          account_id:
+            referencedColumnName: id
+    contracts:
+      targetEntity: Domain\Entities\Business\Document\Contracts
+      mappedBy: specifications
+  oneToOne:
+    stock:
+      targetEntity: Domain\Entities\Business\Company\Stock
+      onDelete: CASCADE

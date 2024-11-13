@@ -1,0 +1,61 @@
+Domain\Entities\News\Comments:
+  type: entity
+  table: comments
+  id:
+    id:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+      id: true
+      generator:
+        strategy: IDENTITY
+  fields:
+    title:
+      type: string
+      nullable: false
+      options:
+        unsigned: false
+      column: title  
+    imageUrl:
+      type: text
+      nullable: true
+      options:
+        unsigned: false
+      column: image_url
+    announcement:
+      type: text
+      nullable: false
+      options:
+        unsigned: false
+      column: announcement
+    body:
+      type: text
+      nullable: false
+      options:
+        unsigned: false
+      column: body
+    createdAt:
+      type: datetime
+      nullable: true
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+    active:
+      type: boolean
+      nullable: true
+      column: active   
+    delete:
+      type: boolean
+      nullable: true
+      column: delete    
+      options:
+        default: false
+  manyToOne:
+    news:
+      targetEntity: Domain\Entities\News\News
+      inversedBy: comments
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      ;inversedBy: account

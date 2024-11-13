@@ -1,0 +1,37 @@
+Domain\Entities\Business\Directory\Material:
+  properties:
+    id:
+      exclude: true
+    createdAt:
+      exclude: false
+    autorId:
+      exclude: true
+    prices:
+      exclude: true
+    parent:
+      exclude: false
+    children:
+      exclude: true
+    delete:
+      exclude: true
+    company:
+      exclude: true
+    isGroup:
+      serialized_name: isGroup
+      expose: true
+    specificationMaterial:
+      exclude: true
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+    requisitionInvoiceMaterial:
+      exclude: true
+    requisitionMasterMaterial:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+

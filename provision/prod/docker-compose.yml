@@ -1,0 +1,117 @@
+version: "3.2"
+
+networks:
+  network:
+    driver: bridge
+
+volumes:
+  pg-data:
+  redis-data:
+  api-storage:
+  cert-store:
+  logs-store:
+services:
+  memcached:
+    hostname: memcached
+    image: memcached
+    restart: always
+    networks:
+      - network
+
+  api:
+    hostname: api
+    image: registry.dev.alga-corp.ru/crm/back/api:${VERSION:-latest}
+    restart: always
+    volumes:
+      - api-storage:/var/www/html/Application/Lumen/storage:cached
+    links:
+      - memcached
+      - frontend
+    networks:
+      - network
+    expose:
+      - "9000"
+    environment:
+      COMPOSER_MEMORY_LIMIT: -1
+    env_file:
+      - ../../${ENV_FILE}
+    depends_on:
+      - memcached
+      - redis
+      - postgres
+
+  frontend:
+    hostname: frontend
+    image: registry.dev.alga-corp.ru/crm/back/frontend:${VERSION:-latest}
+    build:
+      context: ../..
+      dockerfile: ./provision/docker-images/front/Dockerfile.prod
+    networks:
+      - network
+    expose:
+      - "8081"
+  redis:
+    hostname: redis
+    image: redis:latest
+    restart: always
+    command: redis-server
+    volumes:
+      - redis-data:/data:cached
+    networks:
+      - network
+    expose:
+      - "6379"
+
+  nginx:
+    hostname: nginx
+    image: registry.dev.alga-corp.ru/crm/back/nginx:${VERSION:-latest}
+    restart: always
+    command: nginx -g "daemon off;"
+    volumes:
+      - ./certs:/etc/ssl
+      - cert-store:/certs:cached
+    environment:
+      HTTP_TLS_CERTIFICATE: ${HTTP_TLS_CERTIFICATE}
+      HTTP_TLS_KEY: ${HTTP_TLS_KEY}
+      HTTP_SERVER_NAME: ${HTTP_SERVER_NAME}
+    links:
+      - api
+    networks:
+      - network
+    ports:
+      - "${PORT_WEB:-8443}:8443"
+    depends_on:
+      - api
+
+  postgres:
+    hostname: postgres
+    image: postgres:11.5-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: "${DB_DATABASE}"
+      POSTGRES_USER: "${DB_USERNAME}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      PGDATABASE: ${DB_DATABASE}
+      PGUSER: ${DB_USERNAME}
+      PGPASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pg-data:/var/lib/postgresql/data:cached
+    networks:
+      - network
+
+  websockets:
+    image: registry.dev.alga-corp.ru/crm/back/websockets:${VERSION:-latest}
+    restart: always
+    volumes:
+      - ./certs:/etc/ssl
+      - cert-store:/certs:cached
+    environment:
+      LARAVEL_ECHO_SERVER_SSL_CERT: ${HTTP_TLS_CERTIFICATE}
+      LARAVEL_ECHO_SERVER_SSL_KEY: ${HTTP_TLS_KEY}
+    ports:
+      - 6001
+    networks:
+      - network
+    depends_on:
+      - redis
+      - api

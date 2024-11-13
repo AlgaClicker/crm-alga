@@ -1,0 +1,28 @@
+#Договора с контарагентами
+Domain\Entities\Business\Document\Contracts:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    index:
+      exclude: true
+    active:
+      exclude: true
+    company:
+      exclude: true
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+    invoices:
+      exclude: true
+    specifications:
+      exclude: false
+
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+

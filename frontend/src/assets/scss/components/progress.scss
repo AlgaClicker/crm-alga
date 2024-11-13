@@ -1,0 +1,113 @@
+.circle.left {
+    position: absolute;
+    clip: rect(0, 100px, 100px, 50px);
+}
+
+.circle.right {
+    position: absolute;
+    clip: rect(0px, 50px, 100px, 0px);
+}
+
+.circle span {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    position: absolute;
+    opacity: 0.5;
+    border: 10px solid #5cb16e;
+}
+
+.circle.left span {
+    clip: rect(0px, 50px, 100px, 0px);
+    -webkit-animation: rotate-left 5s linear;
+}
+
+.circle.right span {
+    clip: rect(0, 100px, 100px, 50px);
+    -webkit-animation: rotate-right 5s linear;
+}
+
+@-webkit-keyframes rotate-left {
+    0% { -webkit-transform: rotate(0deg); }
+    50% { -webkit-transform: rotate(180deg); }
+    100% { -webkit-transform: rotate(180deg); }
+}
+
+@-webkit-keyframes rotate-right {
+    0% { -webkit-transform: rotate(0deg); }
+    50% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(180deg); }
+}
+ 
+
+/* counter */
+.radial {
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+}
+div.loop {
+    position: relative;
+    width: 16px;
+    height: 20px;
+    overflow: hidden;
+    left: 10%;
+    top: 37px;
+}
+div.loop:after {
+  content: attr(data-val);
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 20px;
+  text-align: center;
+  -webkit-animation: loop 10s ;
+  animation: loop 10s ;
+}
+@-webkit-keyframes loop {
+  0% { margin-top: 0px; }
+  9% { margin-top: 0px; }
+  10% { margin-top: -20px; }
+  19% { margin-top: -20px; }
+  20% { margin-top: -40px; }
+  29% { margin-top: -40px; }
+  30% { margin-top: -60px; }
+  39% { margin-top: -60px; }
+  40% { margin-top: -80px; }
+  49% { margin-top: -80px; }
+  50% { margin-top: -100px; }
+  59% { margin-top: -100px; }
+  60% { margin-top: -120px; }
+  69% { margin-top: -120px; }
+  70% { margin-top: -140px; }
+  79% { margin-top: -140px; }
+  80% { margin-top: -160px; }
+  89% { margin-top: -160px; }
+  90% { margin-top: -180px; }
+  99% { margin-top: -180px; }
+  100% { margin-top: -200px; }
+}
+
+@keyframes loop {
+  0% { margin-top: 0px; }
+  9% { margin-top: 0px; }
+  10% { margin-top: -20px; }
+  19% { margin-top: -20px; }
+  20% { margin-top: -40px; }
+  29% { margin-top: -40px; }
+  30% { margin-top: -60px; }
+  39% { margin-top: -60px; }
+  40% { margin-top: -80px; }
+  49% { margin-top: -80px; }
+  50% { margin-top: -100px; }
+  59% { margin-top: -100px; }
+  60% { margin-top: -120px; }
+  69% { margin-top: -120px; }
+  70% { margin-top: -140px; }
+  79% { margin-top: -140px; }
+  80% { margin-top: -160px; }
+  89% { margin-top: -160px; }
+  90% { margin-top: -180px; }
+  99% { margin-top: -180px; }
+  100% { margin-top: -200px; }
+}

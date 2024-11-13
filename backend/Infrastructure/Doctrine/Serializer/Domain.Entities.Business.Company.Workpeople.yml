@@ -1,0 +1,30 @@
+Domain\Entities\Business\Company\Workpeople:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    autorId:
+      exclude: true
+    company:
+      exclude: true
+    brigade:
+      exclude: true
+    timesheet:
+      exclude: true
+    updatedAt:
+      exclude: true
+    autor:
+      exclude: true
+    deletedAt:
+      exclude: false
+    profession:
+      exclude: false
+    master:
+      exclude: false
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+

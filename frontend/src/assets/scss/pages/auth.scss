@@ -1,0 +1,95 @@
+/* .c-auth{
+   
+    display: flex;
+    width: 100%;
+    height: 100%;
+    .c-auth-form{
+        min-width: 29%;
+        border-radius: 12px;
+        background-color: #FFFFFF;
+        margin: auto;
+        padding: 3rem;
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+
+        -webkit-box-shadow: 1px 1px 8px 0px rgba(187, 212, 232, 0.2);
+        -moz-box-shadow: 1px 1px 8px 0px rgba(187, 212, 232, 0.2);
+        box-shadow: 1px 1px 8px 0px rgba(187, 212, 232, 0.2);
+
+        h4{
+
+        }
+    }
+
+} */
+
+.c-login-wrapper{
+    margin: auto;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    &__logo{
+        margin: auto;
+        margin-bottom: 1.5rem;
+    }
+    .c-login-form{
+        background-color: #FFFFFF;
+        border-radius: 6px;
+        padding: 3rem;
+        box-shadow: 1px 1px 8px 0px rgba(187, 212, 232, 0.2);
+        -webkit-box-shadow: 1px 1px 8px 0px rgba(187, 212, 232, 0.2);
+        -moz-box-shadow: 1px 1px 8px 0px rgba(187, 212, 232, 0.2);
+        &__header{
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 28px;
+            color: #515F71;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        &__header-text{
+   
+        }
+        &__label{
+            display: block;
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 400;
+            color: #515F71;
+        }
+        &__input{
+            background-color: #F4F9FD;
+            border: 1px solid #E8EAEC;
+            border-radius: 5px;
+            padding: 0.6rem;
+            margin: auto;
+            width: 100%;
+            outline: none;
+        }
+        &__input:focus{
+            border-color: #7CB8FF;
+        }
+        &__error{
+            color: #3A4A5D;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 14px 45px 14px 47px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            svg{
+                fill: #EB4E2C;
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px){
+    .c-login-wrapper{
+        width: 370px !important;
+    }
+}

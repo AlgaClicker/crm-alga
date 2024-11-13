@@ -1,0 +1,31 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
+
+@import "vue-select/src/scss/vue-select.scss";
+
+@import "typography";
+@import "mixins";
+@import "variables";
+@import "custom";
+@import "layouts";
+
+@import "./components/tables";
+@import "./components/tabel";
+@import "./components/badges";
+@import "./components/modals";
+@import "./components/switch";
+@import "./components/avatars";
+@import "./components/progress";
+@import "./components/select";
+@import "./components/buttons";
+@import "./components/inputs";
+@import "./components/labels";
+@import "./components/loaders";
+@import "./components/drop_down";
+@import "./components/notification";
+@import "./components/files";
+@import "./components/filters";
+@import "./components/cards";
+@import "./components/contextmenu";
+
+@import "components.scss";

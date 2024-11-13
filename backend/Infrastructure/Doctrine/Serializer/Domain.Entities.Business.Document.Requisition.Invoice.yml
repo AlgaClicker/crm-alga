@@ -1,0 +1,35 @@
+Domain\Entities\Business\Document\Requisition\Invoice:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    active:
+      exclude: true
+    company:
+      exclude: true
+    index:
+      exclude: true
+    autor:
+      exclude: true
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+    fixed:
+      exclude: true
+    requisition:
+      exclude: true
+    materials:
+      exclude: false
+
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+    getRequisition:
+      name: requisition_id
+      serialized_name: requisition_id
+      exp: object.getRequisition() ? object.getRequisition().getId().serialize()
+

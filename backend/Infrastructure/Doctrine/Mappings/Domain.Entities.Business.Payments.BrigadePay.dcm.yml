@@ -1,0 +1,83 @@
+#Справочник должностей
+Domain\Entities\Business\Payments\BrigadePay:
+  type: entity
+  table: payments_brigade
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    date:
+      type: datetime
+      nullable: false
+      column: date_pay
+    amount :
+      type: float
+      nullable: false
+      column: amount
+    description:
+      type: text
+      size: 2048
+      nullable: true
+      column: description
+    type:
+      type: text
+      size: 10
+      nullable: false
+      column: type
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+    draft:
+      type: boolean
+      nullable: true
+      options:
+        default: true
+      column: draft
+    fixed:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+      column: fixed
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinColumn:
+        name: company
+        referencedColumnName: id
+    brigade:
+      targetEntity: Domain\Entities\Business\Master\Brigade
+      inversedBy: brigade_pay
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id
+    specification:
+      targetEntity: Domain\Entities\Business\Objects\Specification
+      joinColumn:
+        name: specifications
+        referencedColumnName: id

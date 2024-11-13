@@ -1,0 +1,39 @@
+# Image
+FROM node:20-alpine as build-stage
+
+ENV NODE_ENV_1="production"
+ENV VUE_APP_TITLE="Alga CRM App"
+ENV VUE_APP_URL="https://cms.alga-corp.ru"
+ENV VUE_APP_WS_HOST=cms.alga-corp.ru
+ENV VUE_APP_WS_PORT=6001
+ENV VUE_APP_WS_SSL=true
+
+RUN echo "Asia/Yekaterinburg" > /etc/timezone
+
+# Set up work directory
+
+WORKDIR /app
+COPY frontend .
+RUN rm *.env* -fr
+RUN npm i
+RUN npm run build
+
+#============================NGINX================================
+FROM nginx as production-stage
+ADD provision/docker-images/nginx/nginx.prod.conf /etc/nginx/templates/default.conf.template
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+RUN echo "upstream php-upstream { server api:9000; }" > /etc/nginx/conf.d/upstream.conf
+RUN usermod -u 1000 www-data
+RUN mkdir -p /certs
+RUN chmod +rw /certs
+WORKDIR /etc/nginx
+
+EXPOSE 80
+EXPOSE 443
+EXPOSE 8443
+EXPOSE 8080
+EXPOSE 8081
+EXPOSE 8888
+
+

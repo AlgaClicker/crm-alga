@@ -1,0 +1,241 @@
+
+ /* --------------- files* ----------------- */
+
+.c-file-block{
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 12px rgba(178, 175, 193, 0.16);
+    border: 1px solid #F2F2F2;
+    display: flex;
+    flex-direction: column;
+    width: 157px;
+    height: 157px;
+    padding: 0.6rem;
+    padding-top: 0.3rem;
+    margin-top: 0.4rem;
+    margin-right: 0.4rem;
+    header{
+        margin-left: auto;
+        svg{
+            margin-left: 0.2rem;
+            cursor: pointer;
+        }
+        svg:hover{
+            transition: 0.6s all;
+            fill: #aeb6be;
+        }
+    }
+    &_title{
+        width: 92%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #5d5d5d;
+        font-weight: 400;
+        font-size: 0.9rem;
+        margin-bottom: -4px;
+    }
+    svg{
+        margin: auto;
+        fill: #c8cdd1;
+    }
+    &_footer{
+        margin-top: auto;
+        small{
+            padding: 0;
+            color: #c8cdd1;
+            font-weight: 600;
+            font-size: 0.7rem;
+            margin-top: -4px;
+        }
+    }
+}
+.c-file-block:hover{
+    border: 1px solid #e4e4e4;
+}
+/* -------------------- input base -----------------------*/
+
+label{
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.c-input{
+    input{
+        width: 100%;
+        height: 48px;
+        border: 2px solid $borderOpaque;
+        border-radius: 8px;
+        padding-right: 8px !important;
+        padding-left: 0.6rem;
+    }
+    &_error{
+        border: 2px solid $backgroundNegative !important;
+    }
+    &_success{
+        border: 2px solid $backgroundPositive;
+    }
+    &_messange{
+        margin-top: 0.4rem;
+        span{
+            margin-left: 0.4rem;
+        }
+    }
+
+}
+
+.c-input-ui--error{
+    input{
+        border-color: $backgroundNegative;
+        outline: none;
+    }
+    span{
+        color: $backgroundNegative;
+    }
+    input:focus{
+        border-color: $backgroundNegative;
+    }
+}
+.c-input-ui--success{
+    input{
+        border-color: $backgroundPositive;
+    }
+    span{
+        color: $backgroundPositive;
+    }
+    input:focus{
+        border-color: $backgroundPositive;
+    }
+}
+
+/* spinner */
+
+/* Drop down */
+
+/* object */
+
+.c-responsibles{
+    display: flex;
+    align-items: center;
+}
+
+.c-brigade-card{
+    border: 1px solid #D0D7DE;
+    border-radius: 8px;
+    padding: 0.8rem;
+    padding-left: 1.8rem;
+    width: 860px;
+    &_title{
+        p{
+            font-family: 'ubuntu-medium';
+            margin: 0;
+            padding: 0;
+            font-size: 1.1rem;
+            color: #1F2328;
+        }
+    }
+    &_info{
+        label{
+            margin-left: 4px;
+            font-size: 1rem;
+            color: #858F99;
+        }
+    }
+    hr{
+        color: #9099A3;
+    }
+    &_footer{
+        display: flex;
+        small{
+            margin-left: auto;
+            color: #9099A3;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+    }
+}
+
+.c-brigade-card:hover{
+    transition: 0.4s all;
+    cursor: pointer;
+    border: 1px solid #90BEF7;
+    background-color: rgb(211, 232, 255);
+}
+
+.c-list-spec{
+    &__object{
+        color: #2e6cdf;
+    }
+}
+
+/* media*/
+
+.c-workpeople-list{
+    display: flex;
+    align-items: center;
+    margin-top: 0.6rem;
+    min-width: 300px;
+    width: 100%;
+    &_text{
+        margin-left: 20px;
+        color: #000;
+        small{
+            margin: 0;
+            padding: 0;  
+            color: #6E7583;
+        }
+    }
+    svg{
+        margin-left: auto;
+        fill: #a7aeba;
+        cursor: pointer;
+    }
+    svg:hover{
+        transition: 0.4s all;
+        fill: #739de7;
+    } 
+}
+
+.c-common-modal-delete{
+    margin: auto;
+    padding: 1rem;
+    max-width: 22% !important;
+    
+}
+
+.c-tabs::-webkit-scrollbar{
+    height: 0px;
+}
+
+@media (max-width: 792px){
+    .c-tabs{
+        margin: auto !important;
+    }
+    .c-tabs_item{
+        border: none;
+    }
+    .c-tabs_item--active{
+        border: none;
+    }
+}
+
+@media (min-width: 1750px){
+    .common-modal-delete{
+        max-width: 35% !important;
+    }
+}
+
+@media (min-width: 2050px){
+    .common-modal-delete{
+        max-width: 30% !important;
+    }
+}
+
+// 1) высота модалки
+// 2) 
+
+.flex-left{
+    display: flex;
+    margin-left: auto;    
+}

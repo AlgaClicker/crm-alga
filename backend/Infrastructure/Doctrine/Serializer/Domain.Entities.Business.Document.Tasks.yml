@@ -1,0 +1,31 @@
+Domain\Entities\Business\Document\Tasks:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    company:
+      exclude: true
+    workflow:
+      exclude: true
+    autor:
+      exclude: true
+      accessor:
+        getter: getAutor
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+
+
+
+

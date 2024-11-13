@@ -1,0 +1,110 @@
+Domain\Entities\Services\Files:
+  type: entity
+  table: files
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    name:
+      type: string
+      nullable: true
+      column: name
+    type:
+      type: string
+      nullable: true
+      column: type
+    patch:
+      type: string
+      nullable: true
+      column: patch
+    mime:
+      type: string
+      nullable: true
+      column: mime
+    hash:
+      type: string
+      nullable: true
+      unique: true
+      column: hash
+    size:
+      type: integer
+      nullable: true
+      unique: false
+      column: size
+    storage:
+      type: string
+      nullable: true
+      column: storage
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    public:
+      type: string
+      nullable: true
+      column: public_hash
+  manyToMany:
+    objects:
+      targetEntity: Domain\Entities\Business\Objects\Objects
+      mappedBy: files
+    specification:
+      targetEntity: Domain\Entities\Business\Objects\Specification
+      mappedBy: files
+    notification:
+      targetEntity: Domain\Entities\Services\Notification
+      inversedBy: files
+    workflow:
+      targetEntity: Domain\Entities\Business\Document\Workflow
+      inversedBy: files
+    tasks:
+      targetEntity: Domain\Entities\Business\Document\Tasks
+      inversedBy: files
+    chats:
+      targetEntity: Domain\Entities\Services\Chat
+      inversedBy: files
+    requisitionInvoice:
+      targetEntity: Domain\Entities\Business\Document\Requisition\Invoice
+      inversedBy: files
+    requisitionInvoiceMaterial:
+      targetEntity: Domain\Entities\Business\Document\Requisition\Invoice\Material
+      inversedBy: files
+    contracts:
+      targetEntity: Domain\Entities\Business\Document\Contracts
+      inversedBy: files
+    requisitionInvoiceMaterialReceived:
+      targetEntity: Domain\Entities\Business\Document\Requisition\Invoice\MaterialReceived
+      inversedBy: files
+
+
+  manyToOne:
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor_id
+        referencedColumnName: id
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinColumn:
+        name: company_id
+        referencedColumnName: id
+

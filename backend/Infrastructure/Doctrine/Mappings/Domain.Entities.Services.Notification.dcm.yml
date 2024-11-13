@@ -1,0 +1,83 @@
+Domain\Entities\Services\Notification:
+  type: entity
+  table: notification
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    title:
+      type: string
+      nullable: false
+      options:
+        unsigned: false
+      column: title
+    message:
+      type: string
+      nullable: false
+      column: message
+    url:
+      type: string
+      nullable: true
+      column: url
+    methods:
+      type: array
+      nullable: false
+      column: methods
+      options:
+        default: "local"
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    active:
+      type: boolean
+      nullable: true
+      column: active
+      options:
+        default: true
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    readed:
+      type: boolean
+      nullable: true
+      column: readed
+      options:
+        default: false
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+  manyToOne:
+    toAccount:
+      targetEntity: Domain\Entities\Subscriber\Account
+      mappedBy: notification
+    fromAccount:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: from_account
+        referencedColumnName: id
+  manyToMany:
+    files:
+      targetEntity: Domain\Entities\Services\Files
+      mappedBy: notification
+

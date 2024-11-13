@@ -1,0 +1,158 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dron-box
+  labels:
+    app: dron-box
+    env: stage
+  namespace: stage
+spec:
+  type: LoadBalancer
+  selector:
+    app: dron-box
+    env: stage
+  loadBalancerIP: auto
+  ports:
+  - name: https
+    protocol: TCP
+    port: 443
+    targetPort: 443
+  - name: http
+    protocol: TCP
+    port: 8081
+    targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dron-box
+  labels:
+    app: dron-box
+    env: stage
+  namespace: stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dron-box
+      env: stage
+  template:
+    metadata:
+      labels:
+        app: dron-box
+        env: stage
+    spec:
+      containers:
+      - name: api
+        image: registry.gitlab.com/dron-team/dron-box/api:dev-master
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+        resources:
+          requests:
+            cpu: 0
+          limits:
+            cpu: 0
+        env:
+        - name: APP_ENV
+          value: "stage"
+        - name: APP_DEBUG
+          value: "true"
+
+        - name: MAIN_APP_URL
+          value: "https://market-stage.dron.digital"
+        - name: MAIN_APP_GQL_ENDPOINT
+          value: "/api/graphql"
+        - name: MAIN_APP_REST_ENDPOINT
+          value: "/api/v1/"
+        - name: MAIN_APP_TOKEN_ADVERTISER
+          value: "023fe591-2c0b-857f-9a23-d0913ec48d1a"
+        - name: MAIN_APP_TOKEN_OPERATOR
+          value: "b2b1732a-a022-4d5c-8266-3d70468e2d06"
+
+        - name: DRON_BOX_RABBIT_HOST
+          value: rabbitmq-stage
+        - name: DRON_BOX_RABBIT_PORT
+          value: "5672"
+        - name: DRON_BOX_RABBIT_VHOST
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq-config
+              key: RABBITMQ_DEFAULT_VHOST
+        - name: DRON_BOX_RABBIT_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq-config
+              key: RABBITMQ_DEFAULT_USER
+        - name: DRON_BOX_RABBIT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq-config
+              key: RABBITMQ_DEFAULT_PASS
+
+        - name: DRON_BOX_MEMCACHE_HOST
+          value: "localhost"
+
+        - name: DRON_BOX_DB_HOST
+          value: postgres
+        - name: DRON_BOX_DB_PORT
+          value: "5432"
+        - name: DRON_BOX_DB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_DB
+        - name: DRON_BOX_DB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_USER
+        - name: DRON_BOX_DB_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-config
+              key: POSTGRES_PASSWORD
+
+        - name: DRON_BOX_REDIS_HOST
+          value: redis-stage-master
+        - name: DRON_BOX_REDIS_PORT
+          value: "6379"
+        - name: DRON_BOX_REDIS_PASSWORD
+          value: dron_box_redis_secret
+        - name: DRON_BOX_REDIS_DATABASE
+          value: "0"
+
+        - name: VDOOH_ADVERTISER_API_URL
+          value: "https://test.vdooh.com/api/dron/"
+        - name: VDOOH_ADVERTISER_API_TOKEN
+          value: "023fe591-2c0b-857f-9a23-d0913ec48d1a"
+        - name: VDROH_OPERATOR_API_URL
+          value: "https://test.vdooh.com/api/_/"
+        - name: VDROH_OPERATOR_API_TOKEN
+          value: "3948394834"
+
+        - name: DRON_BEARER_TOKEN
+          value: "023fe591-2c0b-857f-9a23-d0913ec48d1a"
+      - name: nginx
+        image: registry.gitlab.com/dron-team/dron-box/nginx:dev-master
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          hostPort: 8081
+        resources:
+          requests:
+            cpu: 1m
+          limits:
+            cpu: 10m
+      - name: cache
+        image: memcached
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 11211
+        resources:
+          requests:
+            cpu: 1m
+          limits:
+            cpu: 10m
+      imagePullSecrets:
+      - name: gitlab-auth

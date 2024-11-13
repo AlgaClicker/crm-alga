@@ -1,0 +1,126 @@
+Domain\Entities\Business\Company\Workpeople:
+  type: entity
+  table: workpeople
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    surname:
+      type: string
+      nullable: true
+      column: surname
+    name:
+      type: string
+      nullable: true
+      column: name
+    tabelNumber:
+      type: string
+      nullable: true
+      column: tabel_number
+    patronymic:
+      type: string
+      nullable: true
+      unique: false
+      column: patronymic
+    phoneNumber:
+      type: string
+      size: 11
+      nullable: true
+      unique: false
+      column: phone_number
+    inn:
+      type: string
+      size: 13
+      nullable: true
+      options:
+        comment: ИНН
+      column: inn
+    snils:
+      type: string
+      size: 20
+      nullable: true
+      options:
+        comment: СНИЛС
+      column: snils
+    position:
+      type: string
+      nullable: true
+      column: position
+    brithAt:
+      type: datetime
+      options:
+        comment: Дата рождения
+      nullable: true
+      column: brith_at
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    active:
+      type: boolean
+      nullable: true
+      column: active
+      options:
+        default: true
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      inversedBy: workpeople
+    profession:
+      targetEntity: Domain\Entities\Business\Directory\Profession
+      inversedBy: workpeoples
+    brigade:
+      targetEntity: Domain\Entities\Business\Master\Brigade
+      inversedBy: workpeoples
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id
+    master:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: master
+        referencedColumnName: id
+  oneToMany:
+    timesheet:
+      targetEntity: Domain\Entities\Business\Master\Timesheet
+      mappedBy: workpeople
+  manyToMany:
+  oneToOne:
+    account:
+      targetEntity: Domain\Entities\Subscriber\Account
+      inversedBy: workpeople
+

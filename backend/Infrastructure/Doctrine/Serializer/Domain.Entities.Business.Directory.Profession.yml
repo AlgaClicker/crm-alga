@@ -1,0 +1,28 @@
+#Справочник должностей
+Domain\Entities\Business\Directory\Profession:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    company:
+      exclude: true
+    autor:
+      exclude: true
+      accessor:
+        getter: getAutor
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+    workpeoples:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string

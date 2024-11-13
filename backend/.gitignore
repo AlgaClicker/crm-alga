@@ -1,0 +1,15 @@
+/backend/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+/backend/Application/Lumen.env
+.phpunit.result.cache
+laravel-echo-server.lock
+supervisord.pid
+/temp
+temp
+/tmp
+tmp
+/Resources/*
+credentials/*
+*.php~

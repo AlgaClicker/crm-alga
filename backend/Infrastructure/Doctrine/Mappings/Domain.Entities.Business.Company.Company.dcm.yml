@@ -1,0 +1,139 @@
+#Компании работающие в CRM
+Domain\Entities\Business\Company\Company:
+  type: entity
+  table: company
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    name:
+      type: string
+      nullable: false
+      options:
+        unsigned: false
+      column: name
+    fullname:
+      type: text
+      nullable: true
+      options:
+        unsigned: false
+      column: full_name
+    address:
+      type: text
+      nullable: true
+      column: address
+    type:
+      type: string
+      nullable: true
+      column: type
+    ogrnDate:
+      type: bigint
+      nullable: true
+      column: ogrn_date
+    ogrn:
+      type: bigint
+      nullable: true
+      column: ogrn
+    okpo:
+      type: bigint
+      nullable: true
+      column: okpo
+    oktmo:
+      type: bigint
+      nullable: true
+      column: oktmo
+    okogu:
+      type: bigint
+      nullable: true
+      column: okogu
+    inn:
+      type: bigint
+      nullable: true
+      column: inn
+    kpp:
+      type: bigint
+      nullable: true
+      column: kpp
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    active:
+      type: boolean
+      nullable: true
+      column: active
+      options:
+        default: true
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+  oneToMany:
+    objects:
+      targetEntity: Domain\Entities\Business\Objects\Objects
+      mappedBy: company
+    accounts:
+      targetEntity: Domain\Entities\Subscriber\Account
+      mappedBy: company
+    material:
+      targetEntity: Domain\Entities\Business\Directory\Material
+      mappedBy: company
+    workflow:
+      targetEntity: Domain\Entities\Business\Document\Workflow
+      mappedBy: company
+    recipient:
+      targetEntity: Domain\Entities\Business\Directory\Recipient
+      mappedBy: company
+    bankAccounts:
+      targetEntity: Domain\Entities\Business\Company\BankAccounts
+      mappedBy: company
+    partner:
+      targetEntity: Domain\Entities\Business\Directory\Partner
+      mappedBy: company
+    contract:
+      targetEntity: Domain\Entities\Business\Document\Contracts
+      mappedBy: company
+    brigades:
+      targetEntity: Domain\Entities\Business\Master\Brigade
+      mappedBy: company
+    workpeople:
+      targetEntity: Domain\Entities\Business\Company\Workpeople
+      mappedBy: company
+    tasks:
+      targetEntity: Domain\Entities\Business\Document\Tasks
+      mappedBy: company
+    roles:
+      targetEntity: Domain\Entities\Subscriber\Roles
+      mappedBy: company
+    brigadeSpecification:
+      targetEntity: Domain\Entities\Business\Document\BrigadeSpecification
+      mappedBy: company
+  manyToOne:

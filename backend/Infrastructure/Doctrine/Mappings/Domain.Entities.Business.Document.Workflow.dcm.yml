@@ -1,0 +1,95 @@
+#Рабочий процесс документооборота
+Domain\Entities\Business\Document\Workflow:
+  type: entity
+  table: workflow
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: true
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    title:
+      type: string
+      nullable: false
+      column: title
+    description:
+      type: text
+      nullable: false
+      column: description
+    startDate:
+      type: datetime
+      nullable: true
+      column: start_date
+    endDate:
+      type: datetime
+      nullable: false
+      column: end_date
+    status:
+      type: string
+      nullable: true
+      column: status
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    createdAt:
+      type: datetime
+      nullable: true
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+    archiveAt:
+      type: datetime
+      nullable: true
+      column: archive_at
+  oneToMany:
+    tasks:
+      targetEntity: Domain\Entities\Business\Document\Tasks
+      mappedBy: workflow
+  oneToOne:
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      inversedBy: workflow
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id
+  manyToMany:
+    responsibles:
+      targetEntity: Domain\Entities\Subscriber\Account
+      mappedBy: workflows
+    files:
+      targetEntity: Domain\Entities\Services\Files
+      mappedBy: workflow
+
+
+
+
+
+

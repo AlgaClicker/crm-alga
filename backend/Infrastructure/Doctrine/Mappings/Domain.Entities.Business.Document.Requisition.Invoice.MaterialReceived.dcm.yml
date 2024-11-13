@@ -1,0 +1,76 @@
+Domain\Entities\Business\Document\Requisition\Invoice\MaterialReceived:
+  type: entity
+  table: requisition_invoice_material_received
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: true
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    confirmedAt:
+      type: datetime
+      nullable: false
+      column: confirmed_at
+    quantity:
+      type: float
+      nullable: false
+      column: quantity
+    description:
+      type: text
+      nullable: true
+      column: description
+    createdAt:
+      type: datetime
+      nullable: true
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+    archiveAt:
+      type: datetime
+      nullable: true
+      column: archive_at
+    status:
+      type: string
+      size: 10
+      nullable: true
+      column: status
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinColumn:
+        name: company
+        referencedColumnName: id
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id
+    requisitionInvoiceMaterial:
+      targetEntity: Domain\Entities\Business\Document\Requisition\Invoice\Material
+      joinColumn:
+        name: requisition_invoice_material
+        referencedColumnName: id
+  manyToMany:
+    files:
+      targetEntity: Domain\Entities\Services\Files
+      mappedBy: requisitionInvoiceMaterialReceived
+
+

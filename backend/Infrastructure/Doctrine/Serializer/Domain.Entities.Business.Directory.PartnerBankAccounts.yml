@@ -1,0 +1,29 @@
+#Справочник кор-счетов банков
+Domain\Entities\Business\Directory\PartnerBankAccounts:
+  properties:
+    id:
+      exclude: true
+    partner:
+      exclude: true
+    delete:
+      exclude: true
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    company:
+      exclude: true
+    autor:
+      exclude: true
+      accessor:
+        getter: getAutor
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+

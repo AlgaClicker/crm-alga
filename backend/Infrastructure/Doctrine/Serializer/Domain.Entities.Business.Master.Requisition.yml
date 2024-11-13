@@ -1,0 +1,34 @@
+Domain\Entities\Business\Master\Requisition:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    index:
+      exclude: true
+    company:
+      exclude: true
+    fixed:
+      exclude: true
+    status:
+      exclude: false
+    manager:
+      skip_when_empty: false
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: false
+    invoices:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+    getFixed:
+      name: fixed
+      serialized_name: fixed
+      type: boolean
+
+
+

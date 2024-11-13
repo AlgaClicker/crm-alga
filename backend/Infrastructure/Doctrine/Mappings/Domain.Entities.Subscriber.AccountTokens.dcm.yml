@@ -1,0 +1,48 @@
+Domain\Entities\Subscriber\AccountTokens:
+  type: entity
+  table: account_tokens
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    token:
+      type: text
+      nullable: true
+      column: token
+    device:
+      type: text
+      nullable: true
+      column: device
+    client:
+      type: text
+      nullable: true
+      column: client
+    host:
+      type: string
+      nullable: true
+      column: host
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    expiresIn:
+      type: integer
+      nullable: true
+      column: expires_in
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+  manyToOne:
+    account:
+      targetEntity: Domain\Entities\Subscriber\Account
+      inversedBy: accountTokens
+

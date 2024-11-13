@@ -1,0 +1,467 @@
+
+.c-button-loading{
+    background-color: #3391FF;
+    border-radius: 6px;
+    height: 40px;
+    border: none;
+    font-size: 15px;
+    width: 100%;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.c-button-loading:hover{
+    transition: 0.5s all;
+    background-color: #3d95fb;
+}
+
+.c-button-save{
+    border: none;
+    background-color: #E5EAF5;
+    border-radius: 5px;
+    min-width: 135px;
+    padding: 0.6rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    color: #86909C;
+}
+
+.c-button-delete{
+    border: none;
+    background-color: #E5EAF5;
+    border-radius: 5px;
+    min-width: 135px;
+    padding: 0.6rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    color: #86909C;
+}
+
+.c-button-delete--success{
+    border: none;
+    background-color: #f56156;
+    border-radius: 5px;
+    padding: 0.6rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    color: #ffffff;
+}
+
+.c-button-delete-md--success{
+    background-color: #f56156;
+    position: relative;
+    border: none;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 0.9rem !important;
+    padding: 0.35rem !important;
+    padding-left: 0.6rem !important;
+    padding-right: 0.6rem !important;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.c-button-save--success{
+    border: none;
+    background-color: #3e72e3;
+    border-radius: 5px;
+    padding: 0.6rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    color: #ffffff;
+}
+
+.c-button-danger{
+    border: none;
+    background-color: #ffffff;
+    color: #f15b5b;
+    svg{
+        margin-top: -2px;
+        fill:  #f15b5b;
+    }
+}
+
+.c-button-danger:hover{
+    transition: 0.5s all;
+    color: #ef5252 !important;
+    svg{
+        fill: #ef5252 !important;
+    }
+}
+
+.c-button-info{
+    border: none;
+    background-color: #ffffff;
+    color: #1d67f0;
+    display: flex;
+    svg{
+        margin-top: -2px;
+        fill:  #1d67f0;
+    }
+}
+
+.c-button-info:hover{
+    transition: 0.5s all;
+    color: #3995fd !important;
+    svg{
+        fill: #3995fd !important;
+    }
+}
+
+.c-button-save-sm{
+    border: 1px solid #D8DCE1;
+    background-color: #FFFFFF;
+    min-width: 135px;
+    border-radius: 5px;
+    color: #98A0AD;
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;    
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    svg{
+        fill: #999EA8;
+        margin-right: 0.4rem;
+    }
+}
+
+.c-button-save-sm--success{
+    border: none;
+    background-color: #3e72e3;
+    width: 135px;
+    border-radius: 5px;
+    padding: 0.3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.9rem;
+    color: #ffffff;
+    svg{
+        fill: #ffffff;
+    }
+}
+
+.c-button-cancel{
+    border: 1px solid #0D4CD6;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 0.6rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    color: #0D4CD6;
+}
+
+.c-button-cancel:hover{
+    transition: 0.7s all;
+    background-color: #F5F7FA;
+}
+
+.button-add-circle{
+    background-color: #C7D1D8;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    display: flex;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -khtml-border-radius: 50%;
+    justify-content: center;
+    padding: 0.2rem;
+    height: 40px;
+    width: 40px;
+    svg{
+        stroke:#ffffff;
+    }
+}
+
+.button-add-circle:hover{
+    transition: 1s all;
+    background-color: #a4aab0;
+}
+
+.button-satate-enable{
+    
+}
+
+.button-satate-disable{
+    
+}   
+
+.c-back-link{
+    cursor: pointer;
+    color: #0D4CD6;
+    svg{
+        fill: #0D4CD6;
+    }
+}
+.c-back-link:hover{
+    transition: 0.5s all;
+    color: #1D80F0;
+}
+
+.c-button-edit{
+    align-items: center;
+    border: 3px solid #EDEFF1;
+    border-radius: 6px;
+    background-color: #ffffff;
+    display: flex;
+    padding: 4px;
+    svg{
+        fill: #727885;
+        margin-right: 6px;
+    }
+    span{
+        font-size: 14px;
+        color: #727885;
+    }
+}
+
+.c-button-edit:hover{
+    transition: 0.7s all;
+    color: #4a4a4a;
+    svg{
+        transition: 0.7s all;
+        fill: #8a909c;
+    }
+}
+
+.c-button-edit-sm{
+    align-items: center;
+    border: 3px solid #EDEFF1;
+    border-radius: 6px;
+    background-color: #3391FF;
+    display: flex;
+    padding: 6px;
+    font-size: 14px;
+    color: #ffffff;
+    svg{
+        fill: #ffffff;
+        margin-right: 6px;
+        font-family: "ubuntu-regular";
+    }
+}
+
+.c-button-edit-sm:hover{
+    transition: 0.7s all;
+    color: #f3f2f2;
+    svg{
+        transition: 0.7s all;
+        fill: #f3f2f2;
+    }
+}
+    
+.c-button-delete-sm{
+    align-items: center;
+    border: 3px solid #EDEFF1;
+    border-radius: 6px;
+    background-color: #ec5b5b;
+    color: #ffffff;
+    display: flex;
+    padding: 6px;
+    position: relative;
+    font-size: 14px;
+    svg{
+        margin-right: 6px;
+        fill: #ffffff;
+    }
+}
+
+.c-button-delete:hover{
+    transition: 0.6s all;
+    color: #d3d1d1;
+    border-color: #d3d1d1;
+    svg{
+        margin-right: 6px;
+        fill: #d3d1d1;
+    }
+}
+
+.c-button-add{
+    background-color: #3391FF;
+    position: relative;
+    border: none;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    padding: 0.4rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    color: #ffffff;
+    cursor: pointer;
+    svg{
+        stroke: #ffffff;
+        margin-right: 8px;
+    }
+} 
+
+.c-button-add:hover{
+    transition: 1s all;
+    background-color: #5a93f0;
+}
+
+.c-button-add-sm{
+    background-color: #3B82F6;
+    position: relative;
+    border: none;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    padding: 0.4rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    color: #ffffff;
+    cursor: pointer;
+    svg{
+        stroke: #ffffff;
+        margin-right: 6px;
+    }
+}
+
+.c-button-add-sm:hover{
+    transition: 1s all;
+    background-color: #4d8ff9;
+}
+
+.c-button-clear-sm{
+    background-color: #ffffff;
+    border: 1px solid #EEEEEE;
+    border-radius: 6px;
+    padding: 0.2rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    color: #000000;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.c-button-clear-sm:hover{
+    transition: 0.5s all;
+
+    border: 1px solid #e9e7e7;
+}
+
+.c-button-filter{
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 5px;
+    color: #bebebe;
+    display: flex;
+    position: relative;
+    font-size: 0.8rem;
+    padding: 0.4rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    svg{
+        fill: #bebebe;
+        stroke: #bebebe;
+        margin-right: 6px;
+    }
+}
+
+.c-button-filter:hover{
+    transition: 0.5s all;
+    color: #0D4FFF;
+    border-color: #0D4FFF;
+    svg{
+        transition: 0.5s all;
+        fill: #0D4FFF;
+        stroke: #0D4FFF;
+    }
+}
+
+.c-button-apply-sm{
+    background-color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.2rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    color: #0031FF;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.c-tools-button{
+    border: 1px solid #D8DCE1;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-right: 0.2rem;
+    margin-left: 0.2rem;
+    width: 36px;
+    svg{
+        fill: #7e8491;
+    }
+}
+.c-tools-button:hover{
+    transition: 0.5s all;
+    svg{
+        fill: #7a808d;
+    }
+}
+
+.c-button-add-spec{
+    align-items: center;
+    border: 1px solid #D8DCE1;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    display: flex;
+    font-size: 0.8rem;
+    position: relative;
+    padding: 0.3rem;    
+    padding-left: 0.9rem;
+    padding-right: 0.7rem;
+    cursor: pointer;
+    color: #7e8491;
+    svg{
+        fill: #7e8491;
+    }
+}
+
+/* upload */
+
+.c-import{
+    position: relative;
+    border: 1px solid #D8DCE1;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding-right: 0.3rem;
+    padding-left: 0.3rem;
+    cursor: pointer;
+    input{
+        display: none;
+        background: unset;
+        border-color: inherit;
+        border-radius: 0;
+        border-width: 0;
+        font-size: unset;
+        line-height: inherit;
+        padding: 0;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 780px){
+    .c-button-add{
+        background-color: #3B82F6;
+        position: relative;
+        border: none;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        font-size: 0.7rem !important;
+        padding: 0.35rem !important;
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
+        color: #ffffff;
+        cursor: pointer;
+        svg{
+            stroke: #ffffff;
+            margin-right: 6px;
+        }
+    }
+}

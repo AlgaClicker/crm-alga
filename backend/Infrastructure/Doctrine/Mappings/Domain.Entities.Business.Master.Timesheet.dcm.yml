@@ -1,0 +1,79 @@
+Domain\Entities\Business\Master\Timesheet:
+  type: entity
+  table: timesheet
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    date:
+      type: date
+      nullable: false
+      column: date
+    timeAmount:
+      type: string
+      nullable: true
+      column: time_amount
+    lateness:
+      type: boolean
+      nullable: true
+      column: lateness
+    timeExtra:
+      type: integer
+      nullable: true
+      column: time_extra
+    comment:
+      type: text
+      nullable: true
+      column: comment
+    description:
+      type: string
+      column: description
+      nullable: true
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+  manyToOne:
+    workpeople:
+      targetEntity: Domain\Entities\Business\Company\Workpeople
+      inversedBy: timesheet
+    specification:
+      targetEntity: Domain\Entities\Business\Objects\Specification
+      joinColumn:
+        name: specification_id
+        referencedColumnName: id
+

@@ -1,0 +1,42 @@
+{
+    "authHost": "http://nginx",
+    "authEndpoint": "/broadcasting/auth",
+	"clients": [
+		{
+			"appId": "crmpush",
+			"key": "6d97efcd1de431fe8c741af84bd55b94"
+		},
+		{
+			"appId": "0ca4055ddebb8b52",
+			"key": "7e16b609b1f40449c547d36d7ed19557"
+		}
+	],
+    "database": "redis",
+    "databaseConfig": {
+        "redis": {
+            "host": "redis",
+            "port": "6379",
+            "options": {
+                "db": "5"
+            }
+        },
+        "sqlite": {
+            "databasePath": "/laravel-echo-server.sqlite"
+        },
+        "publishPresence": true
+    },
+    "devMode": true,
+    "host": null,
+    "port": 6001,
+    "protocol": "http",
+    "subscribers": {
+        "http": true,
+        "redis": true
+    },
+    "apiOriginAllow": {
+        "allowCors": true,
+        "allowOrigin": "*",
+        "allowMethods": "GET, OPTION, POST",
+        "allowHeaders": "Accept, Authorization, Content-Type, Origin, X-Auth-Token, X-CSRF-TOKEN, X-Requested-With, X-Socket-Id"
+    }
+}

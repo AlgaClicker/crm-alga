@@ -1,0 +1,38 @@
+{
+    "authHost": "http://nginx",
+    "authEndpoint": "/broadcasting/auth/",
+    "database": "redis",
+    "databaseConfig": {
+        "redis": {
+            "host": "REDIS_HOST",
+            "port": "REDIS_PORT",
+            "options": {
+                "db": "5"
+            }
+        },
+        "sqlite": {
+            "databasePath": "/project/laravel-echo-server.sqlite"
+        },
+        "publishPresence": true
+    },
+    "devMode": true,
+    "host": "0.0.0.0",
+    "port": 6001,
+    "socketIo": {
+        "options": {}
+    },
+    "verifyAuthPath": true,
+    "verifyAuthServer": false,
+    "protocol": "http",
+    "referrers": [],
+    "subscribers": {
+        "http": true,
+        "redis": true
+    },
+    "apiOriginAllow": {
+        "allowCors": true,
+        "allowOrigin": "*",
+        "allowMethods": "GET, OPTION, POST",
+        "allowHeaders": "Accept, Authorization, Content-Type, Origin, X-Auth-Token, X-CSRF-TOKEN, X-Requested-With, X-Socket-Id"
+    }
+}

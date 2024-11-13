@@ -1,0 +1,35 @@
+#Справочник кор-счетов банков
+Domain\Entities\Business\Directory\BankAccounts:
+  properties:
+    id:
+      exclude: true
+    createdAt:
+      exclude: true
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    delete:
+      exclude: true
+    bank:
+      exclude: true
+
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+    getBank:
+      name: bank_name
+      serialized_name: bank_name
+      exp: object.getBank().getName()
+    getBankId:
+      name: bank_id
+      serialized_name: bank_id
+      exp: object.getBank().getId().serialize()
+    getBankAddress:
+      name: bank_address
+      serialized_name: bank_address
+      exp: object.getBank().getAddress()
+
+

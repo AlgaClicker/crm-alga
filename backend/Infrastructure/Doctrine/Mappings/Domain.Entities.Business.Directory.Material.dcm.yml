@@ -1,0 +1,127 @@
+#Справочник Материалов
+Domain\Entities\Business\Directory\Material:
+  type: entity
+  table: material
+  actAs:
+    Searchable:
+      fields: [name,articul,description]
+  indexes:
+    name_material_index:
+      columns: [ name ]
+    articul_material_index:
+      columns: [ articul ]
+    description_material_index:
+      columns: [ description ]
+    id_material_index:
+      columns: [ id ]
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    name:
+      type: string
+      nullable: false
+      options:
+        unsigned: false
+      column: name
+    description:
+      type: text
+      nullable: true
+      options:
+        unsigned: false
+      column: description
+    code:
+      type: string
+      nullable: true
+      options:
+        unsigned: false
+      column: code
+    vendor:
+      type: string
+      nullable: true
+      options:
+        unsigned: false
+      column: vendor
+    articul:
+      type: string
+      nullable: true
+      options:
+        unsigned: false
+      column: articul
+    sysid:
+      type: integer
+      nullable: true
+      column: sysid
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    isGroup:
+      type: boolean
+      nullable: true
+      options:
+        default: false
+      column: isGroup
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+      options:
+        default: null
+  oneToMany:
+    children:
+      targetEntity: Domain\Entities\Business\Directory\Material
+      orderBy: { 'name': 'ASC' }
+      mappedBy: parent
+      onDelete: CASCADE
+    specificationMaterial:
+      targetEntity: Domain\Entities\Business\Objects\SpecificationMaterial
+      mappedBy: material
+    requisitionInvoiceMaterial:
+      targetEntity: Domain\Entities\Business\Document\Requisition\Invoice\Material
+      mappedBy: directoryMaterial
+    requisitionMasterMaterial:
+      targetEntity: Domain\Entities\Business\Master\RequisitionMaterials
+      mappedBy: directoryMaterial
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      inversedBy: material
+    parent:
+      targetEntity: Domain\Entities\Business\Directory\Material
+      inversedBy: children
+    unit:
+      targetEntity: Domain\Entities\Utils\Units
+      inversedBy: material
+
+

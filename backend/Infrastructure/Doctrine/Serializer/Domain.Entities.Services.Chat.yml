@@ -1,0 +1,31 @@
+Domain\Entities\Services\Chat:
+  properties:
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    active:
+      exclude: true
+    room:
+      exclude: true
+    company:
+      exclude: true
+    messageTo:
+      exclude: false
+    readed:
+      exclude: true
+    requisition:
+      exclude: true
+    private:
+      exclude: true
+    updatedAt:
+      type: DateTimeInterface<'d/m/Y H:i'>
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+
+
+

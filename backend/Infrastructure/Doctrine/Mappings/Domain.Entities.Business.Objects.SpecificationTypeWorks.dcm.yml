@@ -1,0 +1,141 @@
+Domain\Entities\Business\Objects\SpecificationTypeWorks:
+  type: entity
+  table: specification_typeworks
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    number:
+      type: string
+      nullable: false
+      options:
+        unsigned: false
+      column: number
+    nameWorks:
+      type: string
+      nullable: true
+      column: name_works
+    quantity:
+      type: float
+      nullable: true
+      column: quantity
+    category:
+      type: string
+      nullable: true
+      column: category
+    level:
+      type: integer
+      nullable: true
+      column: level
+    indexcode:
+      type: integer
+      nullable: true
+      column: indexcode
+    idx:
+      type: integer
+      nullable: true
+      column: idx
+    NrCode:
+      type: string
+      nullable: true
+      column: NrCode
+    SpCode:
+      type: string
+      nullable: true
+      column: SpCode
+    Nacl:
+      type: integer
+      nullable: true
+      column: Nacl
+    Plan:
+      type: integer
+      nullable: true
+      column: Plan
+    NaclCurr:
+      type: integer
+      nullable: true
+      column: NaclCurr
+    PlanCurr:
+      type: integer
+      nullable: true
+      column: PlanCurr
+    NaclMask:
+      type: string
+      nullable: true
+      column: NaclMask
+    PlanMask:
+      type: string
+      nullable: true
+      column: PlanMask
+    type:
+      type: integer
+      nullable: true
+      column: type
+    parent:
+      type: integer
+      nullable: true
+      column: parent
+    groupId:
+      type: integer
+      nullable: true
+      column: group_id
+    groupName:
+      type: integer
+      nullable: true
+      column: group_name
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    active:
+      type: boolean
+      nullable: true
+      column: active
+      options:
+        default: true
+    draft:
+      type: boolean
+      nullable: true
+      column: draft
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+  manyToOne:
+    specification:
+      targetEntity: Domain\Entities\Business\Objects\Specification
+      inversedBy: specificationTypeworks
+    unit:
+      targetEntity: Domain\Entities\Utils\Units
+      inversedBy: specificationTypeworks
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id

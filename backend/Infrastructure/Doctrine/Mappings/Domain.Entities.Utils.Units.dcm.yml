@@ -1,0 +1,65 @@
+Domain\Entities\Utils\Units:
+  type: entity
+  table: units
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  fields:
+    code:
+      type: string
+      nullable: false
+      unique: true
+      column: code
+    name:
+      type: string
+      nullable: false
+      unique: false
+      column: name
+    title:
+      type: string
+      nullable: false
+      column: title
+    factor:
+      type: float
+      nullable: false
+      column: factor
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    autorId:
+      type: uuid
+      nullable: true
+      column: autor_uuid
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+  oneToMany:
+    material:
+      targetEntity: Domain\Entities\Business\Directory\Material
+      mappedBy: unit
+    specificationMaterial:
+      targetEntity: Domain\Entities\Business\Objects\SpecificationMaterial
+      mappedBy: unit
+    specificationTypeworks:
+      targetEntity: Domain\Entities\Business\Objects\SpecificationTypeWorks
+      mappedBy: unit

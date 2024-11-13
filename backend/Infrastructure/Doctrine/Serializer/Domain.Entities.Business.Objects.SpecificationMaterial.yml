@@ -1,0 +1,35 @@
+Domain\Entities\Business\Objects\SpecificationMaterial:
+  properties:
+    id:
+      exclude: true
+    index:
+      exclude: false
+    delete:
+      exclude: true
+    fixed:
+      exclude: false
+    autorId:
+      exclude: true
+    active:
+      exclude: true
+    draft:
+      exclude: true
+    specification:
+      exclude: true
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+    requisition:
+      exclude: true
+    specificationMaterialCalculation:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+
+
+
+

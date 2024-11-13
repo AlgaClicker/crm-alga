@@ -1,0 +1,86 @@
+#Покупка материала
+Domain\Entities\Business\Objects\Specification\Material\Purchase:
+  type: entity
+  table: specification_material_purchase
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    amount:
+      type: float
+      nullable: false
+      column: amount
+    tax:
+      type: integer
+      size: 3
+      nullable: true
+      column: tax
+    taxAmount:
+      type: float
+      nullable: true
+      column: tax_amount
+    type:
+      type: string
+      nullable: false
+      column: type
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    fixed:
+      type: boolean
+      nullable: true
+      column: fixed
+    active:
+      type: boolean
+      nullable: true
+      column: active
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+  oneToOne:
+    specificationMaterial:
+      targetEntity: Domain\Entities\Business\Objects\SpecificationMaterial
+      joinColumn:
+        name: specification_material
+        referencedColumnName: id
+  manyToOne:
+    specification:
+      targetEntity: Domain\Entities\Business\Objects\Specification
+      mappedBy: SpecificationMaterialPurchase
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinColumn:
+        name: company_id
+        referencedColumnName: id
+    partner:
+      targetEntity: Domain\Entities\Business\Directory\Partner
+      mappedBy: specificationMaterialPurchase
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id

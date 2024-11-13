@@ -1,0 +1,81 @@
+Domain\Entities\Services\ChatMessages:
+  type: entity
+  table: chat_messages
+  id:
+    id:
+      type: uuid
+      nullable: false
+      options:
+        unsigned: true
+      id: false
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: Ramsey\Uuid\Doctrine\UuidV7Generator
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+  fields:
+    accountTo:
+      type: string
+      nullable: true
+      options:
+        unsigned: false
+      column: account_to
+    message:
+      type: string
+      nullable: false
+      column: message
+    messageTo:
+      type: uuid
+      nullable: true
+      column: message_to
+    active:
+      type: boolean
+      nullable: true
+      column: active
+      options:
+        default: true
+    delete:
+      type: boolean
+      nullable: true
+      column: delete
+      options:
+        default: false
+    readed:
+      type: boolean
+      nullable: true
+      column: readed
+      options:
+        default: false
+    createdAt:
+      type: datetime
+      nullable: false
+      column: created_at
+    updatedAt:
+      type: datetime
+      nullable: true
+      column: updated_at
+    deletedAt:
+      type: datetime
+      nullable: true
+      column: deleted_at
+  manyToMany:
+    files:
+      targetEntity: Domain\Entities\Services\Files
+      mappedBy: notification
+  manyToOne:
+    company:
+      targetEntity: Domain\Entities\Business\Company\Company
+      joinColumn:
+        name: company_id
+        referencedColumnName: id
+    autor:
+      targetEntity: Domain\Entities\Subscriber\Account
+      joinColumn:
+        name: autor
+        referencedColumnName: id
+    chat:
+      targetEntity: Domain\Entities\Services\Chat
+      inversedBy: chat_messages

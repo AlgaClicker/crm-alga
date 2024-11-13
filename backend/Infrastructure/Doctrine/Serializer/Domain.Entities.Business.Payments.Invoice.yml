@@ -1,0 +1,26 @@
+Domain\Entities\Business\Payments\Invoice:
+  properties:
+    project:
+      exclude: true
+    id:
+      exclude: true
+    delete:
+      exclude: true
+    autor:
+      exclude: false
+    active:
+      exclude: false
+    draft:
+      exclude: false
+    type:
+      exclude: false
+    deletedAt:
+      exclude: true
+    updatedAt:
+      exclude: true
+  virtual_properties:
+    getId:
+      name: uuid
+      serialized_name: id
+      type: string
+

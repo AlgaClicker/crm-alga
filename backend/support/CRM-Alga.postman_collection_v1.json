@@ -1,0 +1,1623 @@
+{
+	"info": {
+		"_postman_id": "e6c12f57-d7df-4591-a342-6ec9bf928638",
+		"name": "CRM-Alga",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/auth/me",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"adminpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://46.146.209.237:8888/auth/login",
+							"protocol": "http",
+							"host": [
+								"46",
+								"146",
+								"209",
+								"237"
+							],
+							"port": "8888",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "News",
+			"item": [
+				{
+					"name": "Add News",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"В целом новый способ оплаты, напомнили газете в НСПК, позволит оплачивать покупки владельцам iPhone и сохранит кешбэки, которые были недоступны при оплате через СПБ.\",\r\n    \"title\": \"В России внедрят новый способ оплаты смартфоном, пишут СМИ\",\r\n    \"announcement\" : \"МОСКВА, 3 мар — РИА Новости. Национальная система платежных карт (НСПК) готовится к внедрению нового способа оплаты картой\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/news/add",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"news",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add News Comments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"Тело коментария\",\r\n    \"title\": \"Коментарарр\",\r\n    \"announcement\" : \"Описание коменат\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/news/13/add",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"news",
+								"13",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "News Comments Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"Тело коментария\",\r\n    \"title\": \"Коментарарр \",\r\n    \"announcement\" : \"Описание коменат\",\r\n    \"newsId\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/news/13/",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"news",
+								"13",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show News",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"body\",\r\n    \"title\": \"Imege\",\r\n    \"announcement\" : \"Image,\r\n    \"imageUrl\": \"https://cdnn21.img.ria.ru/images/07e7/01/17/1846800139_0:320:3072:2048_640x0_80_0_0_4635364e04f1b5156a3e1c64c04514a8.jpg.webp\",\r\n    \"id\": 26\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/news/",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"news",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Buisness",
+			"item": [
+				{
+					"name": "Accounts",
+					"item": [
+						{
+							"name": "Show Accounts",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"option\": {\r\n        \"sort\": {\r\n            \"method\": \"desc\",\r\n            \"nameCol\": \"name\"\r\n        },\r\n        \"paginate\": {\r\n            \"recordLimit\": \"5\",\r\n            \"page\":1\r\n        },\r\n        \"filter\": {\r\n            \"name\":\"Иван\"\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.0.210:8888/api/v1/buisness/accounts/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"210"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"v1",
+										"buisness",
+										"accounts",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Accounts",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 8,\r\n    \"username\": \"user001\",\r\n    \"email\": \"user-424@host.local\",\r\n    \"roles\":7,\r\n    \"password\": \"1254521\",\r\n    \"company\": 40\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.0.210:8888/api/v1/buisness/accounts/8",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"210"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"v1",
+										"buisness",
+										"accounts",
+										"8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Account",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"supravlenie\",\r\n    \"email\": \"user-upravlenie@host.local\",\r\n    \"company\": 1,\r\n    \"roles\": \"upravlenie\",\r\n    \"password\": \"upravlenie\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.0.210:8888/api/v1/buisness/accounts/add",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"210"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"v1",
+										"buisness",
+										"accounts",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Account Only",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"option\": {\r\n        \"sort\": {\r\n            \"method\": \"desc\",\r\n            \"nameCol\": \"name\"\r\n        },\r\n        \"paginate\": {\r\n            \"recordLimit\": \"5\",\r\n            \"page\":1\r\n        },\r\n        \"filter\": {\r\n            \"name\":\"Иван\"\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.0.210:8888/api/v1/buisness/accounts/8/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"210"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"v1",
+										"buisness",
+										"accounts",
+										"8",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ShowRoles",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.0.210:8888/api/v1/buisness/accounts/roles/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"210"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"v1",
+										"buisness",
+										"accounts",
+										"roles",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Roles",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":5,\r\n    \"name\": \"Test Name\",\r\n    \"service\": \"null data\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.0.210:8888/api/v1/buisness/accounts/roles/5",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"210"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"v1",
+										"buisness",
+										"accounts",
+										"roles",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Roles",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Пользователь\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.0.210:8888/api/v1/buisness/accounts/roles/add",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"210"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"v1",
+										"buisness",
+										"accounts",
+										"roles",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Accounts Options",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"objId\": \"13\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.0.210:8888/api/v1/buisness/accounts/option",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"210"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"v1",
+										"buisness",
+										"accounts",
+										"option"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Accounts Options",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"objId\": 1,\r\n    \"prjId\": 1,\r\n    \"sdfsdfsdf\":234234\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.0.210:8888/api/v1/buisness/accounts/option",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"210"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"v1",
+										"buisness",
+										"accounts",
+										"option"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CRM",
+					"item": [
+						{
+							"name": "Objects",
+							"item": [
+								{
+									"name": "New",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4wLjIxMDo4ODg4L2F1dGgvbG9naW4iLCJpYXQiOjE2ODE5NjY1NDcsImV4cCI6MTY4MTk3MDE0NywibmJmIjoxNjgxOTY2NTQ3LCJqdGkiOiJKZlFCNm9DRlpVT2dDZUlrIiwic3ViIjoiMSIsInBydiI6IjNkNmE3MDRlMzRkZGYyZmEzMzEzOGYyNzQ3NGQzYTlmMjRmYzI3MTcifQ.elLb6G-VjnnqWLPBsZpwg5mGHjljysHhnflDPuTsJYE",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Объект #1\",\r\n    \"address\": \"Адрес объекта\",\r\n    \"files\": [\r\n        \"e910cb47TUGWC0YhfNMNCyVa4BL6x19E\",\r\n        \"842529a0KRz15vcCSsptXGrkt99Qi4A7\",\r\n        \"634e0c97i1oP09Z36nCf2Uh1NzsqYCjr\"\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://192.168.0.210:8888/api/v1/crm/objects/add",
+											"protocol": "http",
+											"host": [
+												"192",
+												"168",
+												"0",
+												"210"
+											],
+											"port": "8888",
+											"path": [
+												"api",
+												"v1",
+												"crm",
+												"objects",
+												"add"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "List",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMC4wLjAuMDo4ODg4L2F1dGgvbG9naW4iLCJpYXQiOjE2ODA4ODI2OTMsImV4cCI6MTY4MDg4NjI5MywibmJmIjoxNjgwODgyNjkzLCJqdGkiOiJXQktJTWNVNDNDRWcyUlQwIiwic3ViIjoiOCIsInBydiI6IjNkNmE3MDRlMzRkZGYyZmEzMzEzOGYyNzQ3NGQzYTlmMjRmYzI3MTcifQ.G7QU8whurIqOAdmOndEUhbE_Afsp9ugkTX8S1ul5GT8",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://192.168.0.210:8888/api/v1/crm/objects/",
+											"protocol": "http",
+											"host": [
+												"192",
+												"168",
+												"0",
+												"210"
+											],
+											"port": "8888",
+											"path": [
+												"api",
+												"v1",
+												"crm",
+												"objects",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Show byId",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMC4wLjAuMDo4ODg4L2F1dGgvbG9naW4iLCJpYXQiOjE2ODA4ODI2OTMsImV4cCI6MTY4MDg4NjI5MywibmJmIjoxNjgwODgyNjkzLCJqdGkiOiJXQktJTWNVNDNDRWcyUlQwIiwic3ViIjoiOCIsInBydiI6IjNkNmE3MDRlMzRkZGYyZmEzMzEzOGYyNzQ3NGQzYTlmMjRmYzI3MTcifQ.G7QU8whurIqOAdmOndEUhbE_Afsp9ugkTX8S1ul5GT8",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://192.168.0.210:8888/api/v1/crm/objects/",
+											"protocol": "http",
+											"host": [
+												"192",
+												"168",
+												"0",
+												"210"
+											],
+											"port": "8888",
+											"path": [
+												"api",
+												"v1",
+												"crm",
+												"objects",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Projects",
+							"item": [
+								{
+									"name": "List",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMC4wLjAuMDo4ODg4L2F1dGgvbG9naW4iLCJpYXQiOjE2ODA4ODI2OTMsImV4cCI6MTY4MDg4NjI5MywibmJmIjoxNjgwODgyNjkzLCJqdGkiOiJXQktJTWNVNDNDRWcyUlQwIiwic3ViIjoiOCIsInBydiI6IjNkNmE3MDRlMzRkZGYyZmEzMzEzOGYyNzQ3NGQzYTlmMjRmYzI3MTcifQ.G7QU8whurIqOAdmOndEUhbE_Afsp9ugkTX8S1ul5GT8",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://192.168.0.210:8888/api/v1/crm/objects/",
+											"protocol": "http",
+											"host": [
+												"192",
+												"168",
+												"0",
+												"210"
+											],
+											"port": "8888",
+											"path": [
+												"api",
+												"v1",
+												"crm",
+												"objects",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "File Download Json <crm> endpoint",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4wLjIxMDo4ODg4L2F1dGgvbG9naW4iLCJpYXQiOjE2ODE4MjU1OTQsImV4cCI6MTY4MTgyOTE5NCwibmJmIjoxNjgxODI1NTk0LCJqdGkiOiJZQjlwQUNmdGFBZUFmMmJJIiwic3ViIjoiMSIsInBydiI6IjNkNmE3MDRlMzRkZGYyZmEzMzEzOGYyNzQ3NGQzYTlmMjRmYzI3MTcifQ.s-BFX7vxXt1_jX6BHK95xHiANn9941xYI4dErKRgljM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"hash\": \"f9e22e3coWnsRyWAmxuvzGVyrhnDAXIV\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.0.210:8888/api/v1/crm/file/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"210"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"v1",
+										"crm",
+										"file",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Show Compnay",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"options\": {\r\n        \"sort\": {\r\n            \"method\": \"desc\",\r\n            \"nameCol\": \"name\"\r\n        },\r\n        \"paginate\": {\r\n            \"recordLimit\": \"2\",\r\n            \"page\":1\r\n        },\r\n        \"filter\": {\r\n            \"name\":\"Иван\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/buisness/company",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"buisness",
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Compnay Stock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMC4wLjAuMDo4ODg4L2F1dGgvbG9naW4iLCJpYXQiOjE2ODAxNjQyODEsImV4cCI6MTY4MDE2Nzg4MSwibmJmIjoxNjgwMTY0MjgxLCJqdGkiOiJCcWU1T1RhM1BlU3FCNE0wIiwic3ViIjoiMyIsInBydiI6IjNkNmE3MDRlMzRkZGYyZmEzMzEzOGYyNzQ3NGQzYTlmMjRmYzI3MTcifQ.fXOUwfmvx8vUwTX4vFWNPFSkxxW2VUg-U42_proUTNA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"options\": {\r\n        \"sort\": {\r\n            \"method\": \"desc\",\r\n            \"nameCol\": \"name\"\r\n        },\r\n        \"paginate\": {\r\n            \"recordLimit\": \"2\",\r\n            \"page\":1\r\n        },\r\n        \"filter\": {\r\n            \"name\":\"Иван\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/buisness/company",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"buisness",
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Compnay",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/buisness/company/3",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"buisness",
+								"company",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Compnay",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"ООО Парма\",\r\n    \"fullname\": \"ООО Парма\",\r\n    \"inn\": \"456456456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/buisness/company/add",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"buisness",
+								"company",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Compnay",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My compan324\",\r\n    \"fullname\": \"Roga sdfsdfsd ewr & Kopyta\",\r\n    \"inn\": 2,\r\n    \"id\": 2,\r\n    \"\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/buisness/accounts/8",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"buisness",
+								"accounts",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Compnay Stock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Мой склад\",\r\n    \"fullname\": \"Описание склада\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/buisness/company/37/stock/add",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"buisness",
+								"company",
+								"37",
+								"stock",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Compnay Stock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4wLjIxMDo4ODg4L2F1dGgvbG9naW4iLCJpYXQiOjE2NzgzNDczNzgsImV4cCI6MTY3ODM1MDk3OCwibmJmIjoxNjc4MzQ3Mzc4LCJqdGkiOiJycGh6MXBScU1KV0pwbWJ6Iiwic3ViIjoiMTAiLCJwcnYiOiIzZDZhNzA0ZTM0ZGRmMmZhMzMxMzhmMjc0NzRkM2E5ZjI0ZmMyNzE3In0.ojVh9-ybE5bpUmsDpp8fgkTlz2eH99bru7h5csX6AMw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My company\",\r\n    \"fullname\": \"Roga & Kopyta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/buisness/company/10/stock",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"buisness",
+								"company",
+								"10",
+								"stock"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "File Load",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "filedgdfgdf",
+									"description": "4564654",
+									"type": "file",
+									"src": "/M:/ОБЪЕКТЫ/Лодыгина 10/1й этаж электрика вся.pdf"
+								},
+								{
+									"key": "sdfsdf",
+									"type": "file",
+									"src": "/M:/ОБЪЕКТЫ/Лодыгина 10/Договор №20-04-Л10 от 20.04.2022 Лодыгина 10 - ЭО,ЭН -ИП Заикин.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://46.146.209.237:8888/api/v1/services/file/upload",
+							"protocol": "http",
+							"host": [
+								"46",
+								"146",
+								"209",
+								"237"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"services",
+								"file",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File Download Get",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4wLjIxMDo4ODg4L2F1dGgvbG9naW4iLCJpYXQiOjE2ODE4MjU1OTQsImV4cCI6MTY4MTgyOTE5NCwibmJmIjoxNjgxODI1NTk0LCJqdGkiOiJZQjlwQUNmdGFBZUFmMmJJIiwic3ViIjoiMSIsInBydiI6IjNkNmE3MDRlMzRkZGYyZmEzMzEzOGYyNzQ3NGQzYTlmMjRmYzI3MTcifQ.s-BFX7vxXt1_jX6BHK95xHiANn9941xYI4dErKRgljM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/services/file/f9e22e3coWnsRyWAmxuvzGVyrhnDAXIV",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"services",
+								"file",
+								"f9e22e3coWnsRyWAmxuvzGVyrhnDAXIV"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File Download Json <crm> endpoint",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hash\": \"48b0b214l0X7dSqi8C57EbFLmZcV3Wv2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/crm/file/",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"crm",
+								"file",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File Download Json <services> endpoint",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hash\": \"f9e22e3coWnsRyWAmxuvzGVyrhnDAXIV\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/services/file/",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"services",
+								"file",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hash\": \"a30991baNS5C7HRIODFJGM3EtxPKepX1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/services/file/info",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"services",
+								"file",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File Delete from Hash",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hash\": \"842529a0KRz15vcCSsptXGrkt99Qi4A7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/services/file/",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"services",
+								"file",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notification Send",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Заголовок2\",\r\n    \"message\": \"Тело сообщения3\",\r\n    \"toAccount\": \"8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/notification/send",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notification List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Заголовок\",\r\n    \"message\": \"Тело сообщения\",\r\n    \"toAccount\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.210:8888/api/v1/notification/",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"210"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

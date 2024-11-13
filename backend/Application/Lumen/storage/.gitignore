@@ -1,0 +1,15 @@
+/vendor
+/.idea
+/Temp
+/temp
+Homestead.json
+Homestead.yaml
+.env
+.phpunit.result.cache
+logs
+var
+framework
+crm
+app
+tmp-entities
+./tmp-entities
