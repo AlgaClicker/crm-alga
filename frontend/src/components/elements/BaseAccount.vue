@@ -70,6 +70,10 @@
                 padding: 1px;
                 justify-content: center;
                 align-items: center;
+                svg{
+                    
+  
+                }
             }
             &__title{
                 align-items: center;

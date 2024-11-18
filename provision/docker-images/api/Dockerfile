@@ -5,7 +5,6 @@ ARG TARGETPLATFORM=linux/arm64
 ENV MAX_FILE_SIZE 200M
 
 ENV TZ APP_TIMEZONE
-RUN echo "Asia/Yekaterinburg" > /etc/timezone
 
 RUN apt-get update && apt-get install -y libssl-dev libcurl4-openssl-dev libicu-dev libpcre3-dev libzip-dev libonig-dev libpq-dev unzip git libmcrypt-dev zlib1g-dev supervisor
 RUN apt-get install -y libpq-dev libmemcached-dev curl cron procps libsodium-dev wget alien
@@ -27,8 +26,6 @@ COPY provision/docker-images/api/cron.conf /etc/cron.d/cron
 COPY ./provision/docker-images/api/entrypoint.sh /etc/entrypoint.sh
 RUN chmod +x /etc/entrypoint.sh
 
-RUN ls -lah /etc/entrypoint.sh
-
 RUN chmod 0644 /etc/cron.d/cron
 RUN touch /var/log/cron.log
 
@@ -44,7 +41,6 @@ RUN rm Application/Lumen/storage/tmp-entities -fr
 
 RUN composer install --optimize-autoloader
 
-
 RUN usermod -u 1000 www-data
 RUN usermod -s /usr/sbin/nologin www-data
 
@@ -56,8 +52,6 @@ RUN touch Application/Lumen/storage/logs/worker.log
 RUN chown www-data:www-data Application/Lumen/storage -R
 RUN chmod +rx Application/Lumen -R
 RUN chmod +rw Application/Lumen/storage -R
-
-
 
 EXPOSE 9000
 ENTRYPOINT ["/bin/sh","/etc/entrypoint.sh"]
