@@ -17,3 +17,12 @@ export const uploadFile = async ( file ) => {
         return error.response
     }
 }
+
+export const uploadFilesList = async ( file, endpoint, data ) => {
+    try {
+        const response = await instance.post(endpoint, file, { headers: {'Content-Type': 'multipart/form-data'},data:data },);
+        return response
+    } catch (error) {
+        return error.response
+    }
+}
