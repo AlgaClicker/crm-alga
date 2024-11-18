@@ -33,8 +33,6 @@ services:
       - "9000"
     environment:
       COMPOSER_MEMORY_LIMIT: -1
-    env_file:
-      - ../../${ENV_FILE}
     depends_on:
       - memcached
       - redis
@@ -70,10 +68,6 @@ services:
     volumes:
       - ./certs:/etc/ssl
       - cert-store:/certs:cached
-    environment:
-      HTTP_TLS_CERTIFICATE: ${HTTP_TLS_CERTIFICATE}
-      HTTP_TLS_KEY: ${HTTP_TLS_KEY}
-      HTTP_SERVER_NAME: ${HTTP_SERVER_NAME}
     links:
       - api
     networks:
@@ -87,13 +81,6 @@ services:
     hostname: postgres
     image: postgres:11.5-alpine
     restart: always
-    environment:
-      POSTGRES_DB: "${DB_DATABASE}"
-      POSTGRES_USER: "${DB_USERNAME}"
-      POSTGRES_PASSWORD: "${DB_PASSWORD}"
-      PGDATABASE: ${DB_DATABASE}
-      PGUSER: ${DB_USERNAME}
-      PGPASSWORD: ${DB_PASSWORD}
     volumes:
       - pg-data:/var/lib/postgresql/data:cached
     networks:
@@ -105,9 +92,6 @@ services:
     volumes:
       - ./certs:/etc/ssl
       - cert-store:/certs:cached
-    environment:
-      LARAVEL_ECHO_SERVER_SSL_CERT: ${HTTP_TLS_CERTIFICATE}
-      LARAVEL_ECHO_SERVER_SSL_KEY: ${HTTP_TLS_KEY}
     ports:
       - 6001
     networks:
