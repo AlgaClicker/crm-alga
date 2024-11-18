@@ -64,16 +64,6 @@
                         </div>
                         <table v-else>
                             <tbody>
-<<<<<<< HEAD
-                                <tr v-for="item in directoryPostsList" :key="item.id" >
-                                    <td>
-                                        <div class="c-contract-label" @click="showModal(item)">
-                                            {{ item.name }}
-                                        </div>
-                                    </td>
-                                    <td><p>{{ item.fullname }}</p></td>
-                                    <td><p>{{ item.created_at | dateFilter }}</p></td>
-=======
                                 <tr 
                                     v-for="item in directoryPostsList" 
                                     :key="item.id" 
@@ -83,7 +73,6 @@
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.fullname }}</td>
                                     <td>{{ item.created_at | dateFilter }}</td>
->>>>>>> feature/f_requisitions_master
                                 </tr>
                             </tbody>
                         </table>
