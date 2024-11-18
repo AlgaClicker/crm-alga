@@ -29,13 +29,10 @@ services:
 
   api:
     container_name: api
-    env_file: ./../../${ENV_FILE}
     build:
       context: ../..
       dockerfile: ./provision/docker-images/api/Dockerfile
     restart: always
-    environment:
-      - TZ=${APP_TIMEZONE}
     volumes:
       - ./../../backend:/var/www/html:rw
       - storageFiles:/var/www/html/Application/Lumen/storage:rw
@@ -51,18 +48,13 @@ services:
     expose:
       - "9000"
     ports:
-      - "0.0.0.0:9000:9000"
-    environment:
-      COMPOSER_MEMORY_LIMIT: -1
-      XDEBUG_CONFIG: client_host=${XDEBUG_REMOTE_HOST} client_port=${XDEBUG_STORM_PORT} remote_enable=1
-      PHP_IDE_CONFIG: serverName=${cc}
+      - "0.0.0.0:8081:9000"
     depends_on:
       - memcached
       - redis
       - postgres
   frontend:
     container_name: frontend
-    env_file: ./../../${ENV_FILE}
     build:
       context: ../..
       dockerfile: ./provision/docker-images/front/Dockerfile
@@ -76,7 +68,6 @@ services:
     build:
       context: ../docker-images/websockets
       dockerfile: Dockerfile
-    env_file: ./../../${ENV_FILE}
     restart: always
     ports:
       - "6001:6001"
@@ -121,7 +112,6 @@ services:
     image: postgres:15
     container_name: postgres
     restart: always
-    env_file: ./../../${ENV_FILE}
     environment:
       PGDATABASE: ${DB_DATABASE}
       PGUSER: ${DB_USERNAME}

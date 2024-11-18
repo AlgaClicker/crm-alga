@@ -32,7 +32,7 @@ RUN touch /var/log/cron.log
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 COPY backend /var/www/html
-
+COPY .env  Application/Lumen/
 WORKDIR /var/www/html
 
 RUN rm /var/www/html/vendor -fr

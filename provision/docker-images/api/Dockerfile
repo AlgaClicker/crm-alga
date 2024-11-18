@@ -41,7 +41,9 @@ WORKDIR /var/www/html
 
 RUN rm Application/Lumen/storage/tmp-entities -fr
 
-RUN composer install
+
+RUN composer install --optimize-autoloader
+
 
 RUN usermod -u 1000 www-data
 RUN usermod -s /usr/sbin/nologin www-data
