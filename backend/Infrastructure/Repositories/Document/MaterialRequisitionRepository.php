@@ -980,6 +980,9 @@ class MaterialRequisitionRepository extends AbstractRepository implements Materi
             $requisitionMaterial->setStatus("processing");
             $this->em->persist($invoiceMaterial);
         }
+
+        $req  = $requisitionMaterial->getRequisition();
+        $this->setProcentProgressRequestion($req,$count_confirmed);
         $this->em->persist($newConfirmedMaterial);
         $this->em->persist($requisitionMaterial);
 
@@ -1001,5 +1004,15 @@ class MaterialRequisitionRepository extends AbstractRepository implements Materi
         }
 
         return $result_list;
+    }
+
+    public function setProcentProgressRequestion(Requisition $requisition, float $progress)
+    {
+        //$requisition = $this->findOne($requisition);
+
+        $requisition->setProgress($progress);
+        $this->em->persist($requisition);
+        $this->em->flush($requisition);
+        return $requisition;
     }
 }

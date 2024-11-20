@@ -51,6 +51,10 @@ class InvoiceMaterialsRequisitionRepository extends AbstractRepository
         return $query->getResult() ? $query->getSingleResult()['amount'] : 0;
     }
 
+    public function getInvoiceMaterials(RequisitionMaterials $material_requisition)
+    {
+        return $this->findBy(['requisitionMaterial'=>$material_requisition]);
+    }
     public function amountMaterialInvoices(RequisitionMaterials $material_requisition) {
         $qb = $this->em->createQueryBuilder();
         $qb->select('SUM(inv_m.quantity) as amount')->from(get_class($this->entity),'inv_m');
