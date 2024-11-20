@@ -3,11 +3,14 @@ namespace Domain\Services\Business;
 use Auth;
 use Core\Exceptions\ApplicationException;
 use Doctrine\ORM\Cache\CollectionCacheEntry;
+use Domain\Contracts\Services\NotificationServiceContracts;
 use Domain\Entities\Business\Directory\Material;
 use Domain\Entities\Business\Objects\Specification;
 use Domain\Entities\Subscriber\Account;
 use Domain\Services\AbstractService;
+use GPBMetadata\Google\Api\Log;
 use http\Client\Curl\User;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidFactory;
@@ -26,6 +29,9 @@ use Domain\Contracts\Services\Crm\SpecificationsServiceContracts;
 use Domain\Contracts\Services\AccountServiceContracts;
 use Domain\Contracts\Services\FileServiceContracts;
 use Domain\Contracts\Services\Directory\MaterialServiceContract;
+
+
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /**  Entity  **/
 
@@ -50,6 +56,7 @@ class SpecificationService extends AbstractService implements SpecificationsServ
     protected SpecificationTypeWorksRepositoryContracts $specificationTypeWorksRepository;
     protected MaterialCalculationRepositoryContracts $materialCalculationRepository;
     private InvoicesRepositoryContract $invoicesRepository;
+    protected NotificationServiceContracts $notificationService;
 
 
     public function __construct(
@@ -65,6 +72,7 @@ class SpecificationService extends AbstractService implements SpecificationsServ
         SpecificationTypeWorksRepositoryContracts $specificationTypeWorksRepository,
         MaterialCalculationRepositoryContracts $materialCalculationRepository,
         InvoicesRepositoryContract $invoicesRepository,
+        NotificationServiceContracts $notificationService
 
     ){
         $this->stockRepository = $stockRepository;
@@ -79,6 +87,7 @@ class SpecificationService extends AbstractService implements SpecificationsServ
         $this->specificationTypeWorksRepository = $specificationTypeWorksRepository;
         $this->materialCalculationRepository= $materialCalculationRepository;
         $this->invoicesRepository=$invoicesRepository;
+        $this->notificationService = $notificationService;
 
 
         parent::__construct($specificationRepository);
@@ -695,5 +704,36 @@ class SpecificationService extends AbstractService implements SpecificationsServ
 
     }
 
+    public function importSpecFile(UploadedFile $file)
+    {
+        if (!$file->isValid() || !in_array($file->getClientMimeType(), ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'])) {
+            abort(500,"Недопустимый файл!");
+        }
 
+        try {
+            $spreadsheet = IOFactory::load($file->getRealPath());
+            $sheet = $spreadsheet->getActiveSheet();
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Ошибка при загрузке файла: ' . $e->getMessage());
+            throw new \Exception('Ошибка при обработке файла');
+        }
+
+
+        $rows = $sheet->toArray();
+        foreach ($rows as $rowIndex => $row) {
+            // Пример маппинга строки на сущности Doctrine
+            if ($rowIndex === 0) {
+                // Пропускаем заголовок
+                continue;
+            }
+            $specification = new Specification();
+            $specification->name = $row[0] ?? null;
+            $specification->value = $row[1] ?? null;
+
+            \Illuminate\Support\Facades\Log::info($row);
+            //$this->notificationService->sendNotificationSystem("Импорт спеки",$file->getClientMimeType());
+        }
+        $this->notificationService->sendNotificationSystem("Импорт спеки",$file->getClientMimeType());
+        return $rows;
+    }
 }

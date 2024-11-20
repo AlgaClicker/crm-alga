@@ -29,6 +29,7 @@ services:
 
   api:
     container_name: api
+    env_file: ./../../${ENV_FILE}
     build:
       context: ../..
       dockerfile: ./provision/docker-images/api/Dockerfile
