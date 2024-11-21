@@ -68,7 +68,8 @@
             :objectIdProps='object.id'
             :accountsProps='accountsListComputed'
         />
-      <FileUploadModalForm title="Импорт спецификации" endpoint="/api/v1/crm/specification/load/" :sendData=importData>
+
+      <FileUploadModalForm title="Импорт спецификации" :endpoint="'/api/v1/crm/objects/'+objectGet.id+'/specification/import/'" :sendData=importData>
       </FileUploadModalForm>
 
     </div>

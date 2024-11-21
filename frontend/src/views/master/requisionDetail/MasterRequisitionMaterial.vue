@@ -16,7 +16,6 @@
                             <th width="5%">Ед. изм</th>
                             <th width="8%">Количество по заявке</th>
                             <th width="10%">Заказанно</th>
-                            <th>Поставка</th>
                         </tr>
                     </thead>
                 </table>
@@ -41,13 +40,7 @@
                                 <td width="10%">
                                     {{ item.ordered }}
                                 </td>
-                                <td>
-                                    <MasterRequisitionDelivery
-                                        class="mt-2"
-                                        v-for="delivery in item.delivery" :key="delivery.id"
-                                        :deliveryProps="delivery" 
-                                    />
-                                </td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -59,12 +52,12 @@
 
 <script>
     import { mapActions, mapGetters } from 'vuex'
-    import MasterRequisitionDelivery from '@/components/requisition/MasterRequisitionDelivery'
+    //import MasterRequisitionDelivery from '@/components/requisition/MasterRequisitionDelivery'
 
     export default {
         name: 'MasterRequisitionMaterial',
         components: {
-            MasterRequisitionDelivery
+          //MasterRequisitionDelivery
         },
         computed: {
             ...mapGetters({

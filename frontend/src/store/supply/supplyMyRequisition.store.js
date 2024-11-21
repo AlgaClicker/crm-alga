@@ -4,7 +4,7 @@ import Vue from 'vue'
 const mutations = {
     SUPPLY_MY_REQUISITION_SET_LIST(state, data){
         state.supplyMyRequisitionError = null
-
+        //console.log("SUPPLY_MY_REQUISITION_SET_LIST",data)
         if( typeof data.options.filter == 'undefined'){
             state.supplyMyRequisitionOptions.filter = {
                 master: null,
@@ -94,8 +94,8 @@ const actions = {
     },
     async supplyMyRequisitionSetActions( { commit }, id){
 
-        const data = await httpRequest(`crm/snabzheniye/requisitions/${id}`, 'post', {})
-        
+        const data = await httpRequest(`crm/snabzheniye/requisitions/${id}`, 'post', [])
+        console.log(data)
         if(data.code == 200){
             commit("SUPPLY_MY_REQUISITION_SET", data.data)
         }else{
@@ -149,7 +149,10 @@ const getters = {
 }
 
 const state = () => ({
-    supplyMyRequisition: {},
+    supplyMyRequisition: {
+        "autor":"",
+        "created_at":""
+    },
     supplyMyRequisitionList: [],
     supplyMyRequisitionError: null,
     supplyMyRequisitionLoading: false,

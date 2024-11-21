@@ -7,6 +7,15 @@
                     Отменить заявку
                 </button>
             </div>
+
+          <div  v-if="requisition.progress>0">
+            <b-progress class="my-2 mx-5"   :max="100" show-progress animated>
+              <b-progress-bar  :value="requisition.progress">
+                <span v-if="requisition.progress>10"><strong>  Выполнено: {{ requisition.progress.toFixed(2) }}%</strong></span>
+                <span v-if="requisition.progress <= 10"><strong>  {{ requisition.progress.toFixed(2) }}%</strong></span>
+              </b-progress-bar>
+            </b-progress>
+          </div>
             <div class="c-links">
                 <router-link
                     active-class='c-links--active'
@@ -34,14 +43,23 @@
                 </router-link>
             </div>
         </header>
-        <div class="scroll-wrapper">
-            <router-view></router-view>
+      <div>
+        <!--
+        <div class="progress my-2 mx-5">
+          <div class="progress-bar progress-bar-striped" role="progressbar" :aria-valuenow="45" aria-valuemin="12" aria-valuemax="100"></div>
         </div>
-        <confirmation-modal 
+        -->
+
+        <div class="scroll-wrapper">
+          <router-view></router-view>
+        </div>
+        <confirmation-modal
             textProps="Отменить заявку?"
             colorProps="primary"
             @confirmationEmit="confirm()"
         />
+
+      </div>
     </div>
 </template>
 

@@ -83,7 +83,8 @@
                 </div>
             </div>
           <div class="d-flex justify-content-end">
-            <div class="p-2 bd-highlight">
+            <!-- TODO Кнопка загрузки Excel спецификации -->
+            <div class="p-2 bd-highlight" v-if="false">
               <div v-if="isEditProps & isViewTable" class="d-flex">
                 <button @click="uploadModalShow" v-b-modal.file-upload-modal-form class="c-button-add">
                   <b-icon icon="upload" scale="1"></b-icon>

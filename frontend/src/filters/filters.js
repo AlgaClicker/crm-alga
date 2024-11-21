@@ -3,6 +3,11 @@ export const dateFilter = ( date ) => {
     return newDate.toLocaleString();
 }
 
+export const dateOnlyFilter = ( date ) => {
+	var newDate = new Date(date);
+	return newDate.getDay() +"."+newDate.getMonth()+ "." + newDate.getFullYear();
+}
+
 export const sizeFilter = ( size, decimals = 2 ) => {
     if (size === 0) {
 		return '0';

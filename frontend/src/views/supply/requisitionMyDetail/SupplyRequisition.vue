@@ -16,7 +16,17 @@
                     </button>
                 </div>
             </div>
-            <div class="c-links">
+          <div v-if="supplyMyRequisition.progress > 0">
+            <b-progress class="my-2 mx-5"  :min="0"  :max="100" show-progress animated>
+              {{getProgress}}
+              <b-progress-bar  :value="supplyMyRequisition.progress">
+                <span v-if="supplyMyRequisition.progress > 0"><strong>  Выполнено: {{ supplyMyRequisition.progress }}%</strong></span>
+                <span v-if="supplyMyRequisition.progress = 0"><strong> 0</strong></span>
+              </b-progress-bar>
+            </b-progress>
+          </div>
+
+          <div class="c-links">
                 <router-link
                     active-class='c-links--active'
                     :to="`/crm/supply/requisition/my/info/${supplyMyRequisition.id}/detail`"
@@ -94,6 +104,10 @@
                 directoryPartnersList: 'directoryPartnersListGetter',
                 supplyMyRequisitionError: 'supplyMyRequisitionErrorGetter'
             }),
+            getProgress() {
+              console.log("getProgress",this.supplyMyRequisition)
+              return this.supplyMyRequisition.progress;
+            },
             showCancelRequisitionComputed(){
                 return !!this.requisition.fixed & this.requisition.status != 'completed' & this.requisition.status != 'inprogress'
             }
@@ -123,7 +137,7 @@
             let id = window.location.href.split('/').reverse()[1];
             await this.supplyMyRequisitionSet(id)
     
-            this.requisition = this.supplyMyRequisition
+            this.requisition = await this.supplyMyRequisition
 
             this.breadcrumb = [
                 { text: 'Заявки', to: '/crm/supply/requisition/my' },

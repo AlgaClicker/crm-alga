@@ -29,7 +29,7 @@
                                 <th width="170"> 
                                     НОМЕР ЗАЯВКИ
                                 </th>
-                                <th class="th-sort" @click="sortRequisitions('specification')"> 
+                                <th class="th-sort"  @click="sortRequisitions('specification')">
                                     СПЕЦИФИКАЦИЯ
                                     <b-icon v-show="sort.specification.asc" icon="chevron-down" font-scale="0.9" ></b-icon>
                                     <b-icon v-show="sort.specification.desc" icon="chevron-up" font-scale="0.9" ></b-icon>
@@ -66,7 +66,7 @@
                         <table v-else>
                             <tbody>
                                 <tr v-for="item in supplyMyRequisitionList" :key="item?.id">
-                                    <td width="170">
+                                    <td style="width: 170px">
                                         <status-requisition
                                             :statusProps="item.status"
                                         />
@@ -78,12 +78,14 @@
                                             {{ item.number }}
                                         </router-link>
                                     </td>
-                                    <td>
+                                    <td v-if="item.specification" >
                                         <router-link    
                                             :to="`/crm/supply/specification/info/${item.specification?.id}`"
                                         >
                                             {{ item.specification?.name }}
                                         </router-link> ( {{ item.specification?.objectName }} )
+                                    </td>
+                                    <td v-else>
                                     </td>
                                     <td>
                                         <author-title 

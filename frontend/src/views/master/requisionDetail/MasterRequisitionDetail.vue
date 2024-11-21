@@ -9,6 +9,7 @@
                         :statusProps="masterRequisition.status"
                     />
                 </header>
+
                 <b-row>
                     <b-col>
                         <label class="mt-3 c-requisition-info-card__label">Менеджер</label>
@@ -24,7 +25,7 @@
                 </b-row>
                 <b-row>
                     <b-col>
-                        <label class="mt-3 c-requisition-info-card__label">Комментарий</label>
+                        <label v-if="masterRequisition.description" class="mt-3 c-requisition-info-card__label">Комментарий</label>
                         <div class="c-requisition-info-card__text"> 
                             {{ masterRequisition.description }} 
                         </div>
@@ -34,7 +35,7 @@
                         <div class="c-requisition-info-card__text">{{ masterRequisition.end_at | dateFilter }}</div>
                     </b-col>
                 </b-row>
-                <b-row>
+                <b-row v-if="masterRequisition.specification">
                     <b-col>
                         <label class="mt-3 c-requisition-info-card__label">Спецификация</label>
                         <router-link    
