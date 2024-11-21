@@ -35,6 +35,7 @@ class ContractsController extends Controller
         }
 
         $listContracts = $this->contractsService->getListContracts($request->get('options'));
+
         return  $this->sendResponse($listContracts);
     }
 

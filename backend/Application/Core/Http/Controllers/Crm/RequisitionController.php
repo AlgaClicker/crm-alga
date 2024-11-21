@@ -273,8 +273,9 @@ class RequisitionController extends Controller
 
             ]);
         }
+            $result = $this->requisitionService->deliveryMasterMaterialsСonfirmedList($requisitionId,$deliveryId,$request->get('options'));
 
-        return  $this->sendResponse($this->requisitionService->deliveryMasterMaterialsСonfirmedList($requisitionId,$deliveryId,$request->get('options')));
+        return  $this->sendResponse($result['data'],$result['options']);
     }
 
     public function deliveryMasterMaterialsСonfirmed($requisitionId,$deliveryId,Request $request) {
@@ -294,9 +295,7 @@ class RequisitionController extends Controller
             'materials.*.description' => 'nullable|sometimes|string',
             'materials.*.files.*.hash' => 'nullable|sometimes|required|string|exists:Domain\Entities\Services\Files,hash',
         ]);
-
-        $confirmedMaterial = $this->requisitionService->deliveryMasterMaterialsСonfirmed($requisitionId,$deliveryId,$request->get('materials'));
-        return  $this->sendResponse($confirmedMaterial);
+        return  $this->sendResponse($this->requisitionService->deliveryMasterMaterialsСonfirmed($requisitionId,$deliveryId,$request->get('materials')));
     }
 
     public function specificationRequisitionInvoice($specificationId, Request $request)
@@ -343,6 +342,21 @@ class RequisitionController extends Controller
             ]);
         }
         return $this->sendResponse($this->requisitionService->deliveryMasterListRequisition($requisitionId,$request->get('options')));
+    }
+
+    public function deliveryRequisitionProgress($requisitionId,$deliveryId, Request $request)
+    {
+        $req['requisitionId'] = $requisitionId;
+        $req['deliveryId'] = $deliveryId;
+
+        $request->request->add($req);
+
+        $this->validate($request,[
+            'requisitionId' => 'required|uuid|exists:Domain\Entities\Business\Master\Requisition,id',
+            'deliveryId' => 'required|uuid|exists:Domain\Entities\Business\Document\Requisition\Invoice,id'
+        ]);
+
+        return $this->sendResponse($this->requisitionService->deliveryRequisitionProgress($requisitionId,$deliveryId));
     }
 
 }

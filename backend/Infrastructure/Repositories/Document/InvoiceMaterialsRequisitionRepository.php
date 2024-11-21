@@ -53,7 +53,8 @@ class InvoiceMaterialsRequisitionRepository extends AbstractRepository
 
     public function getInvoiceMaterials(RequisitionMaterials $material_requisition)
     {
-        return $this->findBy(['requisitionMaterial'=>$material_requisition]);
+
+        return $this->findOneBy(['requisitionMaterial'=>$material_requisition]);
     }
     public function amountMaterialInvoices(RequisitionMaterials $material_requisition) {
         $qb = $this->em->createQueryBuilder();

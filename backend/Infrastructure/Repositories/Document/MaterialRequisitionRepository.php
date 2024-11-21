@@ -923,7 +923,7 @@ class MaterialRequisitionRepository extends AbstractRepository implements Materi
         return $this->requisitionMaterialRepository->findByUuid($idMaterial);
     }
 
-    public function deliveryMasterMaterialsСonfirmedList(Requisition $requisition,Invoice $delivery,$options=[]) {
+    public function    deliveryMasterMaterialsСonfirmedList(Requisition $requisition,Invoice $delivery,$options=[]) {
         $materials = [];
 
         foreach ($delivery->getMaterials() as $material) {
@@ -935,14 +935,17 @@ class MaterialRequisitionRepository extends AbstractRepository implements Materi
                     'material_confirmed'=>$confirmedMaterial
                 ];
             }
-
         }
 
-        return $materials;
+        return [
+            "data"=>$materials[array_key_first($materials)],
+            "options"=>$options
+        ];
     }
 
     public function deliveryMaterialСonfirmed($materialСonfirmed)
     {
+
         $newConfirmedMaterial =  $this->invoiceMaterialsConfirmedRequisitionRepository->loadNew($materialСonfirmed);
         if (array_key_exists('files',$materialСonfirmed)) {
             foreach ($materialСonfirmed['files'] as $file) {

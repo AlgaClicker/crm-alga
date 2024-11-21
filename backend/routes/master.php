@@ -55,3 +55,4 @@ Route::post('/requisition/{requisitionId}/delivery',  ['as' => 'deliveryRequisit
 Route::post('/requisition/{requisitionId}/delivery/{deliveryId}',  ['as' => 'deliveryRequisition', 'uses' => 'Crm\\RequisitionController@deliveryMaterials']);
 Route::post('/requisition/{requisitionId}/deliverys/',  ['as' => 'deliveryRequisition', 'uses' => 'Crm\\RequisitionController@deliveryMasterListRequisition']);
 Route::post('/requisition/{requisitionId}/delivery/{deliveryId}/confirmed',  ['as' => 'deliveryRequisitionСonfirmed', 'uses' => 'Crm\\RequisitionController@deliveryMasterMaterialsСonfirmed']);
+Route::post('/requisition/{requisitionId}/delivery/{deliveryId}/progress',  ['as' => 'deliveryRequisitionProgress', 'uses' => 'Crm\\RequisitionController@deliveryRequisitionProgress']);
