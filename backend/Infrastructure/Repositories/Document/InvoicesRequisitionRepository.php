@@ -324,11 +324,11 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
         $this->em->persist($invoice);
 
 
-        $this->invoiceRequisitionStatus($requisition,$invoice);
-        $this->recalculationProcentRequisition($requisition);
 
         $this->em->flush($invoice);
-
+        $this->invoiceRequisitionStatus($requisition,$invoice);
+        $this->recalculationProcentRequisition($requisition);
+        $this->em->flush($requisition);
 
         return $invoice;
     }
@@ -882,7 +882,7 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
         return $newConfirmedMaterial;
     }
 
-    private function recalculationProcentRequisition(Requisition $requisition)
+    public function recalculationProcentRequisition(Requisition $requisition)
     {
         $p_confirmed = $this->processProcentInvoiceConfirmedRequisition($requisition);
         $p_remnant = $this->processProcentInvoiceRequisition($requisition);
@@ -942,7 +942,7 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
 
         }
         $this->recalculationProcentRequisition($requisition);
-
+        // $this->requisitionRepository->recalculationProcentRequisition($requisition);
         return $result_list->all();
     }
 
