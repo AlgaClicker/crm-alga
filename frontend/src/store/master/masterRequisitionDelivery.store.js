@@ -142,6 +142,21 @@ const actions = {
             commit('MASTER_REQUISITION_DELIVERY_ERROR', data.data)
         }
     },
+    async masterRequisitionDeliveryLoadList({ commit }, id_requisition){
+
+        commit('MASTER_REQUISITION_DELIVERY_LOADING')
+
+        const data = await httpRequest(`crm/master/requisition/${id_requisition}/deliverys`, 'post', {} )
+
+        commit('MASTER_REQUISITION_DELIVERY_LOADING')
+
+        if(data.code == 200){
+            commit('MASTER_REQUISITION_DELIVERY_SET_LIST', data)
+        } else {
+            commit('MASTER_REQUISITION_DELIVERY_ERROR', data.data)
+        }
+    },
+
     masterRequisitionDeliverySetMaterialListActions({ commit }, data){
         commit('MASTER_REQUISITION_DELIVERY_SET_MATERIAL_LIST', data)
     },

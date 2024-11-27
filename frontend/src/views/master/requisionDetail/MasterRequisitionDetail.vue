@@ -1,7 +1,7 @@
 <template>
-    <b-row>
-        <b-col cols sm="12" md="6">
-            <div class="c-requisition-info-card mr-2">
+    <b-row >
+        <b-col cols sm="12" md="12">
+            <div class="c-requisition-info-card mr-1" >
                 <header>
                     <div class="title">Заявка {{ masterRequisition.number }}</div>
                     <status-requisition
@@ -9,7 +9,6 @@
                         :statusProps="masterRequisition.status"
                     />
                 </header>
-
                 <b-row>
                     <b-col>
                         <label class="mt-3 c-requisition-info-card__label">Менеджер</label>
