@@ -149,7 +149,7 @@
                         </b-row>
                         <b-row class="c-default-table-mobile-col__row">
                             <b-col class="title">Обнавлено</b-col>
-                            <b-col class="text"> {{ item.created_at | dateFilter  }} </b-col>
+                            <b-col class="text"> {{ item.created_at | dateOnlyFilter  }} </b-col>
                         </b-row>
                         <b-row class="c-default-table-mobile-col__row">
                             <b-col class="title"></b-col>
@@ -180,6 +180,7 @@
     import PagginateTable from '@/components/elements/PagginateTable'
     import StatusRequisition from '@/components/requisition/StatusRequisition'
     import FilterRequisition from '@/components/elements/filters/FilterRequisition'
+    import {dateOnlyFilter} from "@/filters/filters";
     
     export default {
         name: "SupplyRequisitionsFree",
@@ -226,6 +227,7 @@
            })
        },
        methods: {
+         dateOnlyFilter,
             ...mapActions({
                 accountsCompanySet: 'accountsCompanySetActions',
                 specificationSetAllList: 'specificationSetAllListActions',

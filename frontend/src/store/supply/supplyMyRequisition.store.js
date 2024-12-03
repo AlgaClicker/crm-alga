@@ -164,12 +164,12 @@ const state = () => ({
             specification: null
         },
         orderBy: {
-            createdAt: "DESC"
+            endAt: "DESC"
         },
         pagginate: {
             pages: 1,
             page: 1,
-            limit: 10
+            limit: 50
         },
     }
 })

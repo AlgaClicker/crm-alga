@@ -132,6 +132,10 @@ const mutations = {
 }
  
 const actions = {
+    async masterRequisitionDeliveryConfirmed( { commit, getters }){
+        console.log("masterRequisitionDeliveryConfirmed",commit,getters)
+
+    },
     async masterRequisitionSetListActions( { commit, getters }){
 
         commit('MASTER_REQUISITION_LOADING')
@@ -184,11 +188,17 @@ const actions = {
             commit('MASTER_REQUISITION_ERROR', data.data)
         }
     },
+    async masterRequisitionGetDeliveryOne({ commit}, requisition_id,delivery_id){
+        console.log(delivery_id,commit,requisition_id)
+        const data = await httpRequest(`crm/master/requisition/${requisition_id}/delivery/${delivery_id}`, 'post', {} )
+
+        console.log(delivery_id,commit,requisition_id,data)
+    },
     async masterRequisitionGetDelivery({ commit}, requisition_id){
 
         commit('MASTER_REQUISITION_LOADING')
 
-        const data = await httpRequest(`crm/master/requisition/${requisition_id}/delivery`, 'post', {} )
+        const data = await httpRequest(`crm/master/requisition/${requisition_id}/delivery/`, 'post', {} )
 
         commit('MASTER_REQUISITION_LOADING')
 
@@ -268,6 +278,7 @@ const getters = {
         }
         return items
     },
+
 }
 
 const state = () => ({

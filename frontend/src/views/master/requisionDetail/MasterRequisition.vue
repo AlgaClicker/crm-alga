@@ -38,8 +38,14 @@
             </div>
         </header>
       <div class="p-0 m-0">
-        <div  v-if="requisition.progress>0">
-          <b-progress class="my-1 mx-5"   :max="100" show-progress animated>
+        <div  >
+          <b-progress class="my-1 mx-5 success"  v-if=" requisition.progress == 100"  value="100"  :max="100"  variant="success" striped animated>
+            <b-progress-bar  value="100">
+              Выполненна 100%
+            </b-progress-bar>
+          </b-progress>
+
+          <b-progress v-if="requisition.progress>0 && requisition.progress<100" class="my-1 mx-5"   :max="100" show-progress animated>
             <b-progress-bar  :value="requisition.progress">
               <span v-if="requisition.progress>10"><strong>  Выполнено: {{ requisition.progress.toFixed(2) }}%</strong></span>
               <span v-if="requisition.progress <= 10"><strong>  {{ requisition.progress.toFixed(2) }}%</strong></span>

@@ -16,9 +16,9 @@
                     </button>
                 </div>
             </div>
+
           <div v-if="supplyMyRequisition.progress > 0">
             <b-progress class="my-2 mx-5"  :min="0"  :max="100" show-progress animated>
-              {{getProgress}}
               <b-progress-bar  :value="supplyMyRequisition.progress">
                 <span v-if="supplyMyRequisition.progress > 0"><strong>  Выполнено: {{ supplyMyRequisition.progress }}%</strong></span>
                 <span v-if="supplyMyRequisition.progress = 0"><strong> 0</strong></span>

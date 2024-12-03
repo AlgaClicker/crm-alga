@@ -124,7 +124,14 @@ const mutations = {
             confirmed_quantity: params.confirmed_quantity, 
             checked: checked
         }) 
+    },
+    MASTER_REQUISITION_DELIVERY_CONFIRM_MATERIALS(state, params){
+        state.masterRequisitionDeliveryListConfirmedMaterials = params
+    },
+    MASTER_REQUISITION_DELIVERY_CONFIRM_ACTUAL(state, delivery){
+        state.masterRequisitionDeliveryActual = delivery
     }
+
 }
 
 const actions = {
@@ -160,6 +167,15 @@ const actions = {
     masterRequisitionDeliverySetMaterialListActions({ commit }, data){
         commit('MASTER_REQUISITION_DELIVERY_SET_MATERIAL_LIST', data)
     },
+    async masterRequisitionDeliveryConfirmed({ commit,getters }, data_conf){
+        console.log("masterRequisitionDeliveryConfirmed:commit",commit,getters)
+        //console.log(requestionId,deliveryId,materials,getters)
+        const data = await httpRequest(`crm/master/requisition/${data_conf.requisitionId}/delivery/${getters.masterRequisitionDeliveryGetActual}/confirmed`, 'post', {
+            materials: data_conf.materials
+        })
+        console.log(data)
+    },
+
     async masterRequisitionDeliveryConfirmedActions({ commit, getters }, deliveryId){
 
         console.log("masterRequisitionGetter")
@@ -191,6 +207,9 @@ const actions = {
         }
 
     },
+    masterRequisitionDeliveryConfirmedListMaretials({ commit }, params){
+        console.log("masterRequisitionDeliveryConfirmedListMaretials",commit,params)
+    },
     masterRequisitionDeliveryAttachFileActions({ commit }, params){
         commit('MASTER_REQUISITION_DELIVERY_ATTACH_FILE', params)
     },
@@ -199,7 +218,14 @@ const actions = {
     },
     masterRequisitionDeliveryCheckedActions({ commit }, params){
         commit('MASTER_REQUISITION_DELIVERY_CHECKED', params)
-    }
+    },
+    async masterRequisitionDeliveryListConfirmedMaterialsActions({ commit }, materials) {
+        commit('MASTER_REQUISITION_DELIVERY_CONFIRM_MATERIALS',materials)
+    },
+    async masterRequisitionDeliverySetActualActions({ commit }, delivery) {
+        commit('MASTER_REQUISITION_DELIVERY_CONFIRM_ACTUAL',delivery)
+    },
+
 }    
 
 const getters = {
@@ -208,14 +234,19 @@ const getters = {
     masterRequisitionDeliveryLoadingGetter: (state) => state.masterRequisitionDeliveryLoading,
     masterRequisitionDeliveryErrorGetter: (state) => state.masterRequisitionDeliveryError,
     masterRequisitionDeliveryPartiallyConfirmedGetter: (state) => state.masterRequisitionDeliveryMaterialList
-        .filter( item => item.checked == false).length == 0
+        .filter( item => item.checked == false).length == 0,
+    masterRequisitionDeliveryListConfirmedMaterials: (state) => state.masterRequisitionDeliveryListConfirmedMaterials,
+    masterRequisitionDeliveryGetActual: (state) => state.masterRequisitionDeliveryActual,
 }
 
 const state = () => ({
     masterRequisitionDeliveryList: [],
+    masterRequisitionDeliveryListConfirmedMaterials: {},
     masterRequisitionDeliveryMaterialList: [],
     masterRequisitionDeliveryLoading: false,
-    masterRequisitionDeliveryError: ''
+    masterRequisitionDeliveryError: '',
+    masterRequisitionDeliveryActual: {}
+
 })
 
 export default {

@@ -31,6 +31,7 @@ body{
     margin: 0;
     height: 100%;
     font-family: 'tt-medium';
+    font-size: $font-size-body;
     overflow-y: hidden;
     overflow-x: hidden;
     moz-user-select: none;
@@ -771,6 +772,12 @@ h4{
     }
 }
 
+
+.mx-input {
+    padding: 2px 0 !important;
+    margin: 0 !important;
+    font-size: $font-size-body;
+}
 /* ---------------------------------------- mx-input-wrapper ----------------------------------------*/
 
 .mx-input-wrapper{
@@ -781,6 +788,7 @@ h4{
         border: 1px solid #D8DCE1;
         -webkit-box-shadow: none;
         box-shadow: none;
+        font-size: $font-size-body;
     }
 }
 

@@ -4,11 +4,8 @@ export const dateFilter = ( date ) => {
 }
 
 export const dateOnlyFilter = ( date ) => {
-	var newDate = new Date(date);
-	var day = newDate.getDay() < 10 ?  newDate.getDate() : newDate.getDate();
-	var mon = newDate.getMonth() < 10 ? '0' + newDate.getMonth()+1 : newDate.getMonth()+1;
-
-	return day +"."+mon+ "." + newDate.getFullYear();
+	let newDate = new Date(date);
+	return new Intl.DateTimeFormat("ru-RU").format(newDate);
 }
 
 export const sizeFilter = ( size, decimals = 2 ) => {
