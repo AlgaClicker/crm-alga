@@ -36,11 +36,18 @@ class Invoice
     private $index;
 
     /**
+     * @var float|null
+     *
+     * @ORM\Column(name="progress", type="float", nullable=true)
+     */
+    private $progress = 0;
+
+    /**
      * @var string|null
      *
-     * @ORM\Column(name="status", type="string", nullable=true)
+     * @ORM\Column(name="status", type="string", nullable=true, options={"default"="draft"})
      */
-    private $status;
+    private $status = 'draft';
 
     /**
      * @var string|null
@@ -254,6 +261,30 @@ class Invoice
     public function getIndex()
     {
         return $this->index;
+    }
+
+    /**
+     * Set progress.
+     *
+     * @param float|null $progress
+     *
+     * @return Invoice
+     */
+    public function setProgress($progress = null)
+    {
+        $this->progress = $progress;
+
+        return $this;
+    }
+
+    /**
+     * Get progress.
+     *
+     * @return float|null
+     */
+    public function getProgress()
+    {
+        return $this->progress;
     }
 
     /**

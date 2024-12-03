@@ -32,6 +32,13 @@ Domain\Entities\Business\Master\Requisition:
       size: 10
       nullable: true
       column: status
+    progress:
+      type: float
+      size: 10
+      nullable: true
+      column: progress
+      options:
+        default: 0
     type:
       type: string
       size: 10

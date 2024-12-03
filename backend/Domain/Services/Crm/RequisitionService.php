@@ -597,13 +597,14 @@ class RequisitionService extends AbstractService implements RequisitionServiceCo
            abort('400','Нет материалов для подтверждения заявки');
        }
 
-       return $this->invoicesRequisitionRepository->deliveryMasterMaterialsСonfirmed($materialsen);
+       return $this->invoicesRequisitionRepository->deliveryMasterMaterialsСonfirmed($requisition,$materialsen);
 
 
    }
 
    public function deliveryMasterMaterialsСonfirmedList($requisitionId,$deliveryId,$options=[])
    {
+
        $requisition = $this->getRequisition($requisitionId);
        $delivery = $this->getInvoice($deliveryId);
        if ($delivery->getRequisition() !== $requisition) {
@@ -616,5 +617,13 @@ class RequisitionService extends AbstractService implements RequisitionServiceCo
    {
        $requisition = $this->getRequisition($requisitionId);
        return $this->invoicesRequisitionRepository->invoicesRequisitionListMaster($requisition,$options);
+   }
+
+   public function deliveryRequisitionProgress($requisitionId,$deliveryId)
+   {
+       $requisition = $this->getRequisition($requisitionId);
+       $delivery = $this->getInvoice($deliveryId);
+
+       return $this->invoicesRequisitionRepository->deliveryRequisitionProgress($requisition,$delivery);
    }
 }

@@ -129,8 +129,9 @@ class MasterService extends AbstractService implements MasterServiceContract
 
     public function getOneRequisition($id) {
         $this->repository = $this->materialRequisitionRepository;
-        $id_requisition = $this->_getById($id);
-        return $this->materialRequisitionRepository->getRequisitionOnly($id_requisition);
+
+        $requisition = $this->requisitionService->getRequisition($id);
+        return $this->materialRequisitionRepository->getRequisitionOnly($requisition);
     }
 
     public function getAllByRequisition($options = []) {

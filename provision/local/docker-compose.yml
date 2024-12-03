@@ -29,6 +29,7 @@ services:
 
   api:
     container_name: api
+    env_file: ./../../${ENV_FILE}
     build:
       context: ../..
       dockerfile: ./provision/docker-images/api/Dockerfile
@@ -90,8 +91,7 @@ services:
       - redis-data:/data:cached
     networks:
       - network
-    ports:
-      - "0.0.0.0:6379:6379"
+      
   nginx:
     container_name: nginx
     build:
