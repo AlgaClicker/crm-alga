@@ -1,7 +1,7 @@
 <template>
-    <b-row>
-        <b-col cols sm="12" md="6">
-            <div class="c-requisition-info-card mr-2">
+    <b-row >
+        <b-col cols sm="12" md="12">
+            <div class="c-requisition-info-card mr-1" >
                 <header>
                     <div class="title">Заявка {{ masterRequisition.number }}</div>
                     <status-requisition
@@ -24,7 +24,7 @@
                 </b-row>
                 <b-row>
                     <b-col>
-                        <label class="mt-3 c-requisition-info-card__label">Комментарий</label>
+                        <label v-if="masterRequisition.description" class="mt-3 c-requisition-info-card__label">Комментарий</label>
                         <div class="c-requisition-info-card__text"> 
                             {{ masterRequisition.description }} 
                         </div>
@@ -34,7 +34,7 @@
                         <div class="c-requisition-info-card__text">{{ masterRequisition.end_at | dateFilter }}</div>
                     </b-col>
                 </b-row>
-                <b-row>
+                <b-row v-if="masterRequisition.specification">
                     <b-col>
                         <label class="mt-3 c-requisition-info-card__label">Спецификация</label>
                         <router-link    

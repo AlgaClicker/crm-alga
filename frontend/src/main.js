@@ -22,7 +22,18 @@ import "vue-multiselect/dist/vue-multiselect.min.css"
 import 'vue2-datepicker/index.css'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import { dateFilter, sizeFilter, moneyFilter, boolFilter, paymentsTypeFilter, dateFilterWithoutTime, phoneFilter, notificationsDateFilter, dateFilterMonth } from '@/filters/filters'
+import {
+  dateFilter,
+  sizeFilter,
+  moneyFilter,
+  boolFilter,
+  paymentsTypeFilter,
+  dateFilterWithoutTime,
+  phoneFilter,
+  notificationsDateFilter,
+  dateFilterMonth,
+  dateOnlyFilter
+} from '@/filters/filters'
 
 Vue.component('multiselect', Multiselect)
 
@@ -39,6 +50,7 @@ Vue.use(FloatingVue)
 Vue.directive("maska", vMaska)
 
 Vue.filter('dateFilter', dateFilter)
+Vue.filter('dateOnlyFilter', dateOnlyFilter)
 Vue.filter('sizeFilter', sizeFilter)
 Vue.filter('moneyFilter', moneyFilter)
 Vue.filter('phoneFilter', phoneFilter)

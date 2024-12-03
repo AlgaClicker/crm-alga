@@ -51,19 +51,19 @@
                            </tr>
                        </thead>
                    </table>
-                   <div class="c-default-table__body">
-                       <div v-if="supplyFreeRequisitionLoading" class="c-spinner_wrapper c-empty-table">
-                           <svg class="spinner_aj0A" width="45" height="45" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"/></svg>
-                       </div>
-                       <div 
-                           v-else-if="supplyFreeRequisitionList.length == 0 | supplyFreeRequisitionList == null"
-                           class="c-empty-table"
-                       >
-                           <img src="@/assets/images/box.png">
-                           <p>
-                               Нет заявок
-                           </p>
-                       </div>
+                  <div class="c-default-table__body">
+                    <div v-if="supplyFreeRequisitionLoading" class="c-spinner_wrapper c-empty-table">
+                      <svg class="spinner_aj0A" width="45" height="45" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"/></svg>
+                    </div>
+                    <div
+                        v-else-if="supplyFreeRequisitionList.length == 0 | supplyFreeRequisitionList == null"
+                        class="c-empty-table"
+                    >
+                      <img src="@/assets/images/box.png">
+                      <p>
+                        Нет заявок
+                      </p>
+                    </div>
                        <table v-else>
                            <tbody>
                                <tr v-for="item in supplyFreeRequisitionList" :key="item?.id">
@@ -79,13 +79,15 @@
                                             {{ item.number }}
                                         </router-link>
                                     </td>
-                                    <td>
+                                    <td v-if="item.specification">
                                         <router-link    
                                             :to="`/crm/supply/specification/info/${item.specification?.id}`"
                                         >
                                             {{ item.specification?.name }}
                                         </router-link> ( {{ item.specification?.objectName }} )
                                     </td>
+                                    <td v-else class="center"></td>
+
                                     <td>
                                         <author-title 
                                             :authorProps="item.autor"
@@ -147,7 +149,7 @@
                         </b-row>
                         <b-row class="c-default-table-mobile-col__row">
                             <b-col class="title">Обнавлено</b-col>
-                            <b-col class="text"> {{ item.created_at | dateFilter  }} </b-col>
+                            <b-col class="text"> {{ item.created_at | dateOnlyFilter  }} </b-col>
                         </b-row>
                         <b-row class="c-default-table-mobile-col__row">
                             <b-col class="title"></b-col>
@@ -178,6 +180,7 @@
     import PagginateTable from '@/components/elements/PagginateTable'
     import StatusRequisition from '@/components/requisition/StatusRequisition'
     import FilterRequisition from '@/components/elements/filters/FilterRequisition'
+    import {dateOnlyFilter} from "@/filters/filters";
     
     export default {
         name: "SupplyRequisitionsFree",
@@ -224,6 +227,7 @@
            })
        },
        methods: {
+         dateOnlyFilter,
             ...mapActions({
                 accountsCompanySet: 'accountsCompanySetActions',
                 specificationSetAllList: 'specificationSetAllListActions',

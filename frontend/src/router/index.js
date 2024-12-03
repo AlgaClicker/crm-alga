@@ -27,7 +27,7 @@ let routes = [
     },
     redirect: () => {
       if(store.getters.rolesGetter == 'master'){
-        return { path: '/crm/master/brigades' }
+        return { path: '/crm/master/requisitions' }
       }
       if(store.getters.rolesGetter == 'snabzenie'){
         return { path: '/crm/supply/requisition/my' }

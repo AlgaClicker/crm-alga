@@ -22,6 +22,9 @@
                     return '#FDEED9'
                 } else if(this.statusProps == 'completed'){
                     return '#E2FBE8'
+                } else if(this.statusProps == 'supplied'){
+                  return '#d7FBE8'
+
                 } else if(this.statusProps == 'canceled'){
                     return '#FAC4C4'
                 } else {
@@ -41,6 +44,9 @@
                     return 'Завершена'
                 } else if(this.statusProps == 'canceled'){
                     return 'Отменена'
+                } else if(this.statusProps == 'supplied'){
+                  return 'Поставляется'
+
                 } else {
                     return 'Черновик'
                 }

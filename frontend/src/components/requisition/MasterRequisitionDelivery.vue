@@ -3,6 +3,7 @@
         <div class="c-master-requisitions-detail__header">
             <base-icon iconProps="stock" sizeProps="md" />
             <div class="title-wrapper">
+
                 <div class="title-wrapper__date">
                     {{ deliveryProps.delivery_at | dateFilter }}
                 </div>

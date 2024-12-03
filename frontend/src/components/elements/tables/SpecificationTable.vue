@@ -82,14 +82,31 @@
                     </table>
                 </div>
             </div>
-            <div v-if="isEditProps & isViewTable" class="d-flex">
+          <div class="d-flex justify-content-end">
+            <!-- TODO Кнопка загрузки Excel спецификации -->
+            <div class="p-2 bd-highlight" v-if="false">
+              <div v-if="isEditProps & isViewTable" class="d-flex">
+                <button @click="uploadModalShow" v-b-modal.file-upload-modal-form class="c-button-add">
+                  <b-icon icon="upload" scale="1"></b-icon>
+                  <span>
+                        Загрузить
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="p-2 bd-highlight">
+              <div v-if="isEditProps & isViewTable" class="d-flex">
                 <button v-b-modal.specification-modal-add class="c-button-add">
-                    <b-icon icon="plus-lg" scale="1"></b-icon>
-                    <span>
-                        Создать 
+                  <b-icon icon="plus-lg" scale="1"></b-icon>
+                  <span>
+                        Создать
                     </span>
                 </button>
+              </div>
             </div>
+
+          </div>
+
         </template>
     </div>
 </template>
@@ -104,6 +121,7 @@
             return {
                 viewChildren: false,
                 iconLoock: '',
+                importForm: false,
                 isViewTable: true
             }
         },
@@ -132,12 +150,19 @@
             } 
         },
         methods: {
-            toggleView(){
-                this.isViewTable = !this.isViewTable
-            },
-            deleteSpec(spec){
-                this.$emit('deleteSpecEmit', this.$event, spec)
-            }
+          uploadModalShow() {
+            this.importForm = true
+          },
+          fileUploadModalFormClose() {
+            console.log("fileUploadModalFormClose");
+            this.importForm = false
+          },
+          toggleView(){
+              this.isViewTable = !this.isViewTable
+          },
+          deleteSpec(spec){
+              this.$emit('deleteSpecEmit', this.$event, spec)
+          }
         }
     }
 </script>

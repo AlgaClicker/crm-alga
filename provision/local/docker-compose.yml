@@ -66,6 +66,7 @@ services:
 
   websockets:
     container_name: websockets
+    env_file: ./../../${ENV_FILE}
     build:
       context: ../docker-images/websockets
       dockerfile: Dockerfile
@@ -94,6 +95,7 @@ services:
       
   nginx:
     container_name: nginx
+    env_file: ./../../${ENV_FILE}
     build:
       context: ../..
       dockerfile: ./provision/docker-images/nginx/Dockerfile

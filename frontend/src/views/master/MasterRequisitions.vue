@@ -122,6 +122,7 @@
                                         {{ item.created_at | dateFilter }}
                                     </td>
                                     <td width="180px">
+
                                         <div 
                                             @click="setConfirm(item)" 
                                             v-b-modal.confirmation-modal 
@@ -148,7 +149,8 @@
                     <div class="c-default-table-mobile-col" v-for="item in masterRequisitionList" :key="item.id">
                         <b-row class="c-default-table-mobile-col__row">
                             <b-col class="title">Статус</b-col>
-                            <b-col class="text">  
+                            <b-col class="text">
+
                                 <status-requisition
                                     :statusProps="item?.status"
                                 /> 
