@@ -125,7 +125,7 @@
                                            {{ item.ordered }}
                                         </td>
                                         <td width="30%" class="attach-files">
-                                            <files-block-attach 
+                                            <files-block-attach
                                                 :fileProps="item.files"
                                                 :idMaterialProps="item.id"
                                                 @addFileEmit="addFile"
@@ -226,7 +226,7 @@
                 validationsComputed(){
                     if( 
                         this.$v.newInvoice.delivery_at.$invalid == false &
-                        this.supplyRequisitionMaterialNewInvoice.materials.filter( item => item.fullname == '').length == 0 &
+                        //this.supplyRequisitionMaterialNewInvoice.materials.filter( item => item.fullname == '').length == 0 &
                         this.supplyRequisitionMaterialNewInvoice.materials.filter( item => item.files.length == 0).length == 0 &
                         this.supplyRequisitionMaterialNewInvoice.materials.filter( item => item.price == 0 | item.price == '').length == 0 & 
                         this.supplyRequisitionMaterialNewInvoice.materials.filter( item => item.quantity == 0 | item.quantity == '').length == 0 
