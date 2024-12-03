@@ -2,19 +2,31 @@
     <div @click="select()" class="c-supply-invoices mb-1 mt-1">
         <div class="c-supply-invoices__header">
             <div class="title">
-                Счет
+              {{ supplyInvoicesProps.number }} от {{supplyInvoicesProps.created_at | dateOnlyFilter}}
             </div>
             <div class="price">
                 {{ supplyInvoicesProps.amount | moneyFilter }}
             </div>
         </div>
         <div class="c-supply-invoices__number">
-            {{ supplyInvoicesProps.number }}
+            Дата поставки {{supplyInvoicesProps.delivery_at | dateOnlyFilter}}
         </div>
+      <div class="c-supply-invoices__number">
+        <b-progress :max="100"  class="mb-1">
+          <b-progress-bar v-if="supplyInvoicesProps.progress>0" variant="success" striped :value="supplyInvoicesProps.progress">
+            <span v-if="supplyInvoicesProps.progress > 49">{{supplyInvoicesProps.progress}}% {{supplyInvoicesProps.status}}</span>
+          </b-progress-bar>
+          <b-progress-bar  v-if="supplyInvoicesProps.progress<100"  variant="dark"  :value="100-supplyInvoicesProps.progress">
+            <span v-if="supplyInvoicesProps.progress < 50">{{supplyInvoicesProps.progress}}% {{supplyInvoicesProps.status}}</span>
+          </b-progress-bar>
+        </b-progress>
+      </div>
     </div>
 </template>
 
 <script>
+    import {dateOnlyFilter} from "@/filters/filters";
+
     export default {
         name: "SupplyInvoices",
         props: {
@@ -22,6 +34,7 @@
         },
         emits: ['selectInvoicesEmit'],
         methods: {
+          dateOnlyFilter,
             select(){
                 this.$emit('selectInvoicesEmit', this.$event, this.supplyInvoicesProps)
             }

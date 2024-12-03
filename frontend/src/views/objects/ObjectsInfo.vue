@@ -68,6 +68,10 @@
             :objectIdProps='object.id'
             :accountsProps='accountsListComputed'
         />
+
+      <FileUploadModalForm title="Импорт спецификации" :endpoint="'/api/v1/crm/objects/'+objectGet.id+'/specification/import/'" :sendData=importData>
+      </FileUploadModalForm>
+
     </div>
 </template>
 
@@ -79,6 +83,7 @@
     import ObjectsEditModal from '@/components/object/ObjectsEditModal'
     import SpecificationTable from '@/components/elements/tables/SpecificationTable'
     import SpecificationModalAdd from '@/components/specification/SpecificationModalAdd'
+    import FileUploadModalForm from "@/views/utils/FileUploadModalForm.vue";
 
     export default {
         name: 'ObjectsInfo',
@@ -90,7 +95,7 @@
                 },
                 breadcrumb: [
                     { text: 'Объекты', to: '/crm/objects' },
-                ]
+                ],
             }
         },
         watch: {
@@ -113,17 +118,24 @@
                 profile: 'profileGetter',
                 accountsCompanyList: 'accountsCompanyListGetter',
             }),
+            importData() {
+              return {
+                data:this.object.id
+              };
+            },
             accountsListComputed(){
                 return this.accountsCompanyList
                 .filter( item => this.object.responsibles.filter( element => element.id == item.id).length == 0 )
             }
         },
         components: {
+            FileUploadModalForm,
             File,
             FileUpload,
             ObjectsEditModal,
             SpecificationTable,
             SpecificationModalAdd,
+
         },
         methods: {
             ...mapActions({
