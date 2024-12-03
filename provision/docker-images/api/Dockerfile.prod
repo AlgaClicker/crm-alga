@@ -12,12 +12,12 @@ RUN apt-get install -y libwebp-dev  libpng-dev  libjpeg-dev libfreetype6-dev lib
 
 RUN docker-php-ext-install pdo pdo_pgsql bcmath pcntl
 RUN apt-get install -y libmemcached-dev
-
-RUN docker-php-ext-enable bcmath
+RUN docker-php-ext-install zip
 
 RUN docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype
 RUN docker-php-ext-install gd
-RUN docker-php-ext-enable gd zip
+
+RUN docker-php-ext-enable bcmath  gd zip
 
 
 RUN yes "no" | pecl install memcached redis

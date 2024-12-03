@@ -116,7 +116,7 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
         $this->save($invoice);
         //$this->em->persist($invoice);
         //$this->em->flush();
-
+        $this->recalculationProcentRequisition($requisition);
         return true;
 
 
@@ -836,10 +836,24 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
         return round(($confirm_s/$remnant_s )*100,3);
     }
 
+    private function invoiceCalculation(Invoice $invoice)
+    {
+        $confirm_s = 0;
+        $remnant_s = 0;
+         foreach ($invoice->getMaterials() as $materialInvoice) {
+             $confirm_s += $this->invoiceMaterialsConfirmedRequisitionRepository->getQuantityConfirmed($materialInvoice);
+             $remnant_s += $materialInvoice->getQuantity();
+         }
+        $progress =  round(($confirm_s/$remnant_s )*100,3);
+        $invoice->setStatus("progress");
+        $invoice->setProgress($progress);
+        $this->em->persist($invoice);
+    }
     public function deliveryMaterialСonfirmed($materialСonfirmed)
     {
 
         $newConfirmedMaterial = $this->invoiceMaterialsConfirmedRequisitionRepository->loadNew($materialСonfirmed);
+        $requisitionInvoice = $newConfirmedMaterial->getRequisitionInvoiceMaterial()->getRequisitionInvoice();
         //$requisition = $newConfirmedMaterial->getRequisitionInvoiceMaterial()->getRequisitionMaterial()->getRequisition();
 
         // Привязка файлов к подтверждённому материалу
@@ -877,8 +891,9 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
         }
 
         $this->em->persist($newConfirmedMaterial);
-        $this->em->flush();
 
+        $this->em->flush();
+        $this->invoiceCalculation($requisitionInvoice);
         return $newConfirmedMaterial;
     }
 

@@ -27,11 +27,20 @@ Domain\Entities\Business\Document\Requisition\Invoice:
       size: 12
       nullable: false
       column: index
+    progress:
+      type: float
+      size: 4
+      nullable: true
+      column: progress
+      options:
+        default: 0
     status:
       type: string
       size: 10
       nullable: true
       column: status
+      options:
+        default: "draft"
     description:
       type: text
       nullable: true
