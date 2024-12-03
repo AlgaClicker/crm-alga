@@ -95,15 +95,8 @@ class AuthController extends Controller
             throw new ApplicationException('Ошибка регистрации новой компании',500);
         }
 
-        $account = $this->accountService->login($request->get('username'),$request->get('password'));
-        $data = [
-            'token'=>$account->getToken(),
-            'type' => "bearer",
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'account'=>$account,
-            'company' => $account->getCompany()
-        ];
-        return  $this->sendResponse($data);
+
+        return  $this->sendResponse($newCompany);
     }
 
     /**

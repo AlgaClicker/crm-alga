@@ -125,8 +125,9 @@ class AccountService extends AbstractService implements AccountServiceContracts
             $token = auth()->login($account);
         }
 
-
-
+        if (!auth()->user()->getCompany()->getActive()) {
+            abort("401","Комания не активна");
+        }
 
         $newNotification = new Notification();
         $newNotification->setTitle("Авторизация ");
