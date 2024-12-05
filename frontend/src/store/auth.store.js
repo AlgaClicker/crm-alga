@@ -64,9 +64,26 @@ const mutations = {
         state.profileError = null
         state.roles = ''
     },
+    COMPANYCONFIRMED(state, company){
+
+        state.companyConfirmed = company
+        console.log("COMPANYCONFIRMED",state.companyConfirmed)
+        state.loginLoading = true;
+    },
+    REGISTERSTATUS(state,status) {
+        state.registrationStatus = status
+    },
+    REGISTERERROR(state,error) {
+        state.registrationError = error
+    },
+
 }
 
 const actions = {
+    async defaultLoginParam( { commit } ) {
+        commit('LOGIN_LOADING', false)
+        commit("REGISTERERROR",null)
+    },
     async loginActions( { commit }, form ) {
 
         commit('LOGIN_LOADING', true)
@@ -113,7 +130,37 @@ const actions = {
     },
     async logoutActions( { commit } ) {
         commit('LOGOUT')
-    },    
+    },
+    async companyRegistration({ commit }, data) {
+
+        try {
+            const dataRes = await httpRequestAuth('auth/registration/', 'post', data)
+
+            if(dataRes.code == 200){
+                //console.log(data,key)
+                commit("REGISTERSTATUS",true)
+            } else {
+                commit("REGISTERSTATUS",false)
+                commit("REGISTERERROR",dataRes.data.message)
+            }
+        } catch (e) {
+            console.log("companyRegistration ERROR:",e)
+            commit("REGISTERSTATUS",false)
+            commit("REGISTERERROR",e.message)
+        }
+
+    },
+    async companyConfirmed({ commit }, key) {
+        commit("LOGIN_LOADING",true)
+       // console.log("companyConfirmed",commit,key)
+        const data = await httpRequestAuth('auth/registration/confirm?k='+key, 'get', )
+
+        if(data.code == 200){
+            //console.log(data,key)
+            commit('COMPANYCONFIRMED',data.data)
+        }
+    },
+
 }
 
 const getters = {
@@ -123,7 +170,10 @@ const getters = {
     loginLoadingGetter: (state) => state.loginLoading,
     rolesGetter: (state) => state.roles,
     profileGetter: (state) => state.profile,
-    companyGetter: (state) => state.company,
+    registrationStatusGetter: (state)  => state.registrationStatus,
+    registrationErrorGetter: (state)  => state.registrationError,
+    companyGetter: (state)  => state.company,
+    companyConfirmedGetter: (state)  => state.companyConfirmed,
     profileOptionsGetter: (state) => state.profile.options,
     isAuthorisation: () => localStorage.getItem('token') || "",
     profleDirectoryEditAccessGetter: (state) => state.profile.roles.service == 'upravlenie' || state.profile.roles.service == 'snabzenie',
@@ -133,12 +183,15 @@ const state = () => ({
     loginError:  null,
     loginStatus: null,
     loginLoading: false,
+    registrationStatus: false,
+    registrationError: "",
     account: {},
     profileError: '',
     accountOptions: {},
     roles: '',
     profile: {},
-    company: {}
+    company: {},
+    companyConfirmed: {},
 })
 
 export default {

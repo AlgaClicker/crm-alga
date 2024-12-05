@@ -3,9 +3,8 @@
         <header>
             <div class="requisitions-wrapper__header-wrapper">
                 <b-breadcrumb :items="breadcrumb"></b-breadcrumb>
-                <button v-show="!!requisition.fixed" class="c-button-add" v-b-modal.confirmation-modal >
+                <button v-show="requisition.fixed !== true" class="c-button-add" v-b-modal.confirmation-modal >
                     Отменить заявку
-
                 </button>
             </div>
 

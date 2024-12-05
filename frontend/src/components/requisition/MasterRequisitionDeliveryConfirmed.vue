@@ -36,7 +36,7 @@
         <td colspan="7" class="col text-end " >
 
           
-          <b-button :disabled="Object.keys(this.materials).length > 0 ? false : true" class="c-button  shadow px-3 rounded-0 " @click="appalyConfirmed(delivery.id)">
+          <b-button :disabled="!btnConfirmActive" class="c-button  shadow px-3 rounded-0 " @click="appalyConfirmed(delivery.id)">
             Подтвердить
           </b-button>
 
@@ -72,11 +72,15 @@ export default {
   props: {
     delivery: { }
   },
+  emits: [
+      'applayConfirmed'
+  ],
   computed: {
     ...mapGetters({
       masterRequisitionDeliveryListConfirmedMaterials: "masterRequisitionDeliveryListConfirmedMaterials",
       masterRequisitionDeliveryGetActual:"masterRequisitionDeliveryGetActual"
     }),
+
     listtest() {
         return this.materials
     },
@@ -90,7 +94,8 @@ export default {
       confirm_full: false,
       confirm_description: null,
       description_error: "",
-      actualDeliveryId:""
+      actualDeliveryId:"",
+      btnConfirmActive: true
     }
   },
   mounted()  {
@@ -126,6 +131,7 @@ export default {
       masterRequisitionDeliverySetActualActions:"masterRequisitionDeliverySetActualActions"
     }),
     inputCountConfirm(d_id) {
+
       let div_material = this.delivery.materials.find(material => material.requisition_material_id === d_id)
       if (this.materials[d_id] >=div_material.delivery_quantity) {
         if (parseInt(div_material.confirmed_quantity) > 0) {
@@ -151,6 +157,7 @@ export default {
     },
 
     async appalyConfirmed(deliveryId) {
+      this.btnConfirmActive = false
       await this.masterRequisitionDeliverySetActualActions(deliveryId)
       this.actualDeliveryId = deliveryId
       Object.entries(this.materials).forEach(([material_confirm, material_count]) => {
@@ -175,6 +182,7 @@ export default {
         this.confirm_description = this.delivery.id
         await this.applayConfirmedSend()
       }
+
     },
 
     async applayConfirmedSend()  {
@@ -182,6 +190,7 @@ export default {
       console.log(this.actualDeliveryId)
       if (!this.confirm_description) {
         this.description_error = "Пустой коментарий"
+        return
         //this.$root.$emit('bv::show::modal', 'modal-1', '#focusThisOnClose')
       } else {
         this.$root.$emit('bv::hide::modal', 'modal-1', '#focusThisOnClose')
@@ -189,6 +198,7 @@ export default {
 
       let data_materials = Object.entries(this.masterRequisitionDeliveryListConfirmedMaterials).map(([material_confirm, material_count]) => {
         console.log("data_materials:map", material_confirm)
+
         return {
           "confirmed_at": new Date(),
           "requisition_material": material_confirm,
@@ -205,11 +215,11 @@ export default {
           "materials": data_materials,
           "requisitionId": this.$route.params.id,
           "deliveryId" : this.masterRequisitionDeliveryGetActual
-
       }
       //console.log("req_id",this.$route.params.id)
       console.log("applayConfirmedSend DATA:",data)
        await this.masterRequisitionDeliveryConfirmed(data)
+       //this.$emit( 'applayConfirmed', this.$event)
       /*
       Object.entries(this.materials).forEach(material => {
         data= {
@@ -231,7 +241,8 @@ export default {
 
 
       console.log("applayConfirmedSend",data)
-
+      this.btnConfirmActive = true
+      this.$emit( 'applayConfirmed', this.$event)
     }
   }
 }

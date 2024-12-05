@@ -34,10 +34,19 @@ const mutations = {
         })
 
         state.supplyRequisitionInvoicesError = error
+    },
+    SUPPLY_REQUISITION_NEW_INVOICE_FILES(state,data) {
+        state.supplyRequisitionNewInvoiceFilesList = data
     }
 }
 
-const actions = {   
+const actions = {
+    async supplyRequisitionAttachFileForInvoice({ commit, getters }, data){
+
+        console.log("supplyRequisitionAttachFileForInvoice",commit,getters,"data:",data)
+        commit('SUPPLY_REQUISITION_NEW_INVOICE_FILES',data)
+        //console.log(getters.newFilesListGetter)
+    },
     async supplyRequisioinsInvoicesSetListActions({ commit, getters }){
 
         let options = getters.supplyRequisitionInvoicesOptionsGetter
@@ -70,12 +79,13 @@ const actions = {
             commit("SUPPLY_REQUISITION_INVOICES_SET_ERROR", data.error)
         }
     },
-    supplyRequisioinsInvoicesSetOptionsActions( { commit }, options ){
+    async supplyRequisioinsInvoicesSetOptionsActions( { commit }, options ){
         commit('SUPPLY_REQUISITION_INVOICES_SET_OPTIONS', options)
     },
 }
 
 const getters = {
+    supplyRequisitionNewInvoiceFilesGetter: (state) => state.supplyRequisitionNewInvoiceFilesList,
     supplyRequisitionInvoicesListGetter: (state) => state.supplyRequisitionInvoicesList,
     supplyRequisitionInvoicesErrorGetter: (state) => state.supplyRequisitionInvoicesError,
     supplyRequisitionInvoicesOptionsGetter: (state) => state.supplyRequisitionInvoicesOptions,
@@ -91,6 +101,7 @@ const getters = {
 
 const state = () => ({
     supplyRequisitionInvoicesList: [],
+    supplyRequisitionNewInvoiceFilesList: [],
     supplyRequisitionInvoicesError: '',
     supplyRequisitionInvoicesOptions: {
         filter: {
