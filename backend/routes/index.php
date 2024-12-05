@@ -61,9 +61,11 @@ Route::group([
     'prefix' => 'auth'
 ], function ($router) {
     Route::post('login', ['as' => 'authLogin', 'uses' =>'AuthController@login']);
+
     //signInWithRefreshToken
     Route::post('/refresh-token', ['as' => 'signInWithRefreshToken', 'uses' =>'AuthController@signInWithRefreshToken']);
     Route::post('registration', ['as' => 'registration', 'uses' =>'AuthController@registration']);
+    Route::get('registration/confirm', ['as' => 'registrationConfirm', 'uses' =>'AuthController@registrationConfirm']);
     Route::post('broadcasting', ['as' => 'broadcastingAuth', 'uses' =>'BroadcastController@authenticate']);
 });
 

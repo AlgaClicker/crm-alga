@@ -2,9 +2,12 @@
 
 namespace Domain\Services;
 use Core\Events\NotificationEvent;
+use Core\Mail\NotificationEmail;
+use Core\Mail\RegisterEmail;
 use Doctrine\Common\Cache\FilesystemCache;
 use Domain\Entities\Subscriber\Account;
 use Domain\Entities\Services\Notification;
+use Illuminate\Support\Facades\Mail;
 use Log;
 use Kreait\Firebase\Contract\Auth as AuthFirebase;
 
@@ -125,8 +128,9 @@ class AccountService extends AbstractService implements AccountServiceContracts
             $token = auth()->login($account);
         }
 
-
-
+        if (!auth()->user()->getCompany()->getActive()) {
+            abort("401","Комания не активна");
+        }
 
         $newNotification = new Notification();
         $newNotification->setTitle("Авторизация ");
@@ -405,7 +409,16 @@ class AccountService extends AbstractService implements AccountServiceContracts
         }
         $arrKeyValue['company'] =  $this->companyRepository->findOne($arrKeyValue['company']);
 
+        $arrKeyValue['remember_token'] = Str::random(40);
+
+        $arrKeyValue['token'] = $arrKeyValue['remember_token'];
         $newAccount  = $this->accountRepository->create($arrKeyValue);
+        //$newAccount = $this->accountRepository->loadNew($arrKeyValue);
+        $newAccount->setToken($arrKeyValue['remember_token']);
+        $newAccount = $this->accountRepository->save($newAccount);
+
+
+        Mail::to($newAccount->getEmail())->queue(new RegisterEmail($newAccount));
 
         return  $this->accountRepository->find($newAccount->getId());
     }
@@ -432,6 +445,21 @@ class AccountService extends AbstractService implements AccountServiceContracts
 
         }
     }
+
+    public function registrationConfirm($hash_confirm)
+    {
+        $account = $this->accountRepository->findOneBy(['token'=>$hash_confirm]);
+        $company = $this->accountRepository->registrationConfirm($hash_confirm);
+        $notification =  new Notification();
+        $notification->setTitle("Компания подтверждена успешно");
+        $notification->setMessage("Ваша компания успешно подтверждена. Теперь вы можете воспользоваться всеми доступными функциями нашего сервиса. Добро пожаловать в систему управления компанией!");
+
+        
+        Mail::to($account->getEmail())->send(new NotificationEmail($notification));
+
+        return $company;
+    }
+
 
     public function newAccount($arrKeyValue) {
 

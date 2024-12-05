@@ -199,6 +199,8 @@ class RequisitionService extends AbstractService implements RequisitionServiceCo
 
 
         if ($specification && $requisition->getSpecification() && !$this->specificationsService->checkSpecificationResponsible($specification,auth()->user())) {
+            $this->notificationService->sendNotificationSystem("Ошибка назначения менеджера","Вы не являетесь ответственным по данной спецификации, которая указана в заявке");
+
             abort('403','Вы не являетесь ответственным по данной спецификации, которая указана в заявке');
         } elseif ($requisition->getSpecification() && $this->specificationsService->getSpecificationOnly($requisition->getSpecification())->getResponsibles()->contains(auth()->user())) {
             return $requisition;
@@ -338,8 +340,9 @@ class RequisitionService extends AbstractService implements RequisitionServiceCo
        }
 
        $this->unsetAttributtes($arrayKeyValue);
-
        $arrayKeyValue['status']="new";
+       //$repEntyty = $this->repository->checkAttr($arrKeyValue);
+
        $invoiceRequisition = $this->invoicesRequisitionRepository->newInvoiceRequisition($requisition, $arrayKeyValue);
        $this->notificationService->sendNotificationSystemAccount(auth()->user(),'Новая Счет-Заявка',"Счет-заявка № ".$invoiceRequisition->getNumber()." на сумму ".$invoiceRequisition->getAmount()." руб. Создана.");
        if ($invoiceRequisition->getStatus() == 'completed') {
@@ -485,6 +488,7 @@ class RequisitionService extends AbstractService implements RequisitionServiceCo
 
        $requisition = $this->getRequisition($requisitionId);
        if ($requisition->getStatus() == 'canceled') {
+
            abort(403,"Заявка была отменена. Дальнейшие действия невозможны.");
        }
 

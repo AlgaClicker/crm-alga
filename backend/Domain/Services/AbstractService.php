@@ -232,7 +232,7 @@ abstract class AbstractService
 
 
 
-    private function createAttributtes($arrKeyValue) {
+    public function createAttributtes($arrKeyValue) {
         foreach ($arrKeyValue as $key=>$value) {
             $serviceName = substr($key,0,-1)."Service";
             if (!property_exists($this,$serviceName)) {
@@ -373,7 +373,7 @@ abstract class AbstractService
         return $arrKeyValue;
     }
 
-    protected function checkAttributtes($arrKeyValue) {
+    public function checkAttributtes($arrKeyValue) {
         $newArrKeyValue = [];
 
         $entity = $this->repository->loadNew($arrKeyValue);

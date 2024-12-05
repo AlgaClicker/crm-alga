@@ -155,12 +155,8 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
     public function newInvoiceRequisition(Requisition $requisition, $arrayKeyValue) {
 
         $requisition = $this->requisitionRepository->findMyCompnay($requisition);
-
         $arrayKeyValue = $this->checkAttributes($arrayKeyValue);
-
         $contract = $this->repositoryContract->findOne($arrayKeyValue['contract']);
-
-
         $invoice = $this->loadNew($arrayKeyValue);
 
         $invoice->setFixed(true);
@@ -175,6 +171,20 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
             $invoice->setDeliveryAt(new \DateTimeImmutable($arrayKeyValue['delivery_at']));
         } else {
             abort('400','Нет даты поставики');
+        }
+
+        if (array_key_exists("files",$arrayKeyValue) && is_array($arrayKeyValue['files'])) {
+
+            foreach ($arrayKeyValue['files'] as $file) {
+                if (array_key_exists("hash", $file)) {
+                    $file_obj= $this->fileRepository->getFileHash($file['hash']);
+                    $invoice->addFile($file_obj);
+                    $file_obj->addRequisitionInvoice($invoice);
+                    $this->em->persist($file_obj);
+
+                }
+            }
+
         }
 
         if (array_key_exists('stock',$arrayKeyValue)) {

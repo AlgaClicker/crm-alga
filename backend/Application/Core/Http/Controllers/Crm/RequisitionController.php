@@ -224,6 +224,7 @@ class RequisitionController extends Controller
     }
 
     public function snabzheniyeRequisitionWorkAdd($requisitionId, Request $request) {
+        //addInvoice
         if (count($request->all()) == 0) {
             abort('400','Пустой запрос');
         }
@@ -235,9 +236,11 @@ class RequisitionController extends Controller
             'contract' => 'required|uuid|exists:Domain\Entities\Business\Document\Contracts,id',
             'stock'=>'sometimes|required|uuid|exists:Domain\Entities\Business\Company\Stock,id',
             'specification' => 'null|sometimes|required|uuid|exists:Domain\Entities\Business\Objects\Specification,id',
+            'files.*.hash' => 'nullable|string|exists:Domain\Entities\Services\Files,hash',
             'materials.*.id' => 'required|uuid|exists:Domain\Entities\Business\Master\RequisitionMaterials,id',
             'materials.*.price' => 'required|numeric|min:0,001',
             'materials.*.quantity' => 'required|numeric|min:0,001',
+
         ]);
 
         return $this->sendResponse($this->requisitionService->snabzheniyeRequisitionWorkAdd($requisitionId,$request->all()));

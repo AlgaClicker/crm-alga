@@ -17,7 +17,7 @@ Domain\Entities\Business\Company\Company:
     autorId:
       exclude: true
     active:
-      exclude: true
+      exclude: false
     objects:
       exclude: true
     stocks:

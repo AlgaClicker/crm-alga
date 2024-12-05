@@ -151,4 +151,20 @@ class AccountsRepository extends AbstractRepository implements AccountsRepositor
         return $this->optionsGet($account->getId());
     }
 
+    public function registrationConfirm($hash_confirm)
+    {
+        $account = $this->findOneBy(['token'=>$hash_confirm]);
+        if (!$account) {
+            return null;
+        }
+        $company = $account->getCompany();
+        if ($company->getActive() === true) {
+           // abort("409","Компания Активирована");
+        }
+        $company->setActive(true);
+        $this->em->persist($company);
+        $this->em->flush();
+        return $company;
+    }
+
 }

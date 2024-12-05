@@ -15,7 +15,7 @@ class JsonResponseDefault
      */
     public static function create($success, $data, $options, $message, $code)
     {
-        if (!$data) {
+        if ($code == 204) {
             $code = 200;
         }
 

@@ -27,7 +27,7 @@ class AuthController extends Controller
     ){
         $this->accountService = $accountService;
         $this->businessService = $businessService;
-        $this->middleware('api', ['except' => ['login','registration']]);
+        $this->middleware('api', ['except' => ['login','registration','registrationConfirm']]);
     }
 
     /**
@@ -56,6 +56,14 @@ class AuthController extends Controller
         return  $this->sendResponse($data);
     }
 
+    public function registrationConfirm(Request $request)
+    {
+        $this->validate($request, [
+            'k' => 'required|exists:Domain\Entities\Subscriber\Account,token',
+        ]);
+
+        return $this->sendResponse($this->accountService->registrationConfirm($request->query("k")));
+    }
     public function meFirebase() {
         $this->sendResponse($this->accountService->getFirebaseAccount());
     }
@@ -95,15 +103,8 @@ class AuthController extends Controller
             throw new ApplicationException('Ошибка регистрации новой компании',500);
         }
 
-        $account = $this->accountService->login($request->get('username'),$request->get('password'));
-        $data = [
-            'token'=>$account->getToken(),
-            'type' => "bearer",
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'account'=>$account,
-            'company' => $account->getCompany()
-        ];
-        return  $this->sendResponse($data);
+
+        return  $this->sendResponse($newCompany);
     }
 
     /**
