@@ -115,14 +115,14 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      email: "sb@alga-corp.ru",
+      email: "",
       emailInvalid: false,
-      phoneNumber: "89124966126",
+      phoneNumber: "",
       phoneInvalid: false,
-      inn: "5906173851",
+      inn: "",
       innInvalid: false,
-      password: "pass23AlgaCms",
-      confirmPassword: "pass23AlgaCms",
+      password: "",
+      confirmPassword: "",
       passwordInvalid: false,
       confirmPasswordInvalid: false,
     };
