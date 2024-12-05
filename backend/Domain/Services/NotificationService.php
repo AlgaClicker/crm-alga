@@ -15,6 +15,7 @@ use Core\Mail\NotificationEmail;
 use Domain\Entities\Business\Master\Requisition;
 use Core\Mail\RequisitionEmail;
 use Core\Mail\DeliveryRequisitionEmail;
+use Core\Mail\RegisterEmail;
 use Domain\Contracts\Services\Crm\RequisitionServiceContract;
 use Illuminate\Support\Facades\Log;
 class NotificationService extends AbstractService implements NotificationServiceContracts
@@ -119,6 +120,14 @@ class NotificationService extends AbstractService implements NotificationService
     {
         $requisitionService = app(RequisitionServiceContract::class);
         $arrKeyValue['methods'] = 'mail';
+        if ($arrKeyValue['template'] == 'register') {
+            $account = $this->accountService->getAccountUuid($arrKeyValue['account']['id']);
+
+            if (!$account) {
+                abort(404,"Аккаунт не найден");
+            }
+            return new RegisterEmail($account,);
+        }
         if ($arrKeyValue['template'] == 'request') {
 
             $requisition = $requisitionService->getRequisition($arrKeyValue['request']['id']);
@@ -213,9 +222,19 @@ class NotificationService extends AbstractService implements NotificationService
 
     }
 
+    public function sendMailNotificationAccount(Account $to_account,Notification $notification) {
+        Mail::to($to_account->getEmail())->send(new NotificationEmail($notification));
+    }
+
     public function sendMail($arrKeyValue)
     {
 
+        if (!array_key_exists("toAccount",$arrKeyValue)) {
+            abort("500","toAccount обязательно к заполнению");
+        }
+        if (!array_key_exists('localnot',$arrKeyValue) || !is_object($arrKeyValue['localnot'])) {
+            abort("500",'$arrKeyValue[\'localnot\'] is Notification entity');
+        }
         $arrKeyValue['fromAccount'] = auth()->user();
         $toAccount = $this->accountService->getAccountUuid($arrKeyValue['toAccount']);
         if (array_key_exists('localnot',$arrKeyValue) && is_object($arrKeyValue['localnot'])) {

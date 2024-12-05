@@ -27,7 +27,7 @@ class AuthController extends Controller
     ){
         $this->accountService = $accountService;
         $this->businessService = $businessService;
-        $this->middleware('api', ['except' => ['login','registration']]);
+        $this->middleware('api', ['except' => ['login','registration','registrationConfirm']]);
     }
 
     /**
@@ -56,6 +56,14 @@ class AuthController extends Controller
         return  $this->sendResponse($data);
     }
 
+    public function registrationConfirm(Request $request)
+    {
+        $this->validate($request, [
+            'k' => 'required|exists:Domain\Entities\Subscriber\Account,token',
+        ]);
+
+        return $this->sendResponse($this->accountService->registrationConfirm($request->query("k")));
+    }
     public function meFirebase() {
         $this->sendResponse($this->accountService->getFirebaseAccount());
     }

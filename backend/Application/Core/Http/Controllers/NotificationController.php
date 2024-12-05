@@ -46,7 +46,7 @@ class NotificationController extends Controller
     public function actionSendTemplate(Request $request)
     {
         $this->validate($request, [
-            'template' => 'required|in:request,notification,delivery',
+            'template' => 'required|in:request,notification,delivery,register',
             'title' => 'required|string',
             'message' => 'required|string',
             'toAccount' => 'nullable|uuid|exists:Domain\Entities\Subscriber\Account,id',
@@ -54,6 +54,7 @@ class NotificationController extends Controller
             'files.*' => 'nullable|exists:Domain\Entities\Services\Files,hash',
             'request.id' => 'required_if:template,request|uuid|exists:Domain\Entities\Business\Master\Requisition,id',
             'delivery.id' => 'required_if:delivery,request|uuid|exists:Domain\Entities\Business\Document\Requisition\Invoice,id',
+            'account.id' => 'required_if:template,register|nullable|uuid|exists:Domain\Entities\Subscriber\Account,id',
         ]);
         return $this->notificationService->sendNotificationTemplate($request->all());
     }
