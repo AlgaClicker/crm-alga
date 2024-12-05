@@ -56,7 +56,7 @@
                                 </th>
                                 <th >ПАРТНЕР </th>
                                 <th width="300px"> ОПИСАНИЕ </th>
-                                <th> КОМПАНИЯ </th>
+                                <th> БАНК </th>
                                 <th> СПЕЦИФИКАЦИИ </th>
                                 <th></th>
                             </tr>
@@ -83,7 +83,7 @@
                                     <td width="140px"><p>{{ item?.type | paymentsTypeFilter }}</p></td>
                                     <td><p>{{ item.partner?.name }}</p></td>
                                     <td width="300px"><p>{{ item?.description }}</p></td>
-                                    <td><p>{{ item?.company.name }}</p></td>
+                                    <td><p> {{item?.company_bank_account.bank.name}}</p></td>
                                     <td v-if="item.specification != ''">
                                         <p>{{ item?.specification.name }}</p>
                                     </td>
@@ -131,6 +131,7 @@
                         </b-row>
                         <b-row class="c-default-table-mobile-col__row">
                             <b-col class="title">КОМПАНИЯ</b-col>
+
                             <b-col class="text"> {{ item?.company.name }} </b-col>
                         </b-row>
                         <b-row class="c-default-table-mobile-col__row">

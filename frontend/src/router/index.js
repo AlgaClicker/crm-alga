@@ -68,6 +68,26 @@ let routes = [
       requiresAuth: false 
     },
   },
+
+  {
+    path: '/Registration',
+    name: 'Registration',
+    component: () => import('@/views/auth/Registration'),
+    meta: {
+      layout: "EmptyLayout",
+      requiresAuth: false
+    },
+  },
+  {
+    path: '/regok',
+    name: 'RegistrationConfirm',
+    component: () => import('@/views/auth/RegistrationConfirm'),
+    meta: {
+      layout: "EmptyLayout",
+      requiresAuth: false
+    },
+  },
+
   {
     path: '*',
     name: 'NotFound',

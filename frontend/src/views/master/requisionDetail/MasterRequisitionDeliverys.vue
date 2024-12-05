@@ -22,7 +22,8 @@
 
           <b-collapse :id="'accordion-'+item.id" accordion="my-accordion" visible class="accordion-collapse collapse show "   role="tabpanel">
             <b-card-body class="p-0 m-3">
-              <RequisitionDeliveryConfirmed :delivery="item" :key="item.id">
+
+              <RequisitionDeliveryConfirmed :delivery="item"  :key="item.id" @applayConfirmed="applayConfirmed">
               </RequisitionDeliveryConfirmed>
             </b-card-body>
           </b-collapse>
@@ -113,6 +114,10 @@
 
         },
         methods: {
+          async applayConfirmed() {
+            console.log('MasterRequisitionDeliverys::applayConfirmed')
+            await this.reloadData()
+          },
           confirmHandleOk(id) {
             console.log("================confirmHandleOk===============")
             console.log(id)
@@ -139,7 +144,7 @@
           async reloadData() {
 
             this.onload = true
-            await this.masterRequisitionGetDelivery(this.$route.params.id)
+            //await this.masterRequisitionGetDelivery(this.$route.params.id)
             await this.masterRequisitionDeliveryLoadList(this.$route.params.id)
 
             this.initConfirmedList();

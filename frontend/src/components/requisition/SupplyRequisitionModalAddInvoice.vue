@@ -73,6 +73,12 @@
                                 </div>
                             </template>
                         </multiselect>
+                      <div class="mt-2">
+                        <label class="label-custom" for="input-name">Документы/Файлы</label>
+
+                        <file-upload-modal @addFileEmit="addFileInvoce" />
+
+                      </div>
                     </b-col>
                     <b-col>
                         <label class="label-custom mt-2" for="input-name">Комментарий</label>
@@ -88,6 +94,7 @@
                         ></b-form-textarea>
                     </b-col>
                 </b-row>
+
                 <b-row class="scroll-wrapper-table">
                     <label class="label-custom mt-4" for="input-name">Материалы</label>
                     <div class='c-master-requisitions-universal-table mt-2'>
@@ -176,6 +183,7 @@
 
         import BaseTextarea from "@/components/elements/BaseTextarea";
         import FilesBlockAttach from '@/components/elements/files/FilesBlockAttach'
+        import FileUploadModal from "@/components/elements/files/FileUploadModal.vue";
 
         export default {
             name: 'SupplyRequisitionModalAddInvoice',
@@ -185,6 +193,7 @@
                     errUpload: null,
                     showProgress: false,
                     files: [],
+                    filesInvoice: [],
                     newFile: {},
                     idMaterial: '',
                     newInvoice: {
@@ -222,12 +231,14 @@
                     directoryContractsSupplyList: 'directoryContractsSupplyListGetter',
                     supplyRequisitionMaterialError: 'supplyRequisitionMaterialErrorGetter',
                     supplyRequisitionMaterialNewInvoice: 'supplyRequisitionMaterialNewInvoiceGetter',
+                    supplyRequisitionNewInvoiceFilesGetter: 'supplyRequisitionNewInvoiceFilesGetter',
+
                 }),
                 validationsComputed(){
                     if( 
                         this.$v.newInvoice.delivery_at.$invalid == false &
                         //this.supplyRequisitionMaterialNewInvoice.materials.filter( item => item.fullname == '').length == 0 &
-                        this.supplyRequisitionMaterialNewInvoice.materials.filter( item => item.files.length == 0).length == 0 &
+                        //this.supplyRequisitionMaterialNewInvoice.materials.filter( item => item.files.length == 0).length == 0 &
                         this.supplyRequisitionMaterialNewInvoice.materials.filter( item => item.price == 0 | item.price == '').length == 0 & 
                         this.supplyRequisitionMaterialNewInvoice.materials.filter( item => item.quantity == 0 | item.quantity == '').length == 0 
                     ){
@@ -239,6 +250,7 @@
                 },
             },
             components: {
+              FileUploadModal,
                 FilesBlockAttach,
                 BaseTextarea
             },
@@ -252,6 +264,7 @@
                     supplyRequisitionMaterialNewInvoiceSet: 'supplyRequisitionMaterialNewInvoiceSetActions',
                     supplyRequisitionMaterialDeleteAttachFile: 'supplyRequisitionMaterialDeleteAttachFileActions',
                     supplyRequisitionMaterialAttachFileForInvoices: 'supplyRequisitionMaterialAttachFileForInvoicesActions',
+                    supplyRequisitionAttachFileForInvoice: 'supplyRequisitionAttachFileForInvoice',
                 }),
                 setIdUpload(id){
                     this.idMaterial = id
@@ -259,6 +272,11 @@
                 addFile(params){
                     this.supplyRequisitionMaterialAttachFileForInvoices(params)
                 },
+                addFileInvoce( _, files){
+                  this.filesInvoice.push(files)
+                  this.supplyRequisitionAttachFileForInvoice(this.filesInvoice)
+                },
+
                 deleteFile(params){
                     this.supplyRequisitionMaterialDeleteAttachFile(params.hash)
                 },
@@ -275,6 +293,7 @@
                         contract: '',
                         stock: '',
                         description: '',
+                        files: [],
                         materials: [{}]
                     }
 
@@ -283,7 +302,8 @@
                     invoice.stock = this.newInvoice.stock.id
                     invoice.description = this.newInvoice.description
                     invoice.materials = this.newInvoice.materials.materials 
-                    
+                    invoice.files = this.supplyRequisitionNewInvoiceFilesGetter
+                  
                     for(let i = 0; i < invoice.materials.length; i++){
                         invoice.materials[i].files = invoice.materials[i].files.map(item => item.hash)
                     }

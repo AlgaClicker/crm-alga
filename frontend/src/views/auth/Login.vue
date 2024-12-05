@@ -25,12 +25,16 @@
         <span v-html="iconError"></span>
         {{ error }}
       </div>
+
       <base-button-loading
         class="mt-4"
         textProps="Войти" 
         :loadingProps="loginLoading"
         @click="Auth">
       </base-button-loading>
+      <div class="py-2 my-2 center text-center w-auto">
+        <RouterLink to="/Registration">регситрация</RouterLink>
+      </div>
     </div>
   </div>
 
@@ -80,6 +84,7 @@
     methods: {
       ...mapActions({
         login: "loginActions",
+        defaultLoginParam:"defaultLoginParam"
       }),
       async Auth(){
         this.$v.$touch(); 
@@ -98,6 +103,7 @@
       }
     },
     mounted(){
+      this.defaultLoginParam()
       document.addEventListener('keydown', this.enterAuth)
     }
 }
