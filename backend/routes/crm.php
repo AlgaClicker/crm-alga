@@ -25,6 +25,9 @@ Route::get('object/{objectId}',  ['as' => 'objectsShowOnly', 'uses' => 'Crm\Obje
 Route::patch('objects',  ['as' => 'objectsEditOnly', 'uses' => 'Crm\ObjectsController@actionEdit']);
 Route::delete('objects',  ['as' => 'objectDeleteOnly', 'uses' => 'Crm\ObjectsController@actionDelete']);
 
+
+Route::post('objects/{objectId}/specification/import/',  ['as' => 'specificationLoadFile', 'uses' => 'Crm\SpecificationController@loadSpecFile']);
+
 Route::post('object/{objectId}/specifications/',  ['as' => 'objectsShowOnly', 'uses' => 'Crm\SpecificationController@showSpecificationsByObject']);
 
 /*

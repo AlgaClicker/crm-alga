@@ -2,6 +2,7 @@
 
 namespace Infrastructure\Repositories\Document;
 use Doctrine\ORM\EntityManager;
+use Illuminate\Support\Facades\Log;
 use Infrastructure\Repositories\AbstractRepository;
 
 use Domain\Contracts\Repository\Services\FileRepositoryContracts;
@@ -44,8 +45,8 @@ class InvoiceMaterialsConfirmedRequisitionRepository extends AbstractRepository
         $qb = $qb->where($qb->expr()->eq('imcr.requisitionInvoiceMaterial',":requisition_material"));
         $query = $this->em->createQuery($qb->getDQL());
         $query->setParameter('requisition_material', $invoice_material);
-        $summa = $query->getSingleResult()['sum'] ?? 0;
-        return $summa;
+
+        return $query->getSingleResult()['sum'] ?? 0;
     }
 
 }

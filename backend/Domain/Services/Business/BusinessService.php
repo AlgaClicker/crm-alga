@@ -87,7 +87,7 @@ class BusinessService extends AbstractService implements BusinessServiceContract
         $compnay['name'] = $dadata['value'];
         $dadata = $dadata['data'];
         $compnay['fullname'] = $dadata['name']['full_with_opf'];
-
+        $compnay['active'] = false;
         $compnay['address'] = $dadata['address']['unrestricted_value'];
         if ($dadata['state']['status'] != "ACTIVE") {
             throw new ApplicationException('Компания с ИНН ['.$arrKeyValue['inn'].'], статус:'.$dadata['state']['status'],400);
@@ -121,7 +121,7 @@ class BusinessService extends AbstractService implements BusinessServiceContract
         $arrParamStock['autorId'] = $newAccount->getId();
         $this->stockRepository->create($arrParamStock);
 
-
+        $this->companyRepository->update($newCompany,['active'=>"false"]);
 
         return $newAccount;
     }

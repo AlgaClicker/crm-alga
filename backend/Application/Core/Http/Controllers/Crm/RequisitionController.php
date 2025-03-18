@@ -224,6 +224,7 @@ class RequisitionController extends Controller
     }
 
     public function snabzheniyeRequisitionWorkAdd($requisitionId, Request $request) {
+        //addInvoice
         if (count($request->all()) == 0) {
             abort('400','Пустой запрос');
         }
@@ -235,9 +236,11 @@ class RequisitionController extends Controller
             'contract' => 'required|uuid|exists:Domain\Entities\Business\Document\Contracts,id',
             'stock'=>'sometimes|required|uuid|exists:Domain\Entities\Business\Company\Stock,id',
             'specification' => 'null|sometimes|required|uuid|exists:Domain\Entities\Business\Objects\Specification,id',
+            'files.*.hash' => 'nullable|string|exists:Domain\Entities\Services\Files,hash',
             'materials.*.id' => 'required|uuid|exists:Domain\Entities\Business\Master\RequisitionMaterials,id',
             'materials.*.price' => 'required|numeric|min:0,001',
             'materials.*.quantity' => 'required|numeric|min:0,001',
+
         ]);
 
         return $this->sendResponse($this->requisitionService->snabzheniyeRequisitionWorkAdd($requisitionId,$request->all()));
@@ -273,8 +276,9 @@ class RequisitionController extends Controller
 
             ]);
         }
+            $result = $this->requisitionService->deliveryMasterMaterialsСonfirmedList($requisitionId,$deliveryId,$request->get('options'));
 
-        return  $this->sendResponse($this->requisitionService->deliveryMasterMaterialsСonfirmedList($requisitionId,$deliveryId,$request->get('options')));
+        return  $this->sendResponse($result['data'],$result['options']);
     }
 
     public function deliveryMasterMaterialsСonfirmed($requisitionId,$deliveryId,Request $request) {
@@ -294,9 +298,7 @@ class RequisitionController extends Controller
             'materials.*.description' => 'nullable|sometimes|string',
             'materials.*.files.*.hash' => 'nullable|sometimes|required|string|exists:Domain\Entities\Services\Files,hash',
         ]);
-
-        $confirmedMaterial = $this->requisitionService->deliveryMasterMaterialsСonfirmed($requisitionId,$deliveryId,$request->get('materials'));
-        return  $this->sendResponse($confirmedMaterial);
+        return  $this->sendResponse($this->requisitionService->deliveryMasterMaterialsСonfirmed($requisitionId,$deliveryId,$request->get('materials')));
     }
 
     public function specificationRequisitionInvoice($specificationId, Request $request)
@@ -343,6 +345,21 @@ class RequisitionController extends Controller
             ]);
         }
         return $this->sendResponse($this->requisitionService->deliveryMasterListRequisition($requisitionId,$request->get('options')));
+    }
+
+    public function deliveryRequisitionProgress($requisitionId,$deliveryId, Request $request)
+    {
+        $req['requisitionId'] = $requisitionId;
+        $req['deliveryId'] = $deliveryId;
+
+        $request->request->add($req);
+
+        $this->validate($request,[
+            'requisitionId' => 'required|uuid|exists:Domain\Entities\Business\Master\Requisition,id',
+            'deliveryId' => 'required|uuid|exists:Domain\Entities\Business\Document\Requisition\Invoice,id'
+        ]);
+
+        return $this->sendResponse($this->requisitionService->deliveryRequisitionProgress($requisitionId,$deliveryId));
     }
 
 }

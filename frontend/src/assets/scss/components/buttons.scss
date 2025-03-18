@@ -15,6 +15,20 @@
     background-color: #3d95fb;
 }
 
+.c-button {
+    background-color: #5a93f0;
+    border-radius: 5px;
+    border: solid 2px #5a93f0;
+    min-width: 135px;
+    color: #ffffff;
+}
+
+.c-button:hover {
+    background-color: #ffffff;
+    border: solid 2px #5a93f0;
+    color: #5a93f0;
+}
+
 .c-button-save{
     border: none;
     background-color: #E5EAF5;

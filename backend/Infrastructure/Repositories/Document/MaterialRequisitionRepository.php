@@ -923,7 +923,7 @@ class MaterialRequisitionRepository extends AbstractRepository implements Materi
         return $this->requisitionMaterialRepository->findByUuid($idMaterial);
     }
 
-    public function deliveryMasterMaterialsСonfirmedList(Requisition $requisition,Invoice $delivery,$options=[]) {
+    public function    deliveryMasterMaterialsСonfirmedList(Requisition $requisition,Invoice $delivery,$options=[]) {
         $materials = [];
 
         foreach ($delivery->getMaterials() as $material) {
@@ -935,14 +935,17 @@ class MaterialRequisitionRepository extends AbstractRepository implements Materi
                     'material_confirmed'=>$confirmedMaterial
                 ];
             }
-
         }
 
-        return $materials;
+        return [
+            "data"=>$materials[array_key_first($materials)],
+            "options"=>$options
+        ];
     }
 
     public function deliveryMaterialСonfirmed($materialСonfirmed)
     {
+
         $newConfirmedMaterial =  $this->invoiceMaterialsConfirmedRequisitionRepository->loadNew($materialСonfirmed);
         if (array_key_exists('files',$materialСonfirmed)) {
             foreach ($materialСonfirmed['files'] as $file) {
@@ -980,6 +983,9 @@ class MaterialRequisitionRepository extends AbstractRepository implements Materi
             $requisitionMaterial->setStatus("processing");
             $this->em->persist($invoiceMaterial);
         }
+
+        $req  = $requisitionMaterial->getRequisition();
+        $this->setProcentProgressRequestion($req,$count_confirmed);
         $this->em->persist($newConfirmedMaterial);
         $this->em->persist($requisitionMaterial);
 
@@ -1001,5 +1007,15 @@ class MaterialRequisitionRepository extends AbstractRepository implements Materi
         }
 
         return $result_list;
+    }
+
+    public function setProcentProgressRequestion(Requisition $requisition, float $progress)
+    {
+        //$requisition = $this->findOne($requisition);
+
+        $requisition->setProgress($progress);
+        $this->em->persist($requisition);
+        $this->em->flush($requisition);
+        return $requisition;
     }
 }

@@ -77,10 +77,10 @@
                                         {{ item.contract.number }}
                                     </td>
                                     <td>
-                                        {{ item.delivery_at | dateFilter }}
+                                        {{ item.delivery_at | dateOnlyFilter }}
                                     </td>
                                     <td>
-                                        {{ item.created_at | dateFilter }}
+                                        {{ item.created_at | dateOnlyFilter }}
                                     </td>
                                 </tr>
                             </tbody>
@@ -117,6 +117,7 @@
     import FilterInvoice from '@/components/elements/filters/FilterInvoice'
     import RequisitionsInvoiceModalInfo from '@/components/requisition/RequisitionsInvoiceModalInfo'
     import DirectoryContractsSupplyModalInfo from '@/components/directory/DirectoryContractsSupplyModalInfo'
+    import {dateOnlyFilter} from "@/filters/filters";
 
     export default {
         name: "SupplyRequisitionsInvoices",
@@ -164,6 +165,7 @@
             })
         },
         methods: {
+          dateOnlyFilter,
             ...mapActions({
                 supplyRequisioinsInvoicesSetList: 'supplyRequisioinsInvoicesSetListActions',
                 supplyRequisioinsInvoicesSetOptions: 'supplyRequisioinsInvoicesSetOptionsActions'

@@ -29,6 +29,7 @@ services:
 
   api:
     container_name: api
+    env_file: ./../../${ENV_FILE}
     build:
       context: ../..
       dockerfile: ./provision/docker-images/api/Dockerfile
@@ -65,6 +66,7 @@ services:
 
   websockets:
     container_name: websockets
+    env_file: ./../../${ENV_FILE}
     build:
       context: ../docker-images/websockets
       dockerfile: Dockerfile
@@ -90,10 +92,10 @@ services:
       - redis-data:/data:cached
     networks:
       - network
-    ports:
-      - "0.0.0.0:6379:6379"
+      
   nginx:
     container_name: nginx
+    env_file: ./../../${ENV_FILE}
     build:
       context: ../..
       dockerfile: ./provision/docker-images/nginx/Dockerfile

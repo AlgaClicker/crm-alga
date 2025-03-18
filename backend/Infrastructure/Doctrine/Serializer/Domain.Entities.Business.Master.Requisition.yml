@@ -10,6 +10,8 @@ Domain\Entities\Business\Master\Requisition:
       exclude: true
     fixed:
       exclude: true
+    progress:
+      exclude: true
     status:
       exclude: false
     manager:
@@ -29,6 +31,11 @@ Domain\Entities\Business\Master\Requisition:
       name: fixed
       serialized_name: fixed
       type: boolean
+    getProgress:
+      name: progress
+      serialized_name: progress
+      type: float
+
 
 
 

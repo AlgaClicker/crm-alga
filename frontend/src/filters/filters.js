@@ -3,6 +3,11 @@ export const dateFilter = ( date ) => {
     return newDate.toLocaleString();
 }
 
+export const dateOnlyFilter = ( date ) => {
+	let newDate = new Date(date);
+	return new Intl.DateTimeFormat("ru-RU").format(newDate);
+}
+
 export const sizeFilter = ( size, decimals = 2 ) => {
     if (size === 0) {
 		return '0';

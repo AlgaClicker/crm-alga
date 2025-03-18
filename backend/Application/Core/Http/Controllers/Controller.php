@@ -50,19 +50,24 @@ class Controller extends BaseController
     protected function sendResponse($entity,$options=[]){
 
         if (is_array($entity) && array_key_exists('data',$entity) && array_key_exists('options',$entity)) {
+
+
             $data = json_decode($this->serialize($entity['data']));
                 return JsonResponseDefault::create(true, $data, $entity['options'], 'success', 200);
         }
 
         if (is_object($entity) && get_class($entity) === "stdClass" ) {
+
             return JsonResponseDefault::create(true, $entity, $options, 'success', 200);
         }
 
         if ($entity) {
+
             $data = json_decode($this->serialize($entity));
             return JsonResponseDefault::create(true, $data, $options, 'success', 200);
         } else {
-            return JsonResponseDefault::create(true, null, $options, 'empty', 204);
+
+            return JsonResponseDefault::create(true, null, $options, null, 204);
         }
     }
 

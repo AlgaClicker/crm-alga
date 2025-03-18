@@ -57,6 +57,9 @@
             setListActionsNameProps: { type: String, default: '' },
             setOptionsActionsNameProps: { type: String, default: '' },
         },
+        mounted() {
+          this.limit = this.optionsProps.pagginate.limit
+        },
         methods: {
             async updateLimit(){
                 let options = this.optionsProps

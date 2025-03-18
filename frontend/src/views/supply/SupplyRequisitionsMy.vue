@@ -29,7 +29,7 @@
                                 <th width="170"> 
                                     НОМЕР ЗАЯВКИ
                                 </th>
-                                <th class="th-sort" @click="sortRequisitions('specification')"> 
+                                <th class="th-sort"  @click="sortRequisitions('specification')">
                                     СПЕЦИФИКАЦИЯ
                                     <b-icon v-show="sort.specification.asc" icon="chevron-down" font-scale="0.9" ></b-icon>
                                     <b-icon v-show="sort.specification.desc" icon="chevron-up" font-scale="0.9" ></b-icon>
@@ -42,10 +42,10 @@
                                 <th width="300" class="th-date"> 
                                     СООБЩЕНИЕ
                                 </th>
-                                <th class="th-sort" @click="sortRequisitions('createdAt')"> 
-                                    СОЗДАНО
-                                    <b-icon v-show="sort.createdAt.asc" icon="chevron-down" font-scale="0.9" ></b-icon>
-                                    <b-icon v-show="sort.createdAt.desc" icon="chevron-up" font-scale="0.9" ></b-icon>
+                                <th class="th-sort" @click="sortRequisitions('endAt')">
+                                    ПОСТАВИТЬ ДО
+                                    <b-icon v-show="sort.endAt.asc" icon="chevron-down" font-scale="0.9" ></b-icon>
+                                    <b-icon v-show="sort.endAt.desc" icon="chevron-up" font-scale="0.9" ></b-icon>
                                 </th>
                             </tr>
                         </thead>
@@ -66,7 +66,7 @@
                         <table v-else>
                             <tbody>
                                 <tr v-for="item in supplyMyRequisitionList" :key="item?.id">
-                                    <td width="170">
+                                    <td style="width: 170px">
                                         <status-requisition
                                             :statusProps="item.status"
                                         />
@@ -78,12 +78,14 @@
                                             {{ item.number }}
                                         </router-link>
                                     </td>
-                                    <td>
+                                    <td v-if="item.specification" >
                                         <router-link    
                                             :to="`/crm/supply/specification/info/${item.specification?.id}`"
                                         >
                                             {{ item.specification?.name }}
                                         </router-link> ( {{ item.specification?.objectName }} )
+                                    </td>
+                                    <td v-else>
                                     </td>
                                     <td>
                                         <author-title 
@@ -94,7 +96,7 @@
                                         <p class="td-text">{{ item.description }} </p>
                                     </td>
                                     <td>
-                                        {{ item.created_at | dateFilter}}
+                                        {{ item.end_at | dateOnlyFilter}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -160,6 +162,7 @@
     import PagginateTable from '@/components/elements/PagginateTable'
     import FilterRequisition from '@/components/elements/filters/FilterRequisition'
     import StatusRequisition from '@/components/requisition/StatusRequisition'
+    import {dateOnlyFilter} from "@/filters/filters";
     
     export default {
         name: "SupplyRequisitionsMy",
@@ -172,6 +175,10 @@
                     autor: {
                         asc: false,
                         desc: false,
+                    },
+                    endAt: {
+                      asc: false,
+                      desc: true,
                     },
                     createdAt: {
                         asc: false,
@@ -207,6 +214,7 @@
             })
         },
         methods: {
+          dateOnlyFilter,
             ...mapActions({
                 accountsCompanySet: 'accountsCompanySetActions',
                 specificationSetAllList: 'specificationSetAllListActions',

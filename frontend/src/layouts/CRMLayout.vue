@@ -3,7 +3,8 @@
       <header class="c-header">
          <b-icon @click="toggleNavbar()" ref="menuicon" class="c-header__menu" icon="justify" scale="1.8"></b-icon>
          <div class="c-header__wrapper-left">
-            <span v-html="iconLogo" ></span>
+            <!-- <span v-html="iconLogo" ></span> -->
+            Управлние заявками
          </div>
          <div class="c-header__wrapper-right">
             <div class="c-bell">
