@@ -15,6 +15,7 @@ use Domain\Contracts\Services\NotificationServiceContracts;
 use Domain\Entities\Business\Master\Requisition;
 use Domain\Entities\Services\Chat;
 use Domain\Entities\Services\Notification;
+use Illuminate\Support\Facades\Log;
 
 class ChatService extends AbstractService implements ChatServiceContracts
 {
@@ -163,6 +164,7 @@ class ChatService extends AbstractService implements ChatServiceContracts
         $notification->setTitle($title);
         $notification->setMessage($body['message']);
         event(new NotificationEvent($notification));
+        $this->notificationService->sendMailNotificationAccount($body['accountTo'],$notification);
         event(new ChatEvent($newMessage));
         return $this->chatRepository->findOne($newMessage);
     }

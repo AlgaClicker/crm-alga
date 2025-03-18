@@ -69,8 +69,8 @@ class CORSMiddleware
         $headers = [
             'Access-Control-Allow-Origin' => ['*'],
             'Access-Control-Max-Age' => (60 * 60 * 24),
-            'Access-Control-Allow-Headers' => $request->header('Access-Control-Request-Headers'),
-            'Access-Control-Allow-Methods' => $request->header('Access-Control-Request-Methods')
+            'Access-Control-Allow-Headers' => $request->header('Access-Control-Request-Headers',"*"),
+            'Access-Control-Allow-Methods' => $request->header('Access-Control-Request-Methods', 'GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS')
                 ?: 'GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS',
             'Access-Control-Allow-Credentials' => 'true',
         ];

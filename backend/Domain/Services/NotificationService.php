@@ -223,6 +223,7 @@ class NotificationService extends AbstractService implements NotificationService
     }
 
     public function sendMailNotificationAccount(Account $to_account,Notification $notification) {
+        Log::info("sendMailNotificationAccount|".$to_account->getName()." Notification:".$notification->getTitle());
         Mail::to($to_account->getEmail())->send(new NotificationEmail($notification));
     }
 

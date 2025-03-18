@@ -181,8 +181,11 @@ class BrigadeController extends Controller
             'date'=> 'required|date',
             'timeAmount' => 'required|string|in:1,2,3,4,5,6,7,8,9,10,11,12,б,о,ну,нп,б,до',
             'timeExtra' => 'sometimes|numeric|min:0|max:16',
-            'specificationId' => 'sometimes|null|uuid|exists:Domain\Entities\Business\Objects\Specification,id',
+            'specificationId' => 'sometimes|uuid|exists:Domain\Entities\Business\Objects\Specification,id',
             'description'=>'sometimes|required|min:1'
+        ]);
+        $this->validate($request, [
+            'idWorkpeople' => 'required|uuid|exists:Domain\Entities\Business\Company\Workpeople,id',
         ]);
 
         $date = new \DateTimeImmutable($request->date('date'));

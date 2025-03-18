@@ -1,12 +1,12 @@
 # Image
 FROM node:20-alpine as build-stage
 
-ENV NODE_ENV_1="production"
-ENV VUE_APP_TITLE="Alga CRM App"
-ENV VUE_APP_URL="https://cms.alga-corp.ru"
-ENV VUE_APP_WS_HOST=cms.alga-corp.ru
-ENV VUE_APP_WS_PORT=6001
-ENV VUE_APP_WS_SSL=true
+#ENV NODE_ENV_1="production"
+#ENV VUE_APP_TITLE="CRM App"
+#ENV VUE_APP_URL="https://crm.it59com.ru"
+#ENV VUE_APP_WS_HOST=crm.it59com.ru
+#ENV VUE_APP_WS_PORT=6001
+#ENV VUE_APP_WS_SSL=true
 
 RUN echo "Asia/Yekaterinburg" > /etc/timezone
 

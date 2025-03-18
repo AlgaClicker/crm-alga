@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class CleanOldTokensJob extends Job implements ShouldQueue
+class CalculateActiveCompanyJob extends Job implements ShouldQueue
 {
     use  InteractsWithQueue, Queueable, SerializesModels;
     /**
@@ -17,15 +17,11 @@ class CleanOldTokensJob extends Job implements ShouldQueue
      *
      * @return void
      */
-    private $file;
     public function __construct()
     {
 
-        //$this->file = $file;
 
-        //$this->onQueue('processing');
-
-        Log::info("Удаление устаревших токенов");
+        Log::info("Расчет подписки");
 
     }
 
@@ -37,9 +33,8 @@ class CleanOldTokensJob extends Job implements ShouldQueue
     public function handle()
     {
 
-        Log::info("start Job CleanOldTokensJob ");
-        $accountService = app(AccountServiceContracts::class);
-        $accountService->cleanOldTokens();
+        Log::info("Старт расчета подписки ");
+
         Log::info("End Job CleanOldTokensJob");
     }
 

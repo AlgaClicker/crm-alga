@@ -23,12 +23,14 @@ use Illuminate\Support\Collection;
 
 function _getInfoRoute()
 {
+
+
     return [
         "name"=>env('APP_NAME','Alga-CRM'),
         "version"=>env('VERSION','no ver ENV'),
         "auth"=>"/auth/login",
         "jwt"=>"/api/v1/",
-        "microtime"=>str(microtime(true))
+        "microtime"=>str(round(microtime(true) - app()->run_app,4))
     ];
 }
 

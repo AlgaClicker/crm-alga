@@ -41,7 +41,6 @@ services:
     links:
       - memcached
       - postgres
-      - postgres-test
       - redis
     networks:
       - network
@@ -61,8 +60,8 @@ services:
       dockerfile: ./provision/docker-images/front/Dockerfile
     volumes:
       - ./../../frontend:/var/www/front:cached      
-    ports:
-      - "0.0.0.0:8080:8080"
+    expose:
+      - "9000"
 
   websockets:
     container_name: websockets
@@ -124,23 +123,5 @@ services:
       - network
     ports:
       - "0.0.0.0:15432:5432"
-
-  postgres-test:
-    image: postgres:15
-    container_name: postgres-test
-    restart: always
-    environment:
-      POSTGRES_DB: ${DB_DATABASE}
-      POSTGRES_DATABASE: ${DB_DATABASE}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - ./provision/docker-images/postgres/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
-      - pg-data-test:/var/lib/postgresql/data:cached
-    networks:
-      - network
-    ports:
-      - "0.0.0.0:25432:5432"
-
 
  
