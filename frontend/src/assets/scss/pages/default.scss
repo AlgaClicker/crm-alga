@@ -74,7 +74,7 @@
                 position: -webkit-sticky; // this is for all Safari (Desktop & iOS), not for Chrome
                 position: sticky;
                 top: 0;
-                z-index: 1; // any positive value, layer order is global
+                z-index: 20; // any positive value, layer order is global
                 background: #fff; // any bg-color to overlap
                 .left-container{
                     margin-left: auto;
