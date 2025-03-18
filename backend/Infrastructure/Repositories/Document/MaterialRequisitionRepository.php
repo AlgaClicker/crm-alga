@@ -1012,7 +1012,9 @@ class MaterialRequisitionRepository extends AbstractRepository implements Materi
     public function setProcentProgressRequestion(Requisition $requisition, float $progress)
     {
         //$requisition = $this->findOne($requisition);
-
+        if ($progress >= 100) {
+            $requisition->setStatus("completed");
+        }
         $requisition->setProgress($progress);
         $this->em->persist($requisition);
         $this->em->flush($requisition);

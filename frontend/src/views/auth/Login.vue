@@ -1,9 +1,11 @@
 <template>
   <div class="c-login-wrapper">
 
+    <!--
     <div class="c-login-wrapper__logo">
       <base-icon iconProps="logo" sizeProps="lg" />
     </div>
+    -->
     <div class="c-login-form">
       <div class="c-login-form__header">
         <header class="c-login-form__header-text">Вход в систему</header> 

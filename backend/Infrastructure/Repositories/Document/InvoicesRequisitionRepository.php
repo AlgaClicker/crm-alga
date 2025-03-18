@@ -855,7 +855,14 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
              $remnant_s += $materialInvoice->getQuantity();
          }
         $progress =  round(($confirm_s/$remnant_s )*100,3);
-        $invoice->setStatus("progress");
+         if ($progress >= 100) {
+             $invoice->setStatus("completed");
+         } else {
+             $invoice->setStatus("progress");
+         }
+        Log::info("Invoce:".$invoice->getNumber());
+        Log::info("progress:".$progress);
+
         $invoice->setProgress($progress);
         $this->em->persist($invoice);
     }
@@ -904,6 +911,7 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
 
         $this->em->flush();
         $this->invoiceCalculation($requisitionInvoice);
+
         return $newConfirmedMaterial;
     }
 
@@ -913,7 +921,13 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
         $p_remnant = $this->processProcentInvoiceRequisition($requisition);
 
 
+
         $p_avg = ($p_confirmed+$p_remnant)/2;
+
+        if ($p_avg >= 100) {
+            $requisition->setStatus("completed");
+        }
+
         $requisition->setProgress($p_avg);
         $this->em->persist($requisition);
         $this->em->flush();
@@ -967,6 +981,7 @@ class InvoicesRequisitionRepository extends AbstractRepository implements Invoic
 
         }
         $this->recalculationProcentRequisition($requisition);
+
         // $this->requisitionRepository->recalculationProcentRequisition($requisition);
         return $result_list->all();
     }

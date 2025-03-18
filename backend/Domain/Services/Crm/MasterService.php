@@ -26,7 +26,6 @@ class MasterService extends AbstractService implements MasterServiceContract
     private MaterialRequisitionRepositoryContracts $materialRequisitionRepository;
     private MaterialRequisitionRepositoryContracts $materialRepository;
     private NotificationServiceContracts $notificationService;
-    private ChatServiceContracts $chatService;
     private MaterialServiceContract $materialService;
     private RequisitionServiceContract $requisitionService;
 
@@ -37,7 +36,6 @@ class MasterService extends AbstractService implements MasterServiceContract
         WorkpeopleServiceContract $workpeopleService,
         NotificationServiceContracts $notificationService,
         MaterialRequisitionRepositoryContracts $materialRequisitionRepository,
-        ChatServiceContracts $chatService,
         MaterialServiceContract $materialService,
         RequisitionServiceContract $requisitionService
     ){
@@ -48,7 +46,6 @@ class MasterService extends AbstractService implements MasterServiceContract
         $this->materialRequisitionRepository = $materialRequisitionRepository;
 
         $this->repository = $materialRequisitionRepository;
-        $this->chatService = $chatService;
         $this->materialService = $materialService;
         $this->requisitionService = $requisitionService;
     }

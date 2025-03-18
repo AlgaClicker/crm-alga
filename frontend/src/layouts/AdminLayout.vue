@@ -1,9 +1,11 @@
 <template>
    <div class="l-admin-main">
       <nav>
+        <!--
          <div class="c-logo">
-            1
+
          </div>
+         -->
          <div class="c-link">
             <router-link 
                class="c-link_item"

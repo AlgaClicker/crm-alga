@@ -38,7 +38,6 @@ class NotificationEvent extends Event implements ShouldBroadcast
         }
 
         $this->notification = $notification;
-        //$this->notificationService = new NotificationService();
     }
 
     /**
